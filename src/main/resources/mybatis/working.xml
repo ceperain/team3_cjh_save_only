@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.mvc.work.WorkDAOInter">
+ <insert id="create" parameterType="dev.mvc.work.WorkVO">
+    INSERT INTO working(workno, storeno,day,starttime,endtime)
+    VALUES(working_seq.nextval,#{storeno}, #{day}, #{starttime},#{endtime})
+  </insert> 
+  <select id="list_storeno" resultType="dev.mvc.work.WorkVO">
+    SELECT workno, storeno,day,starttime,endtime
+    FROM working
+    where storeno = #{storeno}
+    ORDER BY workno ASC    
+  </select>
+   <select id="read" resultType="dev.mvc.work.WorkVO">
+    SELECT workno, storeno,day,starttime,endtime
+    FROM working
+    where workno = #{workno}
+  </select>
+  <update id="update" parameterType="dev.mvc.work.WorkVO">
+    UPDATE working
+    SET day=#{day}, starttime=#{starttime}, endtime=#{endtime}
+    WHERE workno = #{workno}
+  </update>
+
+  <!-- 삭제, return: int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM working
+    WHERE workno = #{workno}
+  </delete>       
+  
+ <select id="count_by_storeno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM working
+    WHERE storeno=#{storeno}
+  </select>
+  </mapper>
