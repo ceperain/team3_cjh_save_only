@@ -121,10 +121,14 @@ size: 50px;
   </head>
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
+
+<div class="gradient-custom-3">
+<section style="width: 80%; margin:auto;">
+
 <br><br><br>
   <%-- 신규 등록 --%>
 <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; 
-                                             text-align: center;'>
+                                             text-align: center;' >
  <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체명</label>
@@ -291,6 +295,8 @@ size: 50px;
     </c:forEach>
     </tbody>
     </TABLE>
+    
+    </section></div>
 </body>
 </html>
 
