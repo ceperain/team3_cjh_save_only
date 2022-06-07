@@ -9,64 +9,77 @@
 <title>http://localhost:9091/review/create.do</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
+ <link href="/css/review.css" rel="Stylesheet" type="text/css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
-  $(function(){
- 
-  });
+
 </script>
  
 </head> 
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-  <!-- <section class="vh-100"> -->
-  <section class="vh-100" style="overflow:auto">
+<div class="min-vh-100 gradient-custom-3">
  
-<DIV class='title_line'>
-  <label class="control-label col-md-2"></label>
-  <strong class="RestaurantSubMessage__RestaurantName">${reviewVO.storeno }(매장명칭)</strong><!-- 매장 명칭 -->
-</DIV>
-<br>
-  
-  <DIV class='menu_line'></DIV>
-  
+ <br><br><br>
+<div class="container">
+
+
   <FORM name='frm' method=POST action='./create.do' class="form-horizontal"
              enctype="multipart/form-data">
+  
+   <DIV class='title_line'>
+   <label class="control-label col-md-3"></label>
    
-    <input type="hidden" name="adminno" value="1"> <%-- 관리자 개발후 변경 필요 --%>
-    
+  <strong class="form-horizontal">${reviewVO.storeno }(매장명칭)</strong><!-- 매장 명칭 -->
+   </DIV>
 
+    <div align="center">
     <div class="form-group">
-       <label class="control-label col-md-2"></label>
-       <div class="col-md-10">
-         <textarea name='contents' required="required" class="form-control" rows="12" style='width: 60%;'>리뷰</textarea>
+       <label class="display-1"></label>
+       <div class="col-md-6">
+         <textarea name='contents' required="required" class="form-control" rows="12" style='resize: none;'></textarea>
        </div>
     </div>
-
+    </div>
        
-        <div class="form-group">
-       <label class="control-label col-md-2"></label>
-       <div class="col-md-2">
+        
+       <div class="form-group">
+        
+        <br>
+       <div class="col-md-3">
          <input type='file' class="form-control" name='file1MF' id='file1MF' 
-                    value='' placeholder="+">
-       </div>
-    </div>   
+                    value='' placeholder="">
+        </div>
+        </div>   
+    <br>
+    <div align="center">
+    <div class="form-group">
     
-    <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">등록</button>
       <button type="button" onclick="location.href='./list.do'" class="btn btn-primary">목록</button>
     </div>
+    </div>
+    
+    <!-- 별점 -->
+ <label class="rating-label">
+  <input
+    class="rating rating--nojs"
+    max="5"
+    step="1"
+    type="range"
+    value="1">
+</label>
   
+       
   </FORM>
-</DIV>
- </section>
+  
+  </div>
 </body>
- 
+
 </html>

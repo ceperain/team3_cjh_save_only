@@ -99,5 +99,8 @@ html {
     object-fit: cover;
 }
 
+.noresize {
+  resize: none; /* 사용자 임의 변경 불가 */
+}
 
   
