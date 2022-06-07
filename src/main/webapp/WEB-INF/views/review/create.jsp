@@ -43,7 +43,9 @@
     <div class="form-group">
        <label class="display-1"></label>
        <div class="col-md-6">
-         <textarea name='contents' required="required" class="form-control" rows="12" style='resize: none;'></textarea>
+         <textarea name='contents' required="required" class="form-control" rows="12" style='resize: none;'>
+         
+         </textarea>
        </div>
     </div>
     </div>
@@ -67,8 +69,9 @@
     </div>
     
     <!-- 별점 -->
- <label class="rating-label">
+ <label class="rating-label" >
   <input
+    style='background-color: transparent;'
     class="rating rating--nojs"
     max="5"
     step="1"
