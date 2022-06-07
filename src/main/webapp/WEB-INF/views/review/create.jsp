@@ -58,7 +58,7 @@
                 <input type='file' class="form-control" name='file1MF' id='file1MF' 
                     value='' placeholder="">
                  </div>
-                    
+                    <div></div>
                 <div class="d-flex justify-content-center">
                   <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">리뷰등록</button>
                 </div>
