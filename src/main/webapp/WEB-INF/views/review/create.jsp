@@ -24,65 +24,55 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-<div class="min-vh-100 gradient-custom-3">
- 
- <br><br><br>
-<div class="container">
-
-
-  <FORM name='frm' method=POST action='./create.do' class="form-horizontal"
-             enctype="multipart/form-data">
+  <!-- <section class="vh-100"> -->
+  <section class="vh-100">
   
-   <DIV class='title_line'>
-   <label class="control-label col-md-3"></label>
-   
-  <strong class="form-horizontal">${reviewVO.storeno }(매장명칭)</strong><!-- 매장 명칭 -->
-   </DIV>
-
-    <div align="center">
-    <div class="form-group">
-       <label class="display-1"></label>
-       <div class="col-md-6">
-         <textarea name='contents' required="required" class="form-control" rows="12" style='resize: none;'>
-         
-         </textarea>
-       </div>
-    </div>
-    </div>
-       
-        
-       <div class="form-group">
-        
-        <br>
-       <div class="col-md-3">
-         <input type='file' class="form-control" name='file1MF' id='file1MF' 
+  <div class="mask d-flex align-items-center min-vh-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <!-- <div class="col-12 col-md-9 col-lg-7 col-xl-6"> -->
+        <div class="col-7">
+          <div class="card" style="border-radius: 5%;">
+            <!-- <div class="card-body p-5"> -->
+            <div class="card-body p-5">
+              <DIV class='title_line'>
+                <label class="control-label"></label>
+                <strong class="form-horizontal">${reviewVO.storeno }(매장명칭)</strong><!-- 매장 명칭 -->
+                </DIV>
+                 <!-- 별점 -->
+                 <label class="control-label col-md-3"></label>
+                 <label class="rating-label">
+                  <input
+                    style='background-color: transparent;' 
+                    class="rating rating--nojs"
+                    max="5"
+                    step="1"
+                    type="range"
+                    value="1">
+                </label>
+              <form>
+                <div class="form-outline mb-4">
+                  <textarea name='contents' required="required" class="form-control" placeholder="내용" rows="12" style='resize: none;'></textarea>
+                </div>
+                <div class="form-outline mb-4">
+                <input type='file' class="form-control" name='file1MF' id='file1MF' 
                     value='' placeholder="">
+                 </div>
+                    
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">리뷰등록</button>
+                </div>
+
+                
+              </form>
+            </div>
+          </div>
         </div>
-        </div>   
-    <br>
-    <div align="center">
-    <div class="form-group">
-    
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list.do'" class="btn btn-primary">목록</button>
+      </div>
     </div>
-    </div>
-    
-    <!-- 별점 -->
- <label class="rating-label" >
-  <input
-    style='background-color: transparent;'
-    class="rating rating--nojs"
-    max="5"
-    step="1"
-    type="range"
-    value="1">
-</label>
-  
-       
-  </FORM>
-  
   </div>
+</section>
+
 </body>
 
 </html>
