@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.mvc.store.StoreDAOInter">
+ <insert id="create" parameterType="dev.mvc.store.StoreVO">
+    INSERT INTO store(storeno, name, adress, lat, lng, rdate, visible)
+    VALUES(store_seq.nextval, #{name}, #{adress}, #{lat},#{lng},sysdate, #{visible})
+  </insert> 
+    <select id="list_all" resultType="dev.mvc.store.StoreVO">
+    SELECT storeno, name, adress, lat, lng, rdate, visible
+    FROM store
+    ORDER BY storeno ASC
+  </select>
+  <select id="read" resultType="dev.mvc.store.StoreVO" parameterType="int">
+    SELECT storeno, name, adress, lat, lng, rdate, visible
+    FROM store
+    where storeno = #{storeno}
+  </select>
+  <update id="update"  parameterType="dev.mvc.store.StoreVO">
+   update store
+   set name=#{name}, adress=#{adress}, lat=#{lat}, lng=#{lng}, visible= #{visible}
+   where storeno = #{storeno}
+  </update>
+  <delete id="delete" parameterType="int">
+  delete from store
+  where storeno = #{storeno}
+  </delete>
+</mapper>
