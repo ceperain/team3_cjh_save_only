@@ -11,8 +11,8 @@
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 <script type="text/javascript">
@@ -58,10 +58,50 @@
         $('#panel_update').css('display', 'none');  
         $('#panel_delete').css('display', 'none');  
     }
+
+
+    function read_delete(menuno) {     
+      $('#panel_create').css("display","none"); 
+      $('#panel_update').css("display","none"); 
+      $('#panel_delete').css("display",""); 
+
+      let params = "";
+      params = 'menuno=' + menuno; 
+      
+      $.ajax(
+        {
+          url: '/menu/read.do',
+          type: 'get',  // get, post
+          cache: false, // 응답 결과 임시 저장 취소
+          async: true,  // true: 비동기 통신
+          dataType: 'json', // 응답 형식: json, html, xml...
+          data: params,      // 데이터
+          success: function(rdata) {
+            let menuno = rdata.menuno;
+            let name = rdata.name;
+            let price = rdata.price;
+
+            let frm_delete = $('#frm_delete');
+            $('#menuno', frm_delete).val(menuno);
+            
+            $('#d_price').html(price);  
+            $('#d_name').html(name);
+            
+          },
+          error: function(request, status, error) { // callback 함수
+            console.log(error);
+          }
+        }
+      );  //  $.ajax END
+    }   
 </script>
 </head>
 <body>
 <jsp:include page="./top.jsp" flush='false' />
+
+<div class="gradient-custom-3">
+<section style="width: 80%; margin:auto;">
+
 <br><br><br>
    <%-- 신규 등록 --%>
 <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; 
@@ -79,19 +119,19 @@
         <div class="col-sm-8">
              <input type='number' name='price' id='price' value=''  required="required" min="0" max="10000000" step="100">    
         </div>
-     </div>
-       <div class="col-sm-12">
+    </div>
+     <div class="col-sm-12">
            <button type="submit" id='submit' class="btn btn-primary">등록</button>&nbsp;&nbsp;&nbsp;
            <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
-        </div>
-      </div>          
+       </div>         
     </FORM>
  </div> 
 
-   <%-- 수정 --%>
- <DIV id='panel_update' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; 
+<%-- 수정 --%>
+<DIV id='panel_update' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; 
           text-align: center; display: none;'>
     <FORM name='frm_update' id='frm_update' method='POST' action='./update.do'>
+      <input type='hidden' name='storeno' id='storeno' value='${param.storeno }'>
       <input type="hidden" name="menuno" id="menuno" value="">
       <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">메뉴명</label>
@@ -108,12 +148,36 @@
        <div class="col-sm-12">
            <button type="submit" id='submit' class="btn btn-primary">수정</button>&nbsp;&nbsp;&nbsp;
            <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
-        </div>
-      </div>          
-      <span id='span_animation'></span>
+        </div>         
     </FORM>
-  </DIV>
+</DIV>
        
+<%-- 삭제 --%>
+<DIV id='panel_delete' style='padding: 10px 0px 10px 0px; background-color: #D0EE17; 
+          width: 100%; text-align: center; display: none;color:white;'>
+    <div class="msg_warning">메뉴를 삭제하면 복구 할 수 없습니다.</div>
+      <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
+      <input type='hidden' name='storeno' id='storeno' value='${param.storeno }'>
+       <input type="hidden" name="menuno" id="menuno" value="">
+        <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label">메뉴명</label>
+        <div class="col-sm-8">
+            <span id="d_name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label">가격</label>
+        <div class="col-sm-8">
+            <span id="d_price"></span>
+        </div>
+    </div>
+     <div class="col-sm-3">
+        <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_delete_cancel' class="btn btn-primary">취소</button>
+     </div>
+    </FORM>
+</DIV>  
+  
  <c:set var="storename" value="${storeVO.name }" />
   <TABLE class='table table-striped'>
     <colgroup>
@@ -143,11 +207,12 @@
             <TD class="td_bs">
                 <A href="" title="등록"><i class="fa-solid fa-pen-to-square"></i></A>
                 <A href="javascript: read_update(${menuno})" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>
-                <A href="javascript: read_delete(${menuno })" title="삭제"><i class="fa-solid fa-eraser"></i></A>
+                <A href="javascript: read_delete(${menuno})" title="삭제"><i class="fa-solid fa-eraser"></i></A>
             </TD>
          </TR>
         </c:forEach>
     </tbody>
-</TABLE>
+    </TABLE>
+</section></div>
 </body>
 </html>
