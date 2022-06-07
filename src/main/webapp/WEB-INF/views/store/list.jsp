@@ -11,8 +11,7 @@
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
 <style>
@@ -32,6 +31,7 @@ size: 50px;
   });
   function read_update(storeno){
 	  $('#panel_create').css('display', 'none');
+	  $('#panel_update').css("display","none"); 
 	  $('#panel_update').css('display', ''); 
 
 	  let params = "";	 
@@ -234,14 +234,14 @@ size: 50px;
    </div>    
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">영업여부</label>
-    <div class="col-sm-3">
-        <span id ="d_visible"> </span>
-     </div>
+        <div class="col-sm-3">
+            <span id ="d_visible"> </span>
+         </div>
+      </div>
        <div class="col-sm-3">
         <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
         <button type="button" id='btn_delete_cancel' class="btn btn-primary">취소</button>
        </div>          
-      </div>
 </FORM>
 </DIV>  
   
@@ -279,14 +279,14 @@ size: 50px;
         <TD class="td_bs">${adress }</TD>
         <TD class="td_bs">${lat }</TD>
         <TD class="td_bs">${lng }</TD>
-        <TD class="td_bs"><c:choose>
+        <TD class="td_bs"><a href="../worktime/list_storeno.do?storeno=${storeno }"><c:choose>
             <c:when test="${visible == 1}"> 
               영업중
             </c:when>
             <c:otherwise>
             폐업
             </c:otherwise>
-          </c:choose></TD>    
+          </c:choose></a></TD>    
       <TD class="td_bs">
        <A href="" title="등록"><i class="fa-solid fa-pen-to-square"></i></A>
       <A href="javascript: read_update(${storeno})" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>
