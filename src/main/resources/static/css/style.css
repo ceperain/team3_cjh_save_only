@@ -98,3 +98,8 @@ html {
     height: 30px;
     object-fit: cover;
 }
+
+.search {
+	text-align: center;
+	clear: both;
+}
