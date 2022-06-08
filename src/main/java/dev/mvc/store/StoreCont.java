@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.menu.MenuProcInter;
+import dev.mvc.menu.MenuVO;
+import dev.mvc.work.WorkProcInter;
+import dev.mvc.work.WorkVO;
+
 
 @Controller
 public class StoreCont {
@@ -18,9 +23,43 @@ public class StoreCont {
     @Qualifier("dev.mvc.store.StoreProc") 
     private StoreProcInter storeProc;
     
+    @Autowired
+    @Qualifier("dev.mvc.menu.MenuProc") 
+    private MenuProcInter menuProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.work.WorkProc") 
+    private WorkProcInter workProc;
+    
     public StoreCont() {
         System.out.println("-> StoreCont created.");
     }
+
+    /*
+     * @RequestMapping(value = "/store/store.do", method = RequestMethod.GET) public
+     * ModelAndView main() { ModelAndView mav = new ModelAndView();
+     * mav.setViewName("/store/food_main"); // webapp/WEB-INF/views/store/create.jsp
+     * 
+     * return mav; // forward }
+     */
+    @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
+    public ModelAndView store(int storeno) {
+        ModelAndView mav = new ModelAndView();
+        StoreVO storeVO = this.storeProc.read(storeno);
+        mav.addObject("storeVO", storeVO);
+        List<MenuVO> m_list = this.menuProc.list_storeno(storeno);
+        mav.addObject("m_list", m_list);
+        List<WorkVO> w_list = this.workProc.list_storeno(storeno);
+        mav.addObject("w_list", w_list);
+        int work_count = this.workProc.count_by_storeno(storeno);
+        mav.addObject("work_count", work_count);
+        int menu_count = this.menuProc.count_by_storeno(storeno);
+        mav.addObject("menu_count", menu_count);
+        mav.setViewName("/store/food_main"); // webapp/WEB-INF/views/store/create.jsp
+                
+        return mav; // forward
+    }
+    
     
    
     @RequestMapping(value = "/store/create.do", method = RequestMethod.GET)

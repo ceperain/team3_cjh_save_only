@@ -4,8 +4,8 @@ public class StoreVO {
     private int storeno;
     private String name;
     private String adress;
-    private int lat;
-    private int lng;
+    private Double lat;
+    private Double lng;
     private String rdate;
     private String visible;
     public int getStoreno() {
@@ -26,16 +26,17 @@ public class StoreVO {
     public void setAdress(String adress) {
         this.adress = adress;
     }
-    public int getLat() {
+   
+    public Double getLat() {
         return lat;
     }
-    public void setLat(int lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
-    public int getLng() {
+    public Double getLng() {
         return lng;
     }
-    public void setLng(int lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
     public String getRdate() {

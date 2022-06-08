@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.mvc.menu.MenuDAOInter">
+ <insert id="create" parameterType="dev.mvc.menu.MenuVO">
+    INSERT INTO menu(menuno, storeno,name,price)
+    VALUES(menu_seq.nextval,#{storeno}, #{name}, #{price})
+  </insert> 
+    <select id="list_storeno" resultType="dev.mvc.menu.MenuVO">
+    SELECT menuno,storeno, name,price
+    FROM menu
+    where storeno = #{storeno}
+    ORDER BY menuno ASC    
+  </select>
+  <update id="update" parameterType="dev.mvc.menu.MenuVO">
+    UPDATE menu
+    SET name=#{name}, price=#{price}
+    WHERE menuno = #{menuno}
+  </update>
+
+  <!-- 삭제, return: int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM menu
+    WHERE menuno = #{menuno}
+  </delete>       
+   <select id="read" resultType="dev.mvc.menu.MenuVO">
+    SELECT menuno,storeno, name,price
+    FROM menu
+    where menuno = #{menuno}
+  </select>
+  
+  <select id="count_by_storeno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM menu
+    WHERE storeno=#{storeno}
+  </select>
+  </mapper>
