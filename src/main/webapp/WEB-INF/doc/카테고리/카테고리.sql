@@ -67,7 +67,7 @@ CREATE SEQUENCE catejoin_seq
 
 
 INSERT INTO catejoin(catejoinno, cateno, storeno)
-VALUES(catejoin_seq.nextval, 1, 1);
+VALUES(catejoin_seq.nextval, 2, 1);
 
 
 SELECT * FROM catejoin;
@@ -149,7 +149,7 @@ SELECT * FROM cate;
 
 -- 삭제
 delete from cate
-where cateno=2; 
+where cateno=1; 
 
 SELECT * FROM cate;
     CATENO NAME                                               RDATE              
@@ -166,7 +166,53 @@ where cateno=1;
          1 수정된 카테고리 이름                               2022-06-03 02:16:46  
   
   
-  
+--카테고리 리스트
+select cateno,name
+from cate
+order by cateno asc;
+
+--카테고리 클릭시 카테고리별 매장 - 전체
+select s.name as 매장명, s.address as 매장주소 
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno;
+
+--카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
+select storeno, name, address
+from (select storeno, name, address, rownum as r
+    from (select s.storeno, s.name, s.address 
+        from store s, cate c, catejoin j
+        where s.storeno = j.storeno
+            and j.cateno = c.cateno
+            and c.cateno = 1
+        )
+    )
+where r >=1 and r <=5;
+
+--카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
+select storeno, name, address
+from (select storeno, name, address, rownum as r
+    from (select s.storeno, s.name, s.address 
+        from store s, cate c, catejoin j
+        where s.storeno = j.storeno 
+            and j.cateno = c.cateno
+            and c.cateno = 1
+        )
+    )
+where r >=6 and r <=10;
+
+--검색시 매장 - 페이징 (5개)
+select storeno, name, address
+from (select storeno, name, address, rownum as r
+    from (select s.storeno, s.name, s.address 
+        from store s, cate c, catejoin j
+        where s.storeno = j.storeno
+            and j.cateno = c.cateno
+            and (s.name like '%종로%'
+                or s.address like '%종로%')
+        )
+    )
+where r >=1 and r <=5;
+      
 
 
 
@@ -253,6 +299,44 @@ SELECT * FROM review;
 
 
 
+
+
+drop table store;
+CREATE TABLE store(
+    storeno    number(10) NOT NULL PRIMARY KEY,
+    name       VARCHAR2(150) NOT NULL,
+    address    VARCHAR2(300) NOT NULL,
+    visible     number(1) default 1 NOT NULL,
+    lat          number ,
+    lng         number ,
+    rdate      date NOT NULL
+);
+
+COMMENT ON TABLE store is '상품(매장)';
+COMMENT ON COLUMN store.storeno is '상품(매장) 번호';
+COMMENT ON COLUMN store.name is '상품(매장)명';
+COMMENT ON COLUMN store.address is '주소';
+COMMENT ON COLUMN store.visible is '영업여부';
+COMMENT ON COLUMN store.lat is '위도';
+COMMENT ON COLUMN store.lng is '경도';
+COMMENT ON COLUMN store.rdate is '등록일';
+
+
+DROP SEQUENCE store_seq;
+CREATE SEQUENCE store_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 9999999999
+    CACHE 2 
+    NOCYCLE;
+--매장
+insert into store(storeno, name, address, visible, rdate)
+values(store_seq.nextval, '매장 테스트' ,'서울시 종로구 어딘가', 1, sysdate);
+
+    
+    
+    
+    
 
 
 

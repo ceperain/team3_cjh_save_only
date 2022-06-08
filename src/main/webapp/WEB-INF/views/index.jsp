@@ -96,10 +96,9 @@
   <!-- Controls -->
   <div class="d-flex justify-content-center mb-4">
 
-  
-  
+
 <div class="container">
-<a href="#">
+<a href="http://localhost:9091/cate/ddmenu.do">
   <img src="http://www.fsnews.co.kr/news/photo/201902/32707_27510_4314.jpg" alt="Avatar" class="imageh">
   <div class="middle">
     <div class="text">한식</div>
@@ -143,8 +142,8 @@
   </div>
   </div>
 
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<jsp:include page="./cate/bottom.jsp" flush='false' />
 
 
 

@@ -46,5 +46,30 @@ public class CateVO {
     }
 
 
-    
+    /*
+     * @Override public String toString() { return "[r_cateno=" + r_cateno +
+     * ", s_name=" + s_name + ", s_address=" + s_address + ", name=" + name +
+     * ", rdate=" + rdate + ", cnt=" + cnt + "]"; }
+     */
 }
+
+
+
+/*
+ * select s.name as s_name, s.address as s_address
+ * from store s, cate c,
+ * catejoin j where s.storeno = j.storeno and j.cateno = c.cateno;
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+

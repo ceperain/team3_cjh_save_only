@@ -27,15 +27,16 @@ public class CateCont {
     
     /**
      * 등록폼
-     * http://localhost:9091/cate/create.do 
+     * http://localhost:9091/cate/ddmenu.do 
+     * http://localhost:9091/cate/korean.do 
      * http://localhost:9091/cate/create.do?categrpno=2
      * 
      * @return
      */
-    @RequestMapping(value = "/cate/korean.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/cate/ddmenu.do", method = RequestMethod.GET)
     public ModelAndView create() {
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("/cate/korean"); // /webapp/WEB-INF/views/cate/korean.jsp
+      mav.setViewName("/cate/ddmenu"); // /webapp/WEB-INF/views/cate/ddmenu.jsp
 
       return mav;
     }

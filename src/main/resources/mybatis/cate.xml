@@ -46,6 +46,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cateno = #{cateno}
   </delete>       
   
+<!--     <select id="list" resultType="dev.mvc.cate.CateVO">
+     <selectKey keyProperty="cateno" resultType="int" order="BEFORE">
+      SELECT cate_seq.nextval FROM dual
+    </selectKey>
+    select s.name as name, s.address as address 
+    from store s, cate c, catejoin j
+    where s.storeno = j.storeno and j.cateno = c.cateno
+  </select> -->
+  
+  
+  
+  
 </mapper>
 
 

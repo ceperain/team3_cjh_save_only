@@ -175,3 +175,66 @@ html {
 .noresize {
   resize: none; /* 사용자 임의 변경 불가 */
 }
+
+  .menu_line {
+    width: 100%;
+    border-bottom: dotted 1px #777777;
+    margin: 20px 0px 10px 0px; /* top -> right -> bottom -> left */
+    clear: both;
+  } 
+  
+    .content_body {
+    width: 50%;
+    margin: 10px auto;
+  }
+  
+    .aside_right {
+    float: right;
+    font-size: 0.9em;
+  }
+  
+    .si{
+    line-height: 40px
+    }
+    
+     .wrapper{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -533px;
+}
+
+
+    .contents{
+    border: 1px solid #487BE1;
+    width:500px;
+    float: left;
+    padding: 10px;
+}
+
+    .sidebar{
+    border: 1px solid #487BE1;
+    width:500px;
+    float:left;
+    padding:10px;
+    margin-left: 10px;
+}
+
+  .copyright {
+    margin-top: 10px;
+    border-top: solid 1px #999999;
+    text-align: center; 
+    clear: both;  /* 앞쪽 태그의 float 효과를 제거함. */    
+    color:white;
+    background-color: black;
+    height:100%;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
