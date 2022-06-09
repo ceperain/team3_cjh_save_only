@@ -1,7 +1,10 @@
 package dev.mvc.review;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 @Component("dev.mvc.review.ReviewProc")
 public class ReviewProc implements ReviewProcInter{
@@ -10,8 +13,20 @@ public class ReviewProc implements ReviewProcInter{
     
     @Override
     public int create(ReviewVO reviewVO) {
-        int cnt=this.create(reviewVO);
+        int cnt=this.reviewDAO.create(reviewVO);
         return cnt;
+    }
+
+    @Override
+    public List<ReviewVO> list_reviewno() {
+        List<ReviewVO> list=this.reviewDAO.list_reviewno();
+        return list;
+    }
+
+    @Override
+    public ReviewVO read(int reviewno) {
+        ReviewVO reviewVO = reviewDAO.read(reviewno);
+        return reviewVO;
     }
     
 }

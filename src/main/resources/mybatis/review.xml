@@ -7,22 +7,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.review.ReviewDAOInter">
   
   <insert id="create" parameterType="dev.mvc.review.ReviewVO">
-    INSERT INTO review(reviewno, userno, storeno, score, contents,rdate)
-    VALUES(review_seq.nextval, #{userno}, #{storeno}, #{score}, #{contents}, sysdate)
+    INSERT INTO review(reviewno, usersno, storeno, score, contents,rdate, file1, file1saved, thumb)
+    VALUES(review_seq.nextval, #{usersno}, #{storeno}, #{score}, #{contents}, sysdate, #{file1}, #{file1saved}, #{thumb})
   </insert> 
+  
+  <select id="list_reviewno" resultType="dev.mvc.review.ReviewVO">
+    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
+    FROM review
+    ORDER BY reviewno
+ </select>
 
 <!-- 조회, id: read, 입력: reviewno, 리턴: reviewVO -->
-  <!-- <select id="read" resultType="dev.mvc.reviewReviewVO" parameterType="int">
-    SELECT  reviewno, content, file1, file1saved, thumb1, score, rdate
+  <select id="read" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
     FROM review
     WHERE reviewno=#{reviewno}
-  </select> -->
+  </select>
 
 <!-- 수정-->
 <!-- <update id="update" parameterType="dev.mvc.review.ReviewVO">
   UPDATE review
   SET title=#{title}, contents=#{contents},  word=#{word}, 
-        file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}
+        file1=#{file1}, file1saved=#{file1saved}, thumb=#{thumb}
   WHERE reviewno = #{reviewno}
 </update>  -->
 
