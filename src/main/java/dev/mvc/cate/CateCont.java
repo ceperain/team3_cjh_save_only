@@ -23,9 +23,9 @@ public class CateCont {
     @Autowired
     @Qualifier("dev.mvc.cate.CateProc") // @Component("dev.mvc.cate.CateProc")
     private CateProcInter cateProc;
-    
+
     @Autowired
-    @Qualifier("dev.mvc.store.StoreProc") 
+    @Qualifier("dev.mvc.store.StoreProc")
     private StoreProcInter storeProc;
 
     public CateCont() {
@@ -48,36 +48,18 @@ public class CateCont {
      */
 
     /**
-     * Categrp + Cate join, 연결 목록
-     * http://localhost:9091/cate/lis.do 
-     * @return
-     */
-    @RequestMapping(value="/cate/list.do", method=RequestMethod.GET )
-    public ModelAndView list(int cateno) {
-      ModelAndView mav = new ModelAndView();
-      
-      List<CateVO> list = this.cateProc.list(cateno);
-      mav.addObject("list", list); // request.setAttribute("list", list);
-      
-      mav.setViewName("/cate/list"); // /WEB-INF/views/cate/list.jsp
-      return mav;
-    }
-    
-    /**
-     * Categrp + Cate join, 연결 목록 http://localhost:9091/cate/list_all_join.do
+     * Categrp + Cate join, 연결 목록 http://localhost:9091/cate/lis.do
      * 
      * @return
      */
     @RequestMapping(value = "/cate/list.do", method = RequestMethod.GET)
-    public ModelAndView list() {
+    public ModelAndView list(int cateno) {
         ModelAndView mav = new ModelAndView();
 
-        /*
-         * List<CateVO> list = this.cateProc.list(); mav.addObject("list", list); //
-         * request.setAttribute("list", list);
-         * 
-         * mav.setViewName("/cate/list"); // /WEB-INF/views/cate/list_all_join.jsp
-         */
+        List<CateVO> list = this.cateProc.list(cateno);
+        mav.addObject("list", list); // request.setAttribute("list", list);
+
+        mav.setViewName("/cate/list"); // /WEB-INF/views/cate/list.jsp
         return mav;
     }
 }
