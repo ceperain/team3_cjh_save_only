@@ -35,4 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM working
     WHERE storeno=#{storeno}
   </select>
+  
+  <delete id="delete_s" parameterType="int">
+    DELETE FROM working
+    WHERE storeno = #{storeno}
+  </delete>
   </mapper>

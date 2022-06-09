@@ -48,7 +48,7 @@ size: 50px;
           success: function(rdata) { 
             let storeno = rdata.storeno;
             let name = rdata.name;
-            let adress = rdata.adress;
+            let address = rdata.address;
             let lat = rdata.lat;
             let lng = rdata.lng;
             let visible = rdata.visible;
@@ -56,7 +56,7 @@ size: 50px;
             let frm_update = $('#frm_update'); 
             $('#storeno', frm_update).val(storeno); 
             $('#name', frm_update).val(name);
-            $('#adress', frm_update).val(adress);
+            $('#address', frm_update).val(address);
             $('#lat', frm_update).val(lat);
             $('#lng', frm_update).val(lng);
             $('#visible', frm_update).val(visible);       
@@ -93,29 +93,32 @@ size: 50px;
           success: function(rdata) { 
         	  let storeno = rdata.storeno;
               let name = rdata.name;
-              let adress = rdata.adress;
+              let address = rdata.address;
               let lat = rdata.lat;
               let lng = rdata.lng;
               let visible = rdata.visible;
+              let menu_c = rdata.menu_c;
+              let work_c = rdata.work_c;
               
             let frm_delete = $('#frm_delete');
             $('#storeno', frm_delete).val(storeno); 
             $('#d_name').html(name);  
-            $('#d_adress').html(adress);
+            $('#d_address').html(address);
             $('#d_lat').html(lat);
             $('#d_lng').html(lng);
             $('#d_visible').html(visible);
-            
+
+            if (menu_c > 0 || work_c > 0) { 
+                $('#msg_warning2').show();
+            } else {
+                $('#msg_warning2').hide();
+            }
           },
           error: function(request, status, error) { // callback 함수
             console.log(error);
           }
         }
       );  //  $.ajax END
-
-      $('#span_animation_delete').css('text-align', 'center');
-      $('#span_animation_delete').html("<img src='/categrp/images/ani03.gif' style='width: 3%;'>");
-      $('#span_animation_delete').show(); // 숨겨진 태그의 출력
     }
   </script>
   </head>
@@ -139,7 +142,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" name="adress" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681">
+            <input type="text" class="form-control" name="address" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681">
         </div>
      </div>
     <div class="form-group row">
@@ -179,7 +182,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" name="adress" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681" id="adress">
+            <input type="text" class="form-control" name="address" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681" id="address">
         </div>
     </div>
     <div class="form-group row">
@@ -221,7 +224,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <span id="d_adress"></span>
+            <span id="d_address"></span>
         </div>
     </div>
     <div class="form-group row">
@@ -237,6 +240,10 @@ size: 50px;
         <div class="col-sm-3">
             <span id ="d_visible"> </span>
          </div>
+      </div>
+       <div id='msg_warning2' 
+             style='color: #FF0000; font-weight: bold; display: none; margin: 10px auto;'>
+        『관련 메뉴와 운영시간 테이블도 같이 삭제 처리 됩니다.』
       </div>
        <div class="col-sm-3">
         <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
@@ -270,13 +277,13 @@ size: 50px;
     <c:forEach var="storeVO" items="${list}">
     <c:set var="storeno" value="${storeVO.storeno }" />
       <c:set var="name" value="${storeVO.name }" />
-      <c:set var="adress" value="${storeVO.adress }" />
+      <c:set var="address" value="${storeVO.address }" />
       <c:set var="lat" value="${storeVO.lat }" />
       <c:set var="lng" value="${storeVO.lng }" />
       <c:set var="visible"  value="${storeVO.visible }" />
       <TR>
         <TD class="td_bs"><a href="../menu/list_storeno.do?storeno=${storeno }">${name }</a></TD>
-        <TD class="td_bs">${adress }</TD>
+        <TD class="td_bs">${address }</TD>
         <TD class="td_bs">${lat }</TD>
         <TD class="td_bs">${lng }</TD>
         <TD class="td_bs"><a href="../worktime/list_storeno.do?storeno=${storeno }"><c:choose>

@@ -100,16 +100,19 @@ public class StoreCont {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }    
-
+       int menu_c = this.menuProc.count_by_storeno(storeno);
+       int work_c = this.workProc.count_by_storeno(storeno);
        StoreVO storeVO = this.storeProc.read(storeno);
           
         JSONObject json = new JSONObject();
         json.put("storeno", storeVO.getStoreno());
         json.put("name", storeVO.getName());
-        json.put("adress", storeVO.getAdress());
+        json.put("address", storeVO.getaddress());
         json.put("lat", storeVO.getLat());
         json.put("lng", storeVO.getLng());
         json.put("visible", storeVO.getVisible());
+        json.put("menu_c", menu_c);
+        json.put("work_c", work_c);
 
           
         return json.toString();
@@ -130,7 +133,15 @@ public class StoreCont {
     @RequestMapping(value = "/store/delete.do", method = RequestMethod.POST)
     public ModelAndView delete(int storeno) {
         ModelAndView mav = new ModelAndView();
-        int cnt = this.storeProc.delete(storeno);
+        int cnt = this.workProc.count_by_storeno(storeno);
+        if(cnt>0) {
+            this.workProc.delete_s(storeno);
+        }
+        cnt = this.menuProc.count_by_storeno(storeno);
+        if(cnt>0) {
+            this.menuProc.delete_s(storeno);
+        }       
+        cnt = this.storeProc.delete(storeno);
         mav.addObject("cnt", cnt);
         mav.addObject("code", "create_success");
         if(cnt==1) {          
