@@ -3,7 +3,7 @@ package dev.mvc.store;
 public class StoreVO {
     private int storeno;
     private String name;
-    private String adress;
+    private String address;
     private Double lat;
     private Double lng;
     private String rdate;
@@ -20,11 +20,11 @@ public class StoreVO {
     public void setName(String name) {
         this.name = name;
     }
-    public String getAdress() {
-        return adress;
+    public String getaddress() {
+        return address;
     }
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setaddress(String address) {
+        this.address = address;
     }
    
     public Double getLat() {
