@@ -30,7 +30,7 @@ public class ReviewVO {
     /** 실제 저장된 메인 이미지 */
     private String file1saved = "";
     /** 메인 이미지 preview */
-    private String thumb1 = "";
+    private String thumb = "";
     /** 등록 날짜 */
     private String rdate = "";
     
@@ -41,90 +41,132 @@ public class ReviewVO {
      */
     private MultipartFile file1MF;
     
-    
-    public MultipartFile getFile1MF() {
-        return file1MF;
-    }
-
-    public void setFile1MF(MultipartFile file1mf) {
-        file1MF = file1mf;
-    }
+ 
     
     public ReviewVO() {
-        
+        //System.out.println("->ReviewVO:생성");
     }
+
+
 
     public int getReviewno() {
         return reviewno;
     }
 
+
+
     public void setReviewno(int reviewno) {
         this.reviewno = reviewno;
     }
+
+
 
     public int getUsersno() {
         return usersno;
     }
 
+
+
     public void setUsersno(int usersno) {
         this.usersno = usersno;
     }
+
+
 
     public int getStoreno() {
         return storeno;
     }
 
+
+
     public void setStoreno(int storeno) {
         this.storeno = storeno;
     }
+
+
 
     public int getScore() {
         return score;
     }
 
+
+
     public void setScore(int score) {
         this.score = score;
     }
+
+
 
     public String getContents() {
         return contents;
     }
 
+
+
     public void setContents(String contents) {
         this.contents = contents;
     }
+
+
 
     public String getFile1() {
         return file1;
     }
 
+
+
     public void setFile1(String file1) {
         this.file1 = file1;
     }
+
+
 
     public String getFile1saved() {
         return file1saved;
     }
 
+
+
     public void setFile1saved(String file1saved) {
         this.file1saved = file1saved;
     }
 
-    public String getThumb1() {
-        return thumb1;
+
+
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setThumb1(String thumb1) {
-        this.thumb1 = thumb1;
+
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
+
+
 
     public String getRdate() {
         return rdate;
     }
 
+
+
     public void setRdate(String rdate) {
         this.rdate = rdate;
     }
+
+
+
+    public MultipartFile getFile1MF() {
+        return file1MF;
+    }
+
+
+
+    public void setFile1MF(MultipartFile file1mf) {
+        file1MF = file1mf;
+    }
+
     
     
 }
