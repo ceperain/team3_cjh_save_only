@@ -19,7 +19,7 @@
 
 </head>
 <body>
-<jsp:include page="./menu/top.jsp" flush='false' />
+<jsp:include page="../menu/top.jsp" flush='false' />
   <!-- <section class="vh-100"> -->
   <section class="vh-100">
   

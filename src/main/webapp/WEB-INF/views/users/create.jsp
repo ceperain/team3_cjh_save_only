@@ -6,28 +6,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" /> 
-<title>Team3</title>
+<title>team3 http://localhost:9091/</title>
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/style.css" rel="stylesheet">
-<style type="text/css">
-  /* *{ font-family: NanumGothic; font-size: 22px;} */
-  *{font-family: "NanumGothic", "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";}
-</style>
-
-<script src="https://browser.sentry-cdn.com/4.1.1/bundle.min.js" crossorigin="anonymous"></script>
-
+<link href="/css/users.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="./menu/top.jsp" flush='false' />
-  <!-- <section class="vh-100"> -->
+<jsp:include page="../menu/top.jsp" flush='false' />
   <section class="vh-100">
   
   <div class="mask d-flex align-items-center min-vh-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <!-- <div class="col-12 col-md-9 col-lg-7 col-xl-6"> -->
-        <div class="col-12">
+        <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-6">
+        <!-- <div class="col-4"> -->
           <div class="card" style="border-radius: 5%;">
             <!-- <div class="card-body p-5"> -->
             <div class="card-body p-5">
@@ -35,19 +27,22 @@
               <form>
                 <div class="form-floating mb-4">
                   <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your Name" />
-                  <label for="floatingInput">Email</label>
+                  <label for="floatingInput">이름</label>
                 </div>
 
-                <div class="form-outline mb-4">
+                <div class="form-floating mb-4">
                   <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email"/>
+                  <label for="floatingInput">메일주소</label>
                 </div>
 
-                <div class="form-outline mb-4">
+                <div class="form-floating mb-4">
                   <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" />
+                  <label for="floatingInput">비밀번호</label>
                 </div>
 
-                <div class="form-outline mb-4">
+                <div class="form-floating mb-4">
                   <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password" />
+                  <label for="floatingInput">비밀번호 확인</label>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
@@ -72,6 +67,6 @@
     </div>
   </div>
 </section>
-
+ 
 </body>
 </html>
