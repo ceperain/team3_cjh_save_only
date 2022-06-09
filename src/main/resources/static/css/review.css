@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+.posting-box {
+            width: 100%;
+            margin: 0px auto 20px auto;
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 50px;
+        }
+        
+
+body {
+    padding-top: 56px;
+}
+
+
 .rating {
   --dir: right;
   --fill: gold;

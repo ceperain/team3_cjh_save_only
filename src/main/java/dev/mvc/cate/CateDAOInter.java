@@ -39,6 +39,5 @@ public interface CateDAOInter {
      */
     public List<CateVO> list(int cateno);
 
-    
-}
 
+}

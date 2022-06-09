@@ -28,36 +28,7 @@ public class CateVO {
 
     }
 
-    
-    
-    public int getS_storeno() {
-        System.out.println("s_storeno = " + s_storeno);
-        return s_storeno;
-    }
-
-
-
-    public void setS_storeno(int s_storeno) {
-        this.s_storeno = s_storeno;
-    }
-
-
-
-    public String getImage() {
-        System.out.println("image = " + image);
-        return image;
-    }
-
-
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-
-
     public int getCateno() {
-        System.out.println("cateno = " + cateno);
         return cateno;
     }
 
@@ -66,7 +37,6 @@ public class CateVO {
     }
 
     public String getName() {
-        System.out.println("name = " + name);
         return name;
     }
 
@@ -75,7 +45,6 @@ public class CateVO {
     }
 
     public String getRdate() {
-        System.out.println("rdate = " + rdate);
         return rdate;
     }
 
@@ -83,8 +52,15 @@ public class CateVO {
         this.rdate = rdate;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getS_name() {
-        System.out.println("s_name = " + s_name);
         return s_name;
     }
 
@@ -93,27 +69,20 @@ public class CateVO {
     }
 
     public String getS_address() {
-        System.out.println("s_address = " + s_address);
         return s_address;
     }
 
     public void setS_address(String s_address) {
         this.s_address = s_address;
     }
-    
-    
-    
-    
 
+    public int getS_storeno() {
+        return s_storeno;
+    }
+
+    public void setS_storeno(int s_storeno) {
+        this.s_storeno = s_storeno;
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
+ 

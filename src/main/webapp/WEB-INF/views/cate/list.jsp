@@ -21,6 +21,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
  -->
 <link href="/css/style.css" rel="stylesheet">
+<link href="/css/ptu.css" rel="stylesheet">
+
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet">
@@ -145,66 +147,6 @@
         </tbody>
 </table>
 </c:forEach>
-
-
-<%--         <table class="table table-striped" style='width: 100%;'>
-          <DIV class='menu_line'></DIV>
-        
-           <tr> 
-          <td style='vertical-align: middle; text-align: center;'>
-            <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                /static/contents/storage/
-                <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when>
-              <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
-              </c:otherwise>
-            </c:choose>
-          </td>  
-          
-           <td style='text-align: left;'>
-                <a href='#' style='text-decoration:none; color:black;'><h4>복덕방</h4></a> 
-                    <div style='color:gray;'>
-                       서울 특별시 뭐뭐구 뭐뭐동 뭐뭐빌라 1층
-                    </div>
-                    <div class="si">
-                    오늘의 리이이이뷰 꺄륵깨륵 깔랑룽DDDDDDDDDDDDDDDD<BR>
-                    DDDDDDDDDDDDDDDDDDDD
-                    </div>
-           </td>
-        </tr>
-        </table> --%>
-        
-<%-- <table class="table table-striped" style='width: 100%;'>
-    <DIV class='menu_line'></DIV>
-         <tr> 
-          <td style='vertical-align: middle; text-align: center;'>
-            <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                /static/contents/storage/
-                <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when>
-              <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
-              </c:otherwise>
-            </c:choose>
-          </td>  
-          
-           <td style='text-align: left;'>
-                <a href='#' style='text-decoration:none; color:black;'><h4>산울림1992</h4></a> 
-                    <div style='color:gray;'>
-                       서울 특별시 뭐뭐구 뭐뭐동 뭐뭐빌라 1층
-                    </div>
-                    <div class="si">
-                    오늘의 리이이이뷰 꺄륵깨륵 깔랑룽DDDDDDDDDDDDDDDD<BR>
-                    DDDDDDDDDDDDDDDDDDDD
-                    </div>
-           </td>
-        </tr>
-        </table> --%>
-
-
   
   <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>

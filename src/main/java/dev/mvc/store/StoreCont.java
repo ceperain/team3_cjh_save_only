@@ -82,7 +82,6 @@ public class StoreCont {
         return mav; // forward
     }
     
-    
     @RequestMapping(value = "/store/list.do", method = RequestMethod.GET)
     public ModelAndView list() {
         ModelAndView mav = new ModelAndView();

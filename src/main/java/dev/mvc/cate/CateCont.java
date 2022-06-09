@@ -63,18 +63,21 @@ public class CateCont {
       return mav;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Categrp + Cate join, 연결 목록 http://localhost:9091/cate/list_all_join.do
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/cate/list.do", method = RequestMethod.GET)
+    public ModelAndView list() {
+        ModelAndView mav = new ModelAndView();
 
-
+        /*
+         * List<CateVO> list = this.cateProc.list(); mav.addObject("list", list); //
+         * request.setAttribute("list", list);
+         * 
+         * mav.setViewName("/cate/list"); // /WEB-INF/views/cate/list_all_join.jsp
+         */
+        return mav;
+    }
 }

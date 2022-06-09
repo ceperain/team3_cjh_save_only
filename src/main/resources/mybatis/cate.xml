@@ -20,8 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.cate.CateVO">
+  <selectKey keyProperty="cateno" resultType="int" order="BEFORE">
+      SELECT cate_seq.nextval FROM dual
+    </selectKey>
     INSERT INTO cate(cateno, name, rdate)
-    VALUES(cate_seq.nextval, #{name}, sysdate)
+    VALUES(#{cateno}, #{name}, sysdate)
   </insert> 
 
 
@@ -29,10 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="read" resultType="dev.mvc.cate.CateVO">
     SELECT cateno, name, rdate, image
     FROM cate
-  </select>  
+  </select>
   
-  
-   <!-- 수정 -->
+  <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.cate.CateVO">
     UPDATE cate
     SET name=#{name}
@@ -51,14 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+  <!-- Join된 식당(store) list -->
+  <select id="list" resultType="dev.mvc.cate.CateVO">
+    SELECT s.name as s_name, s.address as s_address 
+    FROM store s, cate c, catejoin j
+    WHERE s.storeno = j.storeno AND j.cateno = c.cateno AND j.cateno=#{cateno}
+  </select>
   
 </mapper>

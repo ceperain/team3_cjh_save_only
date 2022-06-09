@@ -1,6 +1,7 @@
 /**********************************/
 /* Table Name: 키워드 리스트 */
 /**********************************/
+drop table keylist;
 CREATE TABLE keylist(
       keylistno                                NUMBER(2)       NOT NULL       PRIMARY KEY,
       keytext                             VARCHAR2(100)       NOT NULL

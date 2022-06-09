@@ -11,7 +11,6 @@ public interface CateProcInter {
      */
     public int create(CateVO cateVO);
 
-    
     /**
      * 조회, 수정
      * @param cateno 카테고리 번호, PK
@@ -40,6 +39,8 @@ public interface CateProcInter {
      */
     public List<CateVO> list(int cateno);
     
+
+
 }
 
 
