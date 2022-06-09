@@ -47,4 +47,9 @@ public class MenuProc implements MenuProcInter{
         int cnt = this.menuDAO.count_by_storeno(storeno);
         return cnt;
     }
+    @Override
+    public int delete_s(int storeno) {
+        int cnt = this.menuDAO.delete_s(storeno);
+        return cnt;
+    }
 }

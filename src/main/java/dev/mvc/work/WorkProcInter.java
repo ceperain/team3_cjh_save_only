@@ -9,4 +9,5 @@ public interface WorkProcInter {
     public int update(WorkVO workVO);
     public int delete(int workno);
     public int count_by_storeno(int storeno);
+    public int delete_s(int storeno);
 }

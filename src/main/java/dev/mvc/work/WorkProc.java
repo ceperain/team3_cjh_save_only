@@ -45,4 +45,9 @@ public class WorkProc implements WorkProcInter{
         int cnt = this.workDAO.count_by_storeno(storeno);
         return cnt;
     }
+    @Override
+    public int delete_s(int storeno) {
+        int cnt = this.workDAO.delete_s(storeno);
+        return cnt;
+    }
 }
