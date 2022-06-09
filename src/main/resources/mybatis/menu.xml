@@ -23,7 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <delete id="delete" parameterType="int">
     DELETE FROM menu
     WHERE menuno = #{menuno}
-  </delete>       
+  </delete>
+   <delete id="delete_s" parameterType="int">
+    DELETE FROM menu
+    WHERE storeno = #{storeno}
+  </delete>
+  
    <select id="read" resultType="dev.mvc.menu.MenuVO">
     SELECT menuno,storeno, name,price
     FROM menu

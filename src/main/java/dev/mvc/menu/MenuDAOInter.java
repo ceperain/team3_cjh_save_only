@@ -9,4 +9,5 @@ public interface MenuDAOInter {
     public int delete(int menuno);
     public MenuVO read(int menuno);
     public int count_by_storeno(int storeno);
+    public int delete_s(int storeno);
 }

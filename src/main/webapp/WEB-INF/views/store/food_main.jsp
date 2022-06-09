@@ -43,7 +43,7 @@
  <jsp:include page="../menu/top.jsp" flush='false' />
  <c:set var="name" value="${storeVO.name }" />
  <c:set var="lat" value="${storeVO.lat }" />
-  <c:set var="adress" value="${storeVO.adress }" />
+  <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
 <div class="gradient-custom-3">
 <section style="width: 80%; margin:auto; height: 100%">
@@ -54,7 +54,7 @@
     <div style="margin:0 auto;float:left;width: 70%;">
 <!--         <div style="width: 100%; margin:auto; height: 100%"> -->
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
-            <tr><th>주소</th><th colspan="2">${adress}</th></tr>
+            <tr><th>주소</th><th colspan="2">${address}</th></tr>
             <tr><th>전화번호</th><th colspan="2">업체정보</th></tr>
             <tr><th>음식종류</th><th colspan="2">업체정보</th></tr>
             <tr><th rowspan="${work_count }">영업시간</th>
