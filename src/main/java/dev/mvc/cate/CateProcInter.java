@@ -11,7 +11,6 @@ public interface CateProcInter {
      */
     public int create(CateVO cateVO);
 
-    
     /**
      * 조회, 수정
      * @param cateno 카테고리 번호, PK
@@ -32,7 +31,13 @@ public interface CateProcInter {
      * @return 삭제된 레코드 갯수
      */
     public int delete(int cateno);
-    
+
+    /**
+     * 조회 Join
+     * @param cateno 카테고리 번호, PK
+     * @return 
+     */
+    public CateVO list(int cateno);
 }
 
 

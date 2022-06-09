@@ -8,10 +8,7 @@ import org.springframework.stereotype.Component;
 @Component("dev.mvc.cate.CateProc")
 public class CateProc implements CateProcInter {
     
-      @Autowired private CateDAOInter cateDAO;
-     
-
-
+    @Autowired private CateDAOInter cateDAO;
 
     public CateProc() {
         // System.out.println("-> CateProc created");
@@ -41,7 +38,11 @@ public class CateProc implements CateProcInter {
         return cnt;
     }
 
-
+    @Override
+    public CateVO list(int cateno) {
+        CateVO cateVO = this.cateDAO.list(cateno);
+        return cateVO;
+    }
 }
 
 
