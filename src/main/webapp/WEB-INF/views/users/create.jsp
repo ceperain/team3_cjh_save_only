@@ -10,6 +10,9 @@
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/users.css" rel="stylesheet">
+
+ <script type="text/javascript" src="/js/signup.js" defer></script>
+
 </head>
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
@@ -19,46 +22,43 @@
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-6">
-        <!-- <div class="col-4"> -->
           <div class="card" style="border-radius: 5%;">
-            <!-- <div class="card-body p-5"> -->
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-              <form>
+              <form id="frm_signup" name="frm_signup" action="/users/create.do" method="post">
                 <div class="form-floating mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your Name" />
+                  <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Your Name" />
                   <label for="floatingInput">이름</label>
                 </div>
 
                 <div class="form-floating mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email"/>
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Your Email"/>
                   <label for="floatingInput">메일주소</label>
                 </div>
 
                 <div class="form-floating mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" />
+                  <input type="password" id="pwd" name="pwd" class="form-control form-control-lg" placeholder="Password" />
                   <label for="floatingInput">비밀번호</label>
                 </div>
 
                 <div class="form-floating mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password" />
+                  <input type="password" id="pwd_repeat" name="pwd_repeat" class="form-control form-control-lg" placeholder="Repeat your password" />
                   <label for="floatingInput">비밀번호 확인</label>
                 </div>
 
-                <div class="form-check d-flex justify-content-center mb-5">
+<!--                 <div class="form-check d-flex justify-content-center mb-5">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
                   <label class="form-check-label" for="form2Example3g">
                     I agree all statements in <u>Terms of service</u>
                   </label>
-                </div>
+                </div> -->
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  <button type="button" id="signup" name="signup" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">가입</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? 
+                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
               </form>
             </div>
           </div>
@@ -67,6 +67,6 @@
     </div>
   </div>
 </section>
- 
+
 </body>
 </html>

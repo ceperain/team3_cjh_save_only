@@ -31,10 +31,10 @@ body {
     /* fallback for old browsers */
     background: #84fab0;
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(255, 192, 203, 1),
+    background: -webkit-linear-gradient(to right, rgba(255, 192, 203, 0.5),
         rgba(255, 192, 203, 1));
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(255, 192, 203, 1),
+    background: linear-gradient(to right, rgba(255, 192, 203, 0.5),
         rgba(255, 255, 255, 1))
 }
 .profile {
