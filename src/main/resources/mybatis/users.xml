@@ -5,25 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.users.UsersDAOInter">
 
   <insert id="create" parameterType="dev.mvc.users.UsersVO">
-    insert into users(usersno, email, pwd, sex, bdate, phone, rdate)
-    values(users_seq.nextval, ${email}, ${pwd}, ${sex}, ${bdate}, ${phone}, sysdate)
+    insert into users(usersno, name, email, pwd, sex, bdate, phone, rdate)
+    values(users_seq.nextval, #{name}, #{email}, #{pwd}, #{sex}, #{bdate}, #{phone}, sysdate)
   </insert>
   
   <select id="read" resultType="dev.mvc.users.UsersVO" parameterType="int">
-    select usersno, email, pwd, sex, bdate, phone, rdate
+    select usersno, name, email, pwd, sex, bdate, phone, rdate
     from users
-    where usersno=${usersno}
+    where usersno=#{usersno}
   </select>
   
   <update id="update" parameterType="dev.mvc.users.UsersVO">
     update users
-      set pwd=${pwd},
-      phone=${phone}
-    where usersno=${usersno}
+      set pwd=#{pwd},
+      phone=#{phone},
+      name=#{name}
+    where usersno=#{usersno}
   </update>
   
   <delete id="delete">
     delete from users
-    where usersno=${usersno}
+    where usersno=#{usersno}
   </delete>
 </mapper>

@@ -3,6 +3,8 @@ package dev.mvc.users;
 public class UsersVO {
     private int usersno;
 
+    private String name;
+
     private String email;
 
     private String pwd;
@@ -27,6 +29,14 @@ public class UsersVO {
      */
     public void setUsersno(int usersno) {
         this.usersno = usersno;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

@@ -41,9 +41,11 @@ public class UsersCont {
         
         if(cnt == 1) {
             //회원가입 성공
+            System.out.println("성공");
             
         }
         else {
+            System.out.println("실패");
             //회원가입 실패
         }
         

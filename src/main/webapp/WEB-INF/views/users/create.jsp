@@ -45,6 +45,26 @@
                   <input type="password" id="pwd_repeat" name="pwd_repeat" class="form-control form-control-lg" placeholder="Repeat your password" />
                   <label for="floatingInput">비밀번호 확인</label>
                 </div>
+                
+                <div class="form-outline mb-4">
+                  <label>성별</label>
+                  <input type="radio" id="man" value="남" name="sex" class="btn-check "/>
+                  <label class="btn btn-outline-secondary" for="man">남</label>
+                  <input type="radio" id="woman" value="여" name="sex" class="btn-check "/>
+                  <label class="btn btn-outline-secondary" for="woman">여</label>
+                </div>
+                
+                <div class="form-floating mb-4">
+                  <input type="date" id="bdate" name="bdate" class="form-control form-control-lg"/>
+                  <label for="floatingInput">생년월일</label>
+                </div>
+                
+                <div class="form-floating mb-4">
+                  <input type="tel" id="phone" name="phone" class="form-control form-control-lg"/>
+                  <label for="floatingInput">전화번호</label>
+                </div>
+                
+                
 
 <!--                 <div class="form-check d-flex justify-content-center mb-5">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
