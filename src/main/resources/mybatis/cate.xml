@@ -26,10 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
   <!-- 조회, id: read, 입력: cateno, 리턴: CateVO -->
-  <select id="read" resultType="dev.mvc.cate.CateVO" parameterType="int">
-    SELECT cateno, name, rdate
+  <select id="read" resultType="dev.mvc.cate.CateVO">
+    SELECT cateno, name, rdate, image
     FROM cate
-    WHERE cateno=#{cateno}
   </select>  
   
   
@@ -46,21 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cateno = #{cateno}
   </delete>       
   
-<!--     <select id="list" resultType="dev.mvc.cate.CateVO">
-     <selectKey keyProperty="cateno" resultType="int" order="BEFORE">
-      SELECT cate_seq.nextval FROM dual
-    </selectKey>
-    select s.name as name, s.address as address 
-    from store s, cate c, catejoin j
-    where s.storeno = j.storeno and j.cateno = c.cateno
-  </select> -->
-  
-  
-  
+  <select id="list" resultType="dev.mvc.cate.CateVO">
+    SELECT s.name as s_name, s.address as s_address 
+    FROM store s, cate c, catejoin j
+    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno};
+  </select>
   
 </mapper>
-
-
-
-
-

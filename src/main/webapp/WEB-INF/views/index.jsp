@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,6 +29,10 @@
 <style type="text/css">
 *{font-family: "NanumGothic", "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";}
 
+a {
+    text-decoration: none;
+    color: white;
+}
 
 .container {
   position: relative;
@@ -66,10 +71,14 @@
 }
 
 .text {
-  background-color: #04AA6D;
-  color: white;
-  font-size: 16px;
+  background-color: #ff80bf;
+  font-size: 20px;
   padding: 16px 32px;
+}
+
+.text:hover{
+ color: black;
+ font-size: 20px;
 }
 </style>
 
@@ -96,16 +105,25 @@
   <!-- Controls -->
   <div class="d-flex justify-content-center mb-4">
 
+<c:forEach var="cateVO" items="${list}">
+      <c:set var="cateno" value="${cateVO.cateno }" />
+      <c:set var="name" value="${cateVO.name }" />
+      <c:set var="image" value="${cateVO.image }" />
+
 
 <div class="container">
-<a href="http://localhost:9091/cate/ddmenu.do">
-  <img src="http://www.fsnews.co.kr/news/photo/201902/32707_27510_4314.jpg" alt="Avatar" class="imageh">
+<a href="http://localhost:9091/cate/list.do?cateno=${cateno }">
+  <img src="${image }" alt="Avatar" class="imageh">
   <div class="middle">
-    <div class="text">한식</div>
+    <div class="text">${name }
+    </div>
     </a>
   </div>
 </div>
 
+</c:forEach>
+
+<!-- 
 <div class="container">
 <a href="#">
   <img src="https://cdn.vox-cdn.com/uploads/chorus_image/image/66683596/Atlas_Kitchen_30.0.jpg" alt="Avatar" class="imageh">
@@ -139,9 +157,10 @@
   <div class="middle">
     <div class="text">그 외</div>
     </a>
+ -->
   </div>
   </div>
-
+ 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="./cate/bottom.jsp" flush='false' />
 

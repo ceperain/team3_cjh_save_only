@@ -87,7 +87,8 @@ DROP TABLE cate;
 -- 테이블 생성
 CREATE TABLE cate(
 cateno    NUMBER(10)            NOT NULL      PRIMARY KEY,
-name     VARCHAR2(50)           NOT NULL,
+name     VARCHAR2(50)           NOT NULL   UNIQUE,
+image     VARCHAR2(300),
 rdate      DATE                       NOT NULL
 );
 
@@ -95,7 +96,8 @@ rdate      DATE                       NOT NULL
 COMMENT ON TABLE cate is '카테고리';
 COMMENT ON COLUMN cate.cateno is '카테고리 번호';
 COMMENT ON COLUMN cate.name is '카테고리 이름';
-COMMENT ON COLUMN cate.rdate is '카테고리 생성일';
+COMMENT ON COLUMN cate.image is '카테고리 이미지';
+COMMENT ON COLUMN cate.rdate is '카테고리 생성일'
 
 -- 시퀀스 삭제
 DROP SEQUENCE cate_seq;
@@ -110,20 +112,92 @@ CREATE SEQUENCE cate_seq
   
 
 -- 카테고리 등록  
-INSERT INTO cate(cateno, name, rdate)
-VALUES(cate_seq.nextval, '한식', sysdate);
+insert into cate(cateno, name, image, rdate)
+values(cate_seq.nextval, '한식', 'http://www.fsnews.co.kr/news/photo/201902/32707_27510_4314.jpg',sysdate);
+  
+insert into cate(cateno, name, image, rdate)
+values(cate_seq.nextval, '중식', 'https://cdn.vox-cdn.com/uploads/chorus_image/image/66683596/Atlas_Kitchen_30.0.jpg',sysdate);
 
-INSERT INTO cate(cateno, name, rdate)
-VALUES(cate_seq.nextval, '중식', sysdate);
+insert into cate(cateno, name, image, rdate)
+values(cate_seq.nextval, '일식', 'https://feelfukuoka.com/wp/wp-content/uploads/2020/07/746869_m-768x510.jpg',sysdate);
 
-INSERT INTO cate(cateno, name, rdate)
-VALUES(cate_seq.nextval, '일식', sysdate);
+insert into cate(cateno, name, image, rdate)
+values(cate_seq.nextval, '양식', 'https://ldb-phinf.pstatic.net/20200529_288/1590729021609YuodC_JPEG/wG8x9yxYvJcqemQKTcpAi005.jpg?type=f804_408_60_sharpen',sysdate);
 
-INSERT INTO cate(cateno, name, rdate)
-VALUES(cate_seq.nextval, '양식', sysdate);
+insert into cate(cateno, name, image, rdate)
+values(cate_seq.nextval, '그외', 'http://www.fsnews.co.kr/news/photo/201902/32707_27510_4314.jpg',sysdate);
 
-INSERT INTO cate(cateno, name, rdate)
-VALUES(cate_seq.nextval, '그 외', sysdate);
+select * from cate;
+
+----------------------------------------------------------------------
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '강원도집', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '짱개집', '서울특별시 종로구 낙원동 212-2', 2, 40.572216462641, 130.98797517551, sysdate);
+
+select * from store;
+
+----------------------------------------------------------------------
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 1, 2);
+
+SELECT * FROM catejoin;
+
+
+--카테고리 클릭시 카테고리별 매장 - 전체
+select s.name as 매장명, s.address as 매장주소 
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=1;
+
+commit;
+
+----------------------------------------------------------------------
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '서호장', '서울특별시 종로구 관수동 15', 1, 37.569312055105, 126.98964219128, sysdate);
+
+select * from store;
+
+----------------------------------------------------------------------
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 1, 3);  -- 그래서 cateno 1: 한식 끼워넣음
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 2, 3);  -- cateno 2: 중식, cateno 1: 한식
+
+SELECT * FROM catejoin;
+commit;
+
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+
+select s.name as 매장명, s.address as 매장주소 
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=1;
+
+----------------------------------------------------------------------
+
+select s.name as 매장명, s.address as 매장주소 
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=2;
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 -- 테이블 확인 
 SELECT * FROM cate;
@@ -174,8 +248,11 @@ order by cateno asc;
 --카테고리 클릭시 카테고리별 매장 - 전체
 select s.name as 매장명, s.address as 매장주소 
 from store s, cate c, catejoin j
-where s.storeno = j.storeno and j.cateno = c.cateno;
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 1;
 
+
+
+------------------페이징은  나중에 생각
 --카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
 select storeno, name, address
 from (select storeno, name, address, rownum as r

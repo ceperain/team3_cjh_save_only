@@ -8,7 +8,8 @@
     content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" />
 <title>http://localhost:9091/</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script><!-- 가장 중요한 부분 -->
+
+
 
 <!-- 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -88,38 +89,32 @@
         <!-- <input id="searchButton" type="image" src="" style="width:25px; height:25px;" alt="Submit Form"/> -->
         <button class="searchButton">검색</button>
     </form>
-<br>
-<br><br>
+
+<br><br><br>
+
 <!-- Carousel wrapper -->
 
 <DIV class='content_body'>
   <DIV class='menu_line'></DIV>
   
-  <table class="table table-striped" style='width: 100%;'>
+<c:forEach var="StoreVO" items="${list}">
+      <c:set var="cateno" value="${cateVO.cateno }" />
+      <c:set var="name" value="${cateVO.name }" />
+      <c:set var="image" value="${cateVO.image }" />  
+  
+<table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 1%;"></col>
       <col style="width: 99%;"></col>
     </colgroup>
-    <%-- table 컬럼 --%>
-<!--     <thead>
-      <tr>
-        <th style='text-align: center;'>파일</th>
-        <th style='text-align: center;'>상품명</th>
-        <th style='text-align: center;'>정가, 할인률, 판매가, 포인트</th>
-        <th style='text-align: center;'>기타</th>
-      </tr>
-    
-    </thead> -->
+
     
     <%-- table 내용 --%>
     <tbody>
-      <c:forEach var="cateVO" items="${list }">
-        <c:set var="cateno" value="${cateVO.cateno }" />
-        <c:set var="title" value="${cateVO.title }" />
-        <c:set var="rdate" value="${cateVO.sysdate }" />
-        
-        
-        <tr> 
+    
+    
+    
+        <tr>
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
 <%--               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
@@ -134,7 +129,7 @@
           
           
            <td style='text-align: left;'>
-                <a href='#' style='text-decoration:none; color:black;'><h4>학술적연구소</h4></a> 
+                <a href=' http://localhost:9091/store/list.do' style='text-decoration:none; color:black;'><h4>학술적연구소</h4></a> 
                     <div style='color:gray;'>
                        서울 특별시 뭐뭐구 뭐뭐동 뭐뭐빌라 1층
                     </div>
@@ -144,18 +139,21 @@
                     </div>
            </td>
         </tr>
-          </table>
-          
-        <table class="table table-striped" style='width: 100%;'>
+        </tbody>
+</table>
+</c:forEach>
+
+
+<%--         <table class="table table-striped" style='width: 100%;'>
           <DIV class='menu_line'></DIV>
         
            <tr> 
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
-<%--               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 /static/contents/storage/
                 <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when> --%>
+              </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
               </c:otherwise>
@@ -173,18 +171,17 @@
                     </div>
            </td>
         </tr>
-        </table>
+        </table> --%>
         
-     <table class="table table-striped" style='width: 100%;'>
-               <DIV class='menu_line'></DIV>
-     
+<%-- <table class="table table-striped" style='width: 100%;'>
+    <DIV class='menu_line'></DIV>
          <tr> 
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
-<%--               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 /static/contents/storage/
                 <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when> --%>
+              </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
               </c:otherwise>
@@ -202,43 +199,18 @@
                     </div>
            </td>
         </tr>
-        </table>
-        
-      </c:forEach>
-    </tbody>
+        </table> --%>
+
 
   
   <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->
-  
+
+    </DIV>
 </DIV>
-</DIV>
-
-<div style='width:500px; height:500px; float:left;'>
-
-<div id="map" style="width:500px;height:500px; float:left;"></div>  <!-- div= 지도 넣는 곳  / 크기 조절은 width,height) -->
 
 
-<script type="text/javascript">
- var mapContainer = document.getElementById('map');   /* mapContainer 변수에 map값 넣음 */
-    mapOption = {                                                       /* mapOption에 어떤 지도를 불러 올지 정함 */
-       center: new kakao.maps.LatLng(37.602829, 127.039508), //지도의 위도, 경도    /* 이 경우엔 카카오 지도에서 가져옴 */
-        level: 3 // 지도의 확대 레벨
-    };
-var map = new kakao.maps.Map(mapContainer, mapOption); 
- var markerPosition  = new kakao.maps.LatLng(37.602829, 127.039508);   //마커의 위도, 경도
-
-var marker = new kakao.maps.Marker({
- position: markerPosition
-});
-marker.setMap(map); 
- 
-</script>
-
-<div style=''></div>
-
-</div>
 
 </body>
 </html>

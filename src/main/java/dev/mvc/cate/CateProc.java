@@ -24,9 +24,9 @@ public class CateProc implements CateProcInter {
     }
 
     @Override
-    public CateVO read(int cateno) {
-        CateVO cateVO = this.cateDAO.read(cateno);
-        return cateVO;
+    public List<CateVO> read() {
+        List<CateVO> list = this.cateDAO.read();
+        return list;
     }
 
     @Override
@@ -40,6 +40,12 @@ public class CateProc implements CateProcInter {
         int cnt = this.cateDAO.delete(cateno);
         return cnt;
     }
+
+//    @Override
+//    public List<CateVO> list(int cateno) {
+//        List<CateVO> list = this.cateDAO.list(cateno);
+//        return list;
+//    }
 
 
 }

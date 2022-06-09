@@ -16,7 +16,7 @@ public interface CateDAOInter {
      * @param cateno 카테고리 번호, PK
      * @return 
      */
-    public CateVO read(int cateno);
+    public List<CateVO> read();
     
     /**
      * 수정 처리
@@ -32,6 +32,12 @@ public interface CateDAOInter {
      */
     public int delete(int cateno);
  
+    /**
+     * 상점 목록
+     * @param cateno
+     * @return cateVO
+     */
+//    public List<CateVO> list(int cateno);
 
     
 }
