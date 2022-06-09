@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -96,12 +99,12 @@
 
 <DIV class='content_body'>
   <DIV class='menu_line'></DIV>
-  
-<c:forEach var="StoreVO" items="${list}">
-      <c:set var="cateno" value="${cateVO.cateno }" />
-      <c:set var="name" value="${cateVO.name }" />
-      <c:set var="image" value="${cateVO.image }" />  
-  
+
+<c:forEach var="cateVO" items="${list}">
+      <c:set var="name" value="${cateVO.s_name }"   />
+      <c:set var="address" value="${cateVO.s_address }"   />    
+      <c:set var="storeno" value="${cateVO.s_storeno }"   />
+      
 <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 1%;"></col>
@@ -117,10 +120,10 @@
         <tr>
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
-<%--               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 /static/contents/storage/
                 <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when> --%>
+              </c:when> 
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
               </c:otherwise>
@@ -129,9 +132,9 @@
           
           
            <td style='text-align: left;'>
-                <a href=' http://localhost:9091/store/list.do' style='text-decoration:none; color:black;'><h4>학술적연구소</h4></a> 
+                <a href=' http://localhost:9091/store/store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
                     <div style='color:gray;'>
-                       서울 특별시 뭐뭐구 뭐뭐동 뭐뭐빌라 1층
+                       ${address}
                     </div>
                     <div class="si">
                     오늘의 리이이이뷰 꺄륵깨륵 깔랑룽DDDDDDDDDDDDDDDD<BR>

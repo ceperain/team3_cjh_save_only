@@ -45,10 +45,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cateno = #{cateno}
   </delete>       
   
-  <select id="list" resultType="dev.mvc.cate.CateVO">
-    SELECT s.name as s_name, s.address as s_address 
+  <select id="list" resultType="dev.mvc.cate.CateVO" >
+    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno
     FROM store s, cate c, catejoin j
-    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno};
+    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 </mapper>

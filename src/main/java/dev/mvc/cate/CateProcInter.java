@@ -38,7 +38,7 @@ public interface CateProcInter {
      * @param cateno
      * @return cateVO
      */
-//    public CateVO list(int cateno);
+    public List<CateVO> list(int cateno);
     
 }
 

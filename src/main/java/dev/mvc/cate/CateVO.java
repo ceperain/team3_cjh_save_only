@@ -20,6 +20,8 @@ public class CateVO {
     private String s_name;
     /** 상점주소 */
     private String s_address;
+    /** 가게번호 */
+    private int s_storeno;
     
     /* 기본생성자 */
     public CateVO() {
@@ -28,7 +30,21 @@ public class CateVO {
 
     
     
+    public int getS_storeno() {
+        System.out.println("s_storeno = " + s_storeno);
+        return s_storeno;
+    }
+
+
+
+    public void setS_storeno(int s_storeno) {
+        this.s_storeno = s_storeno;
+    }
+
+
+
     public String getImage() {
+        System.out.println("image = " + image);
         return image;
     }
 
@@ -41,6 +57,7 @@ public class CateVO {
 
 
     public int getCateno() {
+        System.out.println("cateno = " + cateno);
         return cateno;
     }
 
@@ -49,6 +66,7 @@ public class CateVO {
     }
 
     public String getName() {
+        System.out.println("name = " + name);
         return name;
     }
 
@@ -57,6 +75,7 @@ public class CateVO {
     }
 
     public String getRdate() {
+        System.out.println("rdate = " + rdate);
         return rdate;
     }
 
@@ -65,6 +84,7 @@ public class CateVO {
     }
 
     public String getS_name() {
+        System.out.println("s_name = " + s_name);
         return s_name;
     }
 
@@ -73,6 +93,7 @@ public class CateVO {
     }
 
     public String getS_address() {
+        System.out.println("s_address = " + s_address);
         return s_address;
     }
 

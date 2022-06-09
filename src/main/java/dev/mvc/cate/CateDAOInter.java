@@ -37,7 +37,7 @@ public interface CateDAOInter {
      * @param cateno
      * @return cateVO
      */
-//    public List<CateVO> list(int cateno);
+    public List<CateVO> list(int cateno);
 
     
 }

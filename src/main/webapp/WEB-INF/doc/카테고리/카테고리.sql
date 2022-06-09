@@ -67,13 +67,20 @@ CREATE SEQUENCE catejoin_seq
 
 
 INSERT INTO catejoin(catejoinno, cateno, storeno)
-VALUES(catejoin_seq.nextval, 2, 1);
+VALUES(catejoin_seq.nextval, 7, 2);
 
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(catejoin_seq.nextval, 7, 3);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(catejoin_seq.nextval, 8, 3);
 
 SELECT * FROM catejoin;
-  CATEJOINNO     CATENO    STORENO
+CATEJOINNO     CATENO    STORENO
 ---------- ---------- ----------
-         1          1          1
+         1          7          2
+         2          7          3
+         3          8          3
 
 
 
@@ -376,7 +383,7 @@ SELECT * FROM review;
 
 
 
-
+---------------------민정씨꺼 상품
 
 drop table store;
 CREATE TABLE store(
@@ -412,7 +419,9 @@ values(store_seq.nextval, '매장 테스트' ,'서울시 종로구 어딘가', 1
 
     
     
-    
+select s.name as 매장명, s.address as 매장주소, s.storeno as 가게번호
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 8;    
     
 
 
