@@ -1,5 +1,7 @@
 package dev.mvc.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,12 @@ public class UsersProc implements UsersProcInter{
         UsersVO usersVO = this.UsersDAO.read(usersno);
         return usersVO;
     }
+    
+    @Override
+    public List<UsersVO> list() {
+        List<UsersVO> list = this.UsersDAO.list();
+        return list;
+    }
 
     @Override
     public int update(UsersVO usersVO) {
@@ -32,5 +40,7 @@ public class UsersProc implements UsersProcInter{
         int cnt = this.UsersDAO.delete(usersno);
         return cnt;
     }
+
+
 
 }

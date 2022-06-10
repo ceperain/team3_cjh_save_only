@@ -1,5 +1,7 @@
 package dev.mvc.users;
 
+import java.util.List;
+
 public interface UsersDAOInter {
 
     /**
@@ -15,6 +17,13 @@ public interface UsersDAOInter {
      * @return
      */
     public UsersVO read(int usersno);
+
+    /**
+     * 사용자 전체 리스트
+     * 
+     * @return
+     */
+    public List<UsersVO> list();
 
     /**
      * 

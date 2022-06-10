@@ -1,5 +1,7 @@
 package dev.mvc.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -58,6 +60,11 @@ public class UsersCont {
     @RequestMapping(value="/users/list.do", method = RequestMethod.GET)
     public ModelAndView list() {
         ModelAndView mav = new ModelAndView();
+        List<UsersVO> list = this.usersProc.list();
+        
+        mav.addObject("list", list);
+        
+        mav.setViewName("/users/list");
         return mav;
     }
     

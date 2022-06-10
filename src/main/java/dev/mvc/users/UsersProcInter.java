@@ -1,5 +1,7 @@
 package dev.mvc.users;
 
+import java.util.List;
+
 public interface UsersProcInter {
 
     /**
@@ -15,6 +17,12 @@ public interface UsersProcInter {
      */
     public UsersVO read(int usersno);
 
+    /**
+     * 사용자 전체 리스트
+     * 
+     * @return
+     */
+    public List<UsersVO> list();
     /**
      * 
      * @param usersVO
