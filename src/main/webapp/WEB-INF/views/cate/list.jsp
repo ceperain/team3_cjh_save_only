@@ -12,8 +12,6 @@
                                  maximum-scale=5.0, width=device-width" />
 <title>http://localhost:9091/</title>
 
-
-
 <!-- 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -30,9 +28,10 @@
 
 
 <!-- <link rel='stylesheet' id='roboto-subset.css-css'  href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' /> -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style type="text/css">
 *{font-family: "NanumGothic", "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";}
 
@@ -81,7 +80,17 @@
 }
 </style>
 
+<script type="text/javascript">
 
+$(function() {  
+   idx = 5;         
+    $(".table-striped tr:gt(4)").css("display", "none");              
+    $("#btn_add").click(function(){
+         idx+=5;
+         $(".table-striped tr:lt("+idx+")").css("display", "");
+        });                       
+ });
+</script>
 </head>
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
@@ -107,7 +116,7 @@
       <c:set var="address" value="${cateVO.s_address }"   />    
       <c:set var="storeno" value="${cateVO.s_storeno }"   />
       
-<table class="table table-striped" style='width: 100%;'>
+<table class="table  table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 1%;"></col>
       <col style="width: 99%;"></col>
@@ -147,13 +156,13 @@
         </tbody>
 </table>
 </c:forEach>
+ 
   
-  <!-- 페이지 목록 출력 부분 시작 -->
-  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
-  <!-- 페이지 목록 출력 부분 종료 -->
-
+  <DIV class='btna'>
+    <DIV id='reply_list_btn' style='width: 90%; '>
+     <button id='btn_add' class='btn' style='color: white;' >더보기</button>     
     </DIV>
-</DIV>
+  </DIV>
 
 
 

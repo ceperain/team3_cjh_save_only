@@ -54,11 +54,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
 
-  <!-- Join된 식당(store) list -->
-  <select id="list" resultType="dev.mvc.cate.CateVO">
-    SELECT s.name as s_name, s.address as s_address 
-    FROM store s, cate c, catejoin j
-    WHERE s.storeno = j.storeno AND j.cateno = c.cateno AND j.cateno=#{cateno}
-  </select>
-  
 </mapper>

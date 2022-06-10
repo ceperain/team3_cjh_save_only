@@ -38,11 +38,11 @@ public class CateProc implements CateProcInter {
         return cnt;
     }
 
-    @Override
-    public List<CateVO> list(int cateno) {
-        List<CateVO> list = this.cateDAO.list(cateno);
-        return list;
+    @Override public List<CateVO> list(int cateno) { 
+        List<CateVO> list = this.cateDAO.list(cateno); 
+        return list; 
     }
+     
 
 }
 
