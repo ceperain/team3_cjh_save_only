@@ -6,14 +6,8 @@
 }
 
 body {
-    position: relative;
-    min-width: 320px;
-    margin: 0 auto;
-    font-size: 100%;
-    line-height: 100%;
-    text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    word-break: keep-all;
+
+    padding-top:30px;
 }
 
 .gradient-custom-3 {

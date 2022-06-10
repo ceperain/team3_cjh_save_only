@@ -9,7 +9,8 @@
 <title>team3 http://localhost:9091/</title>
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/users.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/users/create.css" rel="stylesheet">
 
  <script type="text/javascript" src="/js/signup.js" defer></script>
 
