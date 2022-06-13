@@ -9,6 +9,7 @@
                                  maximum-scale=5.0, width=device-width" /> 
 <title>http://localhost:9091/</title>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
+<link href="/css/store.css" rel="Stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -121,8 +122,8 @@
         </div>
     </div>
      <div class="col-sm-12">
-           <button type="submit" id='submit' class="btn btn-primary">등록</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
+           <button type="submit" id='submit' class="button">등록</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" id='btn_create_cancel' class="button">취소</button>
        </div>         
     </FORM>
  </div> 
@@ -146,8 +147,8 @@
         </div>
      </div>
        <div class="col-sm-12">
-           <button type="submit" id='submit' class="btn btn-primary">수정</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
+           <button type="submit" id='submit' class="button">수정</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" id='btn_create_cancel' class="button">취소</button>
         </div>         
     </FORM>
 </DIV>
@@ -172,8 +173,8 @@
         </div>
     </div>
      <div class="col-sm-3">
-        <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
-        <button type="button" id='btn_delete_cancel' class="btn btn-primary">취소</button>
+        <button type="submit" id='submit' class="button">삭제</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_delete_cancel' class="button">취소</button>
      </div>
     </FORM>
 </DIV>  
