@@ -25,4 +25,5 @@ public interface ReviewDAOInter {
      */
     public ReviewVO read(int reviewno);
     
+    public List<ReviewVO> list_storeno(int storeno);
 }

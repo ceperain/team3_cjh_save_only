@@ -62,7 +62,7 @@ public class StoreCont {
         int menu_count = this.menuProc.count_by_storeno(storeno);
         mav.addObject("menu_count", menu_count);
         mav.setViewName("/store/food_main"); 
-        List<ReviewVO> list = this.reviewProc.list_reviewno();
+        List<ReviewVO> list = this.reviewProc.list_storeno(storeno);
         mav.addObject("r_list", list);
         return mav; // forward
     }

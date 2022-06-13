@@ -23,14 +23,18 @@
 $(function() {  
 
 	idx = 2;         
-    $(".table tr:gt(2)").css("display", "none");              
+    $(".table tr:gt(2)").css("display", "none");      
+    if(idx>$(".table tr").length) {
+        $('.button1').css("display", "none");
+    }                
+            
     $(".button1 li").click(function(){
          idx+=3;
-         $(".table tr:lt("+idx+")").css("display", "");
-             if(idx>$(".table tr").length) {
-                 $('.button1').css("display", "none");
-             }
-        });                       
+         $(".table tr:lt("+idx+")").css("display", "");   
+         if(idx>$(".table tr").length) {
+            $('.button1').css("display", "none");
+        }
+        });            
  });
 
 </script>

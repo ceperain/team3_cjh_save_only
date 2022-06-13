@@ -29,4 +29,10 @@ public class ReviewProc implements ReviewProcInter{
         return reviewVO;
     }
     
+    @Override
+    public List<ReviewVO> list_storeno(int storeno) {
+        List<ReviewVO> list=this.reviewDAO.list_storeno(storeno);
+        return list;
+    }
+    
 }
