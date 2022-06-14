@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,10 +46,12 @@ public class UsersCont {
             //회원가입 성공
             System.out.println("성공");
             
+            
         }
         else {
             System.out.println("실패");
             //회원가입 실패
+            
         }
         
         mav.addObject("cnt", cnt);
@@ -66,6 +69,16 @@ public class UsersCont {
         
         mav.setViewName("/users/list");
         return mav;
+    }
+    
+    @RequestMapping(value="/login.do", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView();
+        
+        
+        mav.setViewName("/users/login");
+        return mav;
+        
     }
     
     

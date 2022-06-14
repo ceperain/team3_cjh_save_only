@@ -5,8 +5,14 @@
 
 frm = document.querySelector("#frm_signup");
 btn_signup = document.querySelector("#signup");
-
+input_phone = document.querySelector("#phone");
 btn_signup.addEventListener("click", send);
+input_phone.addEventListener("keyup", function(){
+	this.value = this.value.match(/\d*/g).join('')
+							.match(/(\d{0,3})(\d{0,4})(\d{0,4})/).slice(1).join('-')
+							.replace(/-*$/g, '');
+});
+
 
 
 function checkAll() {
@@ -37,6 +43,13 @@ function checkName(name) {
 function checkEmail(email) {
 	if (email == "") {
 		alert("이메일을 입력해 주세요");
+		return false;
+	}
+	const emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+	if (!emailRegExp.test(email)){
+		alert("이메일 형식이 올바르지 않습니다.");
+		frm.email.value = "";
+		frm.email.focus();
 		return false;
 	}
 	return true;
@@ -73,6 +86,12 @@ function checkBdate(bdate){
 function checkPhone(phone){
 	if (phone == "") {
 		alert("전화번호를 입력해 주세요");
+		return false;
+	}
+	const phoneRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
+	if(!phoneRegExp.test(phone)){
+		alert("전화번호 형식이 올바르지 않습니다\n010-0000-0000 형식으로 입력해 주세요");
+		frm.phone.focus();
 		return false;
 	}
 	return true;
