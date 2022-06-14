@@ -13,7 +13,15 @@
 <title>http://localhost:9091/</title>
 <link href="/css/store.css" rel="Stylesheet" type="text/css"> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
+<link href="/css/review.css" rel="Stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- jQuery 1.8 or later, 33 KB -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+
+<!-- Fotorama from CDNJS, 19 KB -->
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/store.css" rel="Stylesheet" type="text/css">
@@ -22,7 +30,7 @@
 <script type="text/javascript">
 $(function() {  
 
-	idx = 2;         
+    idx = 2;         
     $(".table tr:gt(2)").css("display", "none");      
     if(idx>$(".table tr").length) {
         $('.button1').css("display", "none");
@@ -31,31 +39,50 @@ $(function() {  
     $(".button1 li").click(function(){
          idx+=3;
          $(".table tr:lt("+idx+")").css("display", "");   
-         if(idx>$(".table tr").length) {
+         if(idx>=$(".table tr").length) {
             $('.button1').css("display", "none");
         }
-        });            
+        });      
+
+
+              
  });
 
 </script>
+<style type="text/css">
+
+</style>
 </head>
-<body>
+<body class="gradient-custom-3">
  <jsp:include page="../menu/top.jsp" flush='false' />
  <c:set var="name" value="${storeVO.name }" />
  <c:set var="lat" value="${storeVO.lat }" />
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
-<div class="gradient-custom-3">
-<section style="width: 80%; margin:auto; overflow: auto;">
-    <div style="text-align: center; margin:10px 10px; padding:10px 10px">
-        <img alt="음식 사진들" src="../5.png" class="img-thumbnail" />
+    <section style="width: 80%; margin:auto; overflow: auto;" >
+    <div class="fotorama" style="position:relative; left:30%">
+       <c:forEach var="reviewVO" items="${r_list }">
+        <c:set var="file1saved" value="${reviewVO.file1saved }" />
+         <c:set var="thumb" value="${reviewVO.thumb }" />
+         <c:set var="file1saved" value="${file1saved.toLowerCase() }" />
+            <c:choose>
+              <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+                <IMG src="/review/storage/${file1saved }" style="width: 100%;"> 
+              </c:when>
+              <c:otherwise> <!-- 기본 이미지 출력 -->
+                <IMG src="/review/images/none1.png" style="width: 100%;"> 
+              </c:otherwise>
+            </c:choose>
+     </c:forEach>      
     </div>
-    <h2>${name}</h2><br><hr>
+    <br>
+    <div style="width: 100%; float:left; "><h2>${name}</h2>
+    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
+    </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
             <tr><th>주소</th><th colspan="2">${address}</th></tr>
-            <tr><th>전화번호</th><th colspan="2">업체정보</th></tr>
-            <tr><th>음식종류</th><th colspan="2">업체정보</th></tr>
+            <tr><th>음식종류</th><th colspan="2">${cate_s }</th></tr>
             <tr><th rowspan="${work_count }">영업시간</th>
              <c:forEach var="workVO" items="${w_list}">
              <c:set var="day" value="${workVO.day }" />
@@ -73,9 +100,9 @@ $(function() {  
        </div>
         <div id="map" style="width:30%;height:500px;"></div>
 <div class="container">
-    <div class="row"><div class="keyworddivstyle">가성비</div><div class="keyworddivstyle">친절</div>
-    <div class="keyworddivstyle">분위기</div><div class="keyworddivstyle">신선</div>
-    <div class="keyworddivstyle">청결</div><div class="keyworddivstyle">주차</div></div>
+    <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
+    <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
+    <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
 </div>    
  
  <hr>
@@ -104,20 +131,25 @@ $(function() {  
                     <br>
                    <c:choose>
                         <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-                        <a href="./read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;"></a> 
+                        <a href="../review/read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;"></a> 
                         </c:when>
                          <c:otherwise>
                             <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
                         </c:otherwise>
-                 </c:choose>
+                 </c:choose>                 
+                    <A href="../review/delete.do?reviewno=${reviewno}" title="삭제" style="float:right"><i class="fa-solid fa-eraser"></i></A>
+                     <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>
                 </td> 
              </tr>
           </c:forEach>     
      </tbody>
     </table>
    </div>
-    <div style="width: 30%; float: left; background-color: pink; height: 100%;">
-        키워드 넣는다
+    <div style="width: 30%;  vertical-align: middle;
+    position: relative;background-color: pink; height: 100%; display: table-cell;">
+     <c:forEach var="m" items="${m}">
+             <label  class="keywordstyle">#${m.value}</label>  <br>
+    </c:forEach>    
     </div>
 </DIV>
 <div style="width: 70%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
@@ -128,13 +160,12 @@ $(function() {  
 
 
 </section>
-</div>
 
 
 <script>
  var mapContainer = $('#map')[0];// 지도를 표시할 div 
     mapOption = { 
-    	center: new kakao.maps.LatLng(${lat}, ${lng}), 
+        center: new kakao.maps.LatLng(${lat}, ${lng}), 
         level: 3 // 지도의 확대 레벨
     };
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -148,4 +179,3 @@ marker.setMap(map);
 </script>
 </body>
 </html>
-

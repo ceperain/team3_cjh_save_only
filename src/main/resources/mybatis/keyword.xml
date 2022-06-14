@@ -18,10 +18,65 @@ values(keyword_seq.nextval, #{reviewno}, #{keylistno})
  </insert> 
  
 <!-- 조회, id: read, 입력: keywordno, 리턴: keywordVO -->
-  <select id="read" resultType="dev.mvc.keyword.KeywordVO" parameterType="dev.mvc.keyword.KeywordVO">
+  <select id="read" resultType="dev.mvc.keyword.KeywordVO" parameterType="int">
     SELECT  keywordno, reviewno, keylistno
     FROM keyword
     WHERE reviewno=#{reviewno}
+  </select>
+  
+    <select id="count_1"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=1 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
+  </select>
+  <select id="count_2"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=2 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
+  </select>
+  <select id="count_3"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=3 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
+  </select>
+  <select id="count_4"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=4 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
+  </select>
+  <select id="count_5"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=5 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
+  </select>
+  <select id="count_6"  parameterType="int" resultType="int">
+   select count(*)
+    from keyword
+    where keylistno=6 and
+    reviewno in(
+        select reviewno
+        from review
+        where storeno = #{storeno})
   </select>
   
  <!-- 수정-->

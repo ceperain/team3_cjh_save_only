@@ -134,6 +134,7 @@ $(function () {
        <DIV style='text-align: left; width: 100%; float: left;'>
           <br>
             <input type="hidden" name="reviewno" value="${reviewVO.reviewno }">
+            <input type="hidden" name="storeno" value="${reviewVO.storeno }">
             <div class="d-flex justify-content-center">
             <textarea name='contents'
             id="contents"
@@ -236,7 +237,7 @@ $(function () {
        
             <div class="form-outline mb-4" style="float: right;">
             <button type="button"
-                onclick="location.href='../store/list.do'"class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">취소</button>
+                onclick = "history.back()" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">취소</button>
             <button type="submit"
                 id="submit"
                 class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">수정 완료</button>

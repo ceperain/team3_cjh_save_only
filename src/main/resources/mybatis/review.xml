@@ -19,15 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 조회, id: read, 입력: reviewno, 리턴: reviewVO -->
   <select id="read" resultType="dev.mvc.review.ReviewVO" parameterType="int">
-    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
+    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate, storeno
     FROM review
     WHERE reviewno=#{reviewno}
   </select>
   
   <select id="list_storeno" resultType="dev.mvc.review.ReviewVO">
-    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
+    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate, storeno
     FROM review
-    ORDER BY storeno
+    WHERE storeno=#{storeno}
  </select>
 
 <!-- 수정-->

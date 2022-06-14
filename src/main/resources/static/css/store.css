@@ -1,4 +1,10 @@
 @charset "UTF-8";
+#kspan{
+    font-weight: bold;
+    font-size: 30px;      
+    text-align: center;
+    display: block;
+}
 .keyworddivstyle{
     background-color: #ff33ff;
     color:white;
@@ -13,6 +19,15 @@
     left: 10px;
     border-radius: 30px;
     display: table-cell;
+}
+.keywordstyle{
+    border-radius:18%;
+    padding: 0 20px;
+    background-color: #ff33ff;
+    color : #F9F9F9;
+    margin: 15px 3px 0 ;
+    font-size: 17px;
+    float: left;
 }
 .button1{
     background-color: pink;

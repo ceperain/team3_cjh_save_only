@@ -74,6 +74,61 @@ insert into store(storeno, name, address, visible, rdate)
 values(store_seq.nextval, '매장 테스트' ,'서울시 종로구 어딘가', 1, sysdate);
 
 /**********************************/
+/* Table Name: 메뉴 */
+/**********************************/
+
+CREATE TABLE menu(
+      menuno                              NUMBER(30)       NOT NULL       PRIMARY KEY,
+      storeno                             NUMBER(10)       NOT NULL,
+      name                                VARCHAR2(300)       NOT NULL,
+      price                               NUMBER(8)       NULL ,
+  FOREIGN KEY (storeno) REFERENCES store (storeno)
+);
+
+COMMENT ON TABLE menu is '메뉴';
+COMMENT ON COLUMN menu.menuno is '메뉴 번호';
+COMMENT ON COLUMN menu.storeno is '매장 번호';
+COMMENT ON COLUMN menu.name is '메뉴 이름';
+COMMENT ON COLUMN menu.price is '메뉴 가격';
+
+
+CREATE SEQUENCE menu_seq
+  START WITH 1               -- 시작 번호
+  INCREMENT BY 1           -- 증가값
+  MAXVALUE 9999999999  -- 최대값: 9999999 --> NUMBER(7) 대응
+  CACHE 2                       -- 2번은 메모리에서만 계산
+  NOCYCLE;   
+
+
+/**********************************/
+/* Table Name: 영업 */
+/**********************************/
+
+CREATE TABLE working(
+      workno                              NUMBER(24)       NOT NULL       PRIMARY KEY,
+      storeno                             NUMBER(10)       NOT NULL,
+      day                                 VARCHAR2(15)       NOT NULL,
+      starttime                           VARCHAR2(40)       NULL ,
+      endtime                             VARCHAR2(40)       NULL ,
+  FOREIGN KEY (storeno) REFERENCES store (storeno)
+);
+
+COMMENT ON TABLE working is '영업시간';
+COMMENT ON COLUMN working.workno is '영업시간 번호';
+COMMENT ON COLUMN working.storeno is '상품(매장) 번호';
+COMMENT ON COLUMN working.day is '요일';
+COMMENT ON COLUMN working.starttime is '영업 시작 시간';
+COMMENT ON COLUMN working.endtime is '영업 종료 시간';
+
+CREATE SEQUENCE working_seq
+  START WITH 1               -- 시작 번호
+  INCREMENT BY 1           -- 증가값
+  MAXVALUE 9999999999  -- 최대값: 9999999 --> NUMBER(7) 대응
+  CACHE 2                       -- 2번은 메모리에서만 계산
+  NOCYCLE;   
+
+
+/**********************************/
 /* Table Name: 리뷰 */
 /**********************************/
 

@@ -39,4 +39,6 @@ public interface ReviewProcInter {
 
     public List<ReviewVO> list_storeno(int storeno);
     
+
+    
 }
