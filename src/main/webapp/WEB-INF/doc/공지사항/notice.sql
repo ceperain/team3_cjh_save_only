@@ -25,6 +25,7 @@ CREATE SEQUENCE notice_seq
     MAXVALUE 9999999999
     CACHE 2 
     NOCYCLE;
+    
 --공지 등록
 insert into notice(noticeno, adminno, title, contents, rdate)
 values(notice_seq.nextval, 1 , '첫 번째 공지사항' ,'첫 번째 공지사항 테스트 team3', sysdate);
@@ -40,7 +41,7 @@ values(notice_seq.nextval, 1 , '네 번째 공지사항' ,'네 번째 공지사�
 
 select noticeno, title, contents, rdate
 from notice
-order by noticeno asc;
+order by noticeno desc;
 
 --검색
 select noticeno, title, contents, rdate 
@@ -91,3 +92,9 @@ from notice;
 --FK 컬럼 기준 카운트,
 
 --FK 컬럼 기준 삭제,
+
+
+
+
+
+
