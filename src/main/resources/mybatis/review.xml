@@ -23,6 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM review
     WHERE reviewno=#{reviewno}
   </select>
+  
+  <select id="list_storeno" resultType="dev.mvc.review.ReviewVO">
+    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
+    FROM review
+    ORDER BY storeno
+ </select>
 
 <!-- 수정-->
 <update id="update" parameterType="dev.mvc.review.ReviewVO">

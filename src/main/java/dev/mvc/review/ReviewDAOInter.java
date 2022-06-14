@@ -40,4 +40,5 @@ public interface ReviewDAOInter {
      */
     public int delete(int reviewno);
     
+    public List<ReviewVO> list_storeno(int storeno);
 }

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
+import dev.mvc.review.ReviewProcInter;
+import dev.mvc.review.ReviewVO;
 import dev.mvc.work.WorkProcInter;
 import dev.mvc.work.WorkVO;
 
@@ -31,8 +33,12 @@ public class StoreCont {
     @Qualifier("dev.mvc.work.WorkProc") 
     private WorkProcInter workProc;
     
+    @Autowired
+    @Qualifier("dev.mvc.review.ReviewProc")
+    private ReviewProcInter reviewProc;
+    
     public StoreCont() {
-        System.out.println("-> StoreCont created.");
+       // System.out.println("-> StoreCont created.");
     }
 
     /*
@@ -55,8 +61,9 @@ public class StoreCont {
         mav.addObject("work_count", work_count);
         int menu_count = this.menuProc.count_by_storeno(storeno);
         mav.addObject("menu_count", menu_count);
-        mav.setViewName("/store/food_main"); // webapp/WEB-INF/views/store/create.jsp
-                
+        mav.setViewName("/store/food_main"); 
+        List<ReviewVO> list = this.reviewProc.list_storeno(storeno);
+        mav.addObject("r_list", list);
         return mav; // forward
     }
     
@@ -81,6 +88,7 @@ public class StoreCont {
         }
         return mav; // forward
     }
+    
     
     @RequestMapping(value = "/store/list.do", method = RequestMethod.GET)
     public ModelAndView list() {

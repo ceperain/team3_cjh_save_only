@@ -144,12 +144,57 @@ values(STORE_SEQ.nextval, '강원도집', '서울특별시 종로구 낙원동 2
 INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
 values(STORE_SEQ.nextval, '짱개집', '서울특별시 종로구 낙원동 212-2', 2, 40.572216462641, 130.98797517551, sysdate);
 
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '복덕방', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '산울림 1992', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '아버지 손두부', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '강원도집2', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '짱개집3', '서울특별시 종로구 낙원동 212-2', 2, 40.572216462641, 130.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '복덕방4', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '산울림5 1992', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, '아버지 손두부6', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
 select * from store;
 
 ----------------------------------------------------------------------
 
 INSERT INTO catejoin(catejoinno, cateno, storeno)
-VALUES(CATEJOIN_SEQ.nextval, 1, 2);
+VALUES(CATEJOIN_SEQ.nextval, 7, 4);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 5);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 6);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 7);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 8);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 9);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 10);
+
+INSERT INTO catejoin(catejoinno, cateno, storeno)
+VALUES(CATEJOIN_SEQ.nextval, 7, 11);
 
 SELECT * FROM catejoin;
 
@@ -157,9 +202,14 @@ SELECT * FROM catejoin;
 --카테고리 클릭시 카테고리별 매장 - 전체
 select s.name as 매장명, s.address as 매장주소 
 from store s, cate c, catejoin j
-where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=1;
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=7;
 
 commit;
+
+select count(*)
+from store s, cate c, catejoin j
+where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=7;
+
 
 ----------------------------------------------------------------------
 

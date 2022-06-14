@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dev.mvc.work.WorkVO" %> 
 <%@ page import="dev.mvc.menu.MenuVO" %> 
+<%@ page import="dev.mvc.review.ReviewVO" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,32 +11,31 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" /> 
 <title>http://localhost:9091/</title>
+<link href="/css/store.css" rel="Stylesheet" type="text/css"> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="/css/store.css" rel="Stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script>
-<style type="text/css">
-.keyworddivstyle{
-    background-color: #ff33ff;
-    color:white;
-    float:left;
-    border:none;
-    height: 100px;
-    text-align: center;
-    width: 150px;
-    margin: 30px auto;
-    vertical-align: middle;
-    position: relative;
-    left: 10px;
-    border-radius: 30px;
-    display: table-cell;
-}
-</style>
 <script type="text/javascript">
+$(function() {  
+
+	idx = 2;         
+    $(".table tr:gt(2)").css("display", "none");      
+    if(idx>$(".table tr").length) {
+        $('.button1').css("display", "none");
+    }                
+            
+    $(".button1 li").click(function(){
+         idx+=3;
+         $(".table tr:lt("+idx+")").css("display", "");   
+         if(idx>$(".table tr").length) {
+            $('.button1').css("display", "none");
+        }
+        });            
+ });
 
 </script>
 </head>
@@ -46,13 +46,12 @@
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
 <div class="gradient-custom-3">
-<section style="width: 80%; margin:auto; height: 100%">
+<section style="width: 80%; margin:auto; overflow: auto;">
     <div style="text-align: center; margin:10px 10px; padding:10px 10px">
         <img alt="음식 사진들" src="../5.png" class="img-thumbnail" />
     </div>
     <h2>${name}</h2><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
-<!--         <div style="width: 100%; margin:auto; height: 100%"> -->
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
             <tr><th>주소</th><th colspan="2">${address}</th></tr>
             <tr><th>전화번호</th><th colspan="2">업체정보</th></tr>
@@ -66,12 +65,11 @@
              </c:forEach>
              <tr><th rowspan="${menu_count }">메뉴</th>
              <c:forEach var="menuVO" items="${m_list}">
-              <c:set var="name" value="${menuVO.name }" />
+                <c:set var="name" value="${menuVO.name }" />
                 <c:set var="price" value="${menuVO.price }" />
                 <th>${name }</th><th>${price } 원</th></tr>
              </c:forEach>
             </table>
-<!--            </div> -->
        </div>
         <div id="map" style="width:30%;height:500px;"></div>
 <div class="container">
@@ -81,9 +79,54 @@
 </div>    
  
  <hr>
- <div style="text-align: center; margin:10px 10px; padding:10px 10px">
-    <button type="button" onclick="" id='btn_create' class="btn btn-primary">리뷰 등록</button>
+ 
+
+<DIV class='menu_line'>  
+   <div style="width: 70%; float: left; padding: 5px 10px 5px 5px;">
+        <table class="table">
+        <colgroup>
+            <col style="width: 10%;"></col>
+            <col style="width: 90%;"></col>
+        </colgroup>
+        <tbody>
+        <c:forEach var="reviewVO" items="${r_list }">
+            <c:set var="reviewno" value="${reviewVO.reviewno }" />
+            <c:set var="contents" value="${reviewVO.contents }" />
+            <c:set var="file1" value="${reviewVO.file1 }" />
+            <c:set var="thumb" value="${reviewVO.thumb }" />
+            <c:set var="score" value="${reviewVO.score}"/>         
+            <tr> 
+                 <td style='vertical-align: middle; text-align: center; '>
+                     사용자
+                </td>
+                 <td style="word-break:break-all">
+                  ${contents }
+                    <br>
+                   <c:choose>
+                        <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+                        <a href="./read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;"></a> 
+                        </c:when>
+                         <c:otherwise>
+                            <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
+                        </c:otherwise>
+                 </c:choose>
+                </td> 
+             </tr>
+          </c:forEach>     
+     </tbody>
+    </table>
+   </div>
+    <div style="width: 30%; float: left; background-color: pink; height: 100%;">
+        키워드 넣는다
+    </div>
+</DIV>
+<div style="width: 70%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
+   <ul  class="button1">
+        <li>리뷰 더보기</li>
+    </ul>
 </div>
+
+
 </section>
 </div>
 

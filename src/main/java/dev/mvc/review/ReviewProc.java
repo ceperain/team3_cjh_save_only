@@ -44,4 +44,9 @@ public class ReviewProc implements ReviewProcInter{
     
     
     
+    public List<ReviewVO> list_storeno(int storeno) {
+        List<ReviewVO> list=this.reviewDAO.list_storeno(storeno);
+        return list;
+    }
+    
 }

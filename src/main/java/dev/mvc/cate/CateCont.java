@@ -34,20 +34,6 @@ public class CateCont {
     }
 
     /**
-     * 등록폼 http://localhost:9091/cate/list.do http://localhost:9091/cate/korean.do
-     * http://localhost:9091/cate/create.do?categrpno=2
-     * 
-     * @return
-     */
-    /*
-     * @RequestMapping(value = "/cate/list.do", method = RequestMethod.GET) public
-     * ModelAndView create() { ModelAndView mav = new ModelAndView();
-     * mav.setViewName("/cate/list"); // /webapp/WEB-INF/views/cate/list.jsp
-     * 
-     * return mav; }
-     */
-
-    /**
      * Categrp + Cate join, 연결 목록 http://localhost:9091/cate/lis.do
      * 
      * @return
@@ -62,4 +48,6 @@ public class CateCont {
         mav.setViewName("/cate/list"); // /WEB-INF/views/cate/list.jsp
         return mav;
     }
+
+
 }

@@ -9,19 +9,13 @@
                                  maximum-scale=5.0, width=device-width" /> 
 <title>http://localhost:9091/list.do</title>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
+<link href="/css/store.css" rel="Stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
-<style>
-.msg_warning{
-color: red;
-font-weight: bold;
-text-shadow: 30%;
-size: 50px;
-}
-</style>
+
 <script type="text/javascript">
   $(function(){
 	  $('#btn_create_cancel').on('click', cancel);    
@@ -31,7 +25,7 @@ size: 50px;
   });
   function read_update(storeno){
 	  $('#panel_create').css('display', 'none');
-	  $('#panel_update').css("display","none"); 
+	  $('#panel_delete').css("display","none"); 
 	  $('#panel_update').css('display', ''); 
 
 	  let params = "";	 
@@ -160,8 +154,8 @@ size: 50px;
             </select>
         </div>
        <div class="col-sm-3">
-           <button type="submit" id='submit' class="btn btn-primary">등록</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
+           <button type="submit" id='submit' class="button">등록</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" id='btn_create_cancel' class="button">취소</button>
         </div>
       </div>          
     </FORM>
@@ -202,8 +196,8 @@ size: 50px;
         </select>
       </div>
        <div class="col-sm-3">
-        <button type="submit" id='submit' class="btn btn-primary">수정</button>&nbsp;&nbsp;&nbsp;
-        <button type="button" id='btn_update_cancel' class="btn btn-primary">취소</button>
+        <button type="submit" id='submit' class="button">수정</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_update_cancel' class="button">취소</button>
        </div>          
       </div>
     </FORM>
@@ -246,8 +240,8 @@ size: 50px;
         『관련 메뉴와 운영시간 테이블도 같이 삭제 처리 됩니다.』
       </div>
        <div class="col-sm-3">
-        <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
-        <button type="button" id='btn_delete_cancel' class="btn btn-primary">취소</button>
+        <button type="submit" id='submit' class="button">삭제</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_delete_cancel' class="button">취소</button>
        </div>          
 </FORM>
 </DIV>  
