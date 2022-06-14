@@ -25,7 +25,19 @@
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
-  $(function(){
+$(document).ready(function(){
+
+    for(var i=0; i<5; i++){
+      
+         if(i< ${score} ){  
+             span_Text = document.getElementById("star").innerHTML  +'★';
+            document.getElementById("star").innerHTML = span_Text;        
+     } else {
+         span_Text = document.getElementById("star").innerHTML  +'☆';
+         document.getElementById("star").innerHTML = span_Text;      
+         }
+     
+    }
  
   });
 </script>
@@ -61,34 +73,67 @@
   <DIV class='menu_line'></DIV>
 
   <fieldset class="fieldset_basic">
+  
+  <DIV style='text-align: center; width: 100%; float: inline-start;'>
     <ul style="list-style:none">
       <li class="li_none">
         <c:set var="file1saved" value="${file1saved.toLowerCase() }" />
-        <DIV style="width: 50%; float: left; margin-right: 10px;">
+        <DIV style="width: 100%; float: inline-start; margin: 10px auto; padding:10px 40px 20px 10px">
             <c:choose>
               <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
                 <%-- /static/review/storage/ --%>
-                <IMG src="/review/storage/${file1saved }" style="width: 100%;"> 
+                <IMG src="/review/storage/${file1saved }" style="width: 100%; height: 100%;"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/review/images/none1.png" style="width: 100%;"> 
+                <IMG src="/review/images/none3.png" style="width: 100%; height: 100%;"> 
               </c:otherwise>
             </c:choose>
         </DIV>
-        
-        <DIV>${contents }</DIV>
-        <DIV>
-          ${score }
+        <DIV style='text-align: left; width: 100%; float: inline-start; padding:10px 40px 20px 10px'>
+        <DIV style='text-align: right;'>
+          <label class="control-label col-md-3"></label>
+                    <span id="star" >
+                      
+                    </span>
         </DIV> 
+        <br>
+        <DIV>${contents }</DIV>
+        </DIV>
       </li>
       <li class="li_none">
-        <DIV>
-          <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/review/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> 
-          </c:if>
-        </DIV>
       </li>   
     </ul>
+    </DIV>
+     <c:forEach var="m" items="${m}">
+       <c:choose>
+                <c:when test="${m.key eq '1'}">
+                   <label class="btn btn-danger" >
+                </c:when>
+                <c:when test="${m.key eq '2'}">
+                   <label class="btn btn-warning">
+                </c:when>
+                <c:when test="${m.key eq '3'}">
+                    <label class="btn btn-info">
+                </c:when>
+                 <c:when test="${m.key eq '4'}">
+                    <label class="btn btn-primary">
+                </c:when>
+                <c:when test="${m.key eq '5'}">
+                    <label class="btn btn-secondary">
+                </c:when>
+                <c:when test="${m.key eq '6'}">
+                    <label class="btn btn-success">
+                </c:when>
+            </c:choose>
+             ${m.value}</label>  <br>
+</c:forEach>
+   <%--  <c:forEach var="KeylistVO" items="${list_key}"> --%>
+             <%-- <c:set var="keytext" value="${keylistVO.keytext }" />
+             <c:set var="keylistno" value="${keylistVO.keylistno }" />
+            ${keylistno}<br>${keytext} --%>
+            <%--  </c:forEach>  --%>
+            <%--   <c:set var="keytext" value="${ke.keytext }" />
+              ${keytext} --%>
   </fieldset>
 
 </DIV>

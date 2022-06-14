@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.keylist.KeylistDAOInter">
+
+<insert id="create" parameterType="dev.mvc.keylist.KeylistVO">
+insert into keylist(keytext, keylistno)
+values(#{keytext}, #{keylistno})
+ </insert> 
+ 
+ <!-- 조회, id: read, 입력: keywordno, 리턴: keylistVO -->
+  <select id="read" resultType="dev.mvc.keylist.KeylistVO" parameterType="int">
+    SELECT  keytext, keylistno
+    FROM keylist
+    WHERE keylistno=#{keylistno}
+  </select>
+
+
+</mapper>

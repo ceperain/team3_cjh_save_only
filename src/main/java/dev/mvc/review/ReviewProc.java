@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
+
 @Component("dev.mvc.review.ReviewProc")
 public class ReviewProc implements ReviewProcInter{
     @Autowired
@@ -28,5 +29,19 @@ public class ReviewProc implements ReviewProcInter{
         ReviewVO reviewVO = reviewDAO.read(reviewno);
         return reviewVO;
     }
+    
+    @Override
+    public int update(ReviewVO reviewVO) {
+        int cnt = this.reviewDAO.update(reviewVO);
+        return cnt;
+    }
+
+    @Override
+    public int delete(int reviewno) {
+        int cnt=this.reviewDAO.delete(reviewno);
+        return cnt;
+    }
+    
+    
     
 }

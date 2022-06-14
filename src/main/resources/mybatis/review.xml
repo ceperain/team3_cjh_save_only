@@ -25,18 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
 
 <!-- 수정-->
-<!-- <update id="update" parameterType="dev.mvc.review.ReviewVO">
+<update id="update" parameterType="dev.mvc.review.ReviewVO">
   UPDATE review
-  SET title=#{title}, contents=#{contents},  word=#{word}, 
-        file1=#{file1}, file1saved=#{file1saved}, thumb=#{thumb}
+  SET contents=#{contents}, file1=#{file1}, file1saved=#{file1saved}, thumb=#{thumb}
   WHERE reviewno = #{reviewno}
-</update>  -->
+</update> 
 
 <!-- 삭제 -->
-<!-- <delete id="delete" parameterType="int">
-    DELETE FROM contents
-    WHERE contentsno=#{contentsno}
-  </delete> -->
+<delete id="delete" parameterType="int">
+    DELETE FROM review
+    WHERE reviewno=#{reviewno}
+  </delete>
 
 
 </mapper>

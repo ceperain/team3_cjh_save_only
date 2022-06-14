@@ -23,3 +23,20 @@ CREATE SEQUENCE keyword_seq
   CACHE 2                       -- 2번은 메모리에서만 계산
   NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
     
+
+    
+
+insert into keyword(keywordno, reviewno,keylistno)
+values(keyword_seq.nextval, 6, '1');
+
+--조회--
+    SELECT  keywordno, reviewno, keylistno
+    FROM keyword
+    WHERE reviewno = '6';
+
+--수정--
+  UPDATE keyword
+  SET keylistno='2'
+  WHERE keywordno = '3' and reviewno = '6';
+
+commit;
