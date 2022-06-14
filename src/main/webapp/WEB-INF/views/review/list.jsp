@@ -33,7 +33,7 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <!-- <div class="col-12 col-md-9 col-lg-7 col-xl-6"> -->
         <div class="col-7">
-          <div class="card" style="border-radius: 5%;">
+          
           <!-- <div class="card-body p-5"> -->
             <div class="card-body p-5">
  
@@ -72,16 +72,25 @@
             <c:choose>
               <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
                 <%-- /static/review/storage/ --%>
-                <a href="./read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;"></a> 
+                <a href="./read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 200px; height: 200px;"></a> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
+                <a href="./read.do?reviewno=${reviewno}"><IMG src="/review/images/none3.png" style="width: 200px; height: 200px;"></a>
               </c:otherwise>
             </c:choose>
           </td>  
+          
           <td>
-          ${contents }
+          <a href="./read.do?reviewno=${reviewVO.reviewno }">${contents }</a>
           </td>
+          <td>
+          <ASIDE class="aside_right">
+            <A href="./update.do?reviewno=${reviewVO.reviewno }">수정</A>
+            <span class='menu_divide' >│</span>
+            <A href="./delete.do?reviewno=${reviewVO.reviewno }">삭제</A>
+    
+            </ASIDE> 
+            </td>
       </c:forEach>
       
     </tbody>
@@ -93,7 +102,6 @@
 
  
 </div>
-          </div>
         </div>
       </div>
     </div>

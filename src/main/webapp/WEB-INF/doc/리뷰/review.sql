@@ -83,7 +83,7 @@ CREATE TABLE review(
     usersno number(10) NOT NULL,
     storeno number(10) NOT NULL,
     score number(2) not null,
-    contents VARCHAR2(1000) NOT NULL,
+    contents VARCHAR2(4000) NOT NULL,
     file1 varchar2(200) ,
     file1saved varchar2(200) ,
     thumb varchar2(200) ,
@@ -119,12 +119,13 @@ values(review_seq.nextval, 1, 2, 3, '잘 먹고 갑니다3', sysdate);
 insert into review(reviewno, usersno,storeno, score, contents,rdate)
 values(review_seq.nextval, 1, 2, 4, '잘 먹고 갑니다3', sysdate);
 
+insert into review(reviewno, usersno,storeno, score, contents,rdate)
+values(review_seq.nextval, 1, 1, 5, '잘 먹고 갑니다', sysdate);
+
 --수정
-update review
-set
-    title='수정된 리뷰 제목',
-    contents='수정된 내용'
-where reviewno=1;
+UPDATE review
+SET contents='안녕', file1='맛집.jpg', file1saved='맛집.jpg', thumb='맛집.jpg'
+WHERE reviewno =7;
 
 --삭제
 delete from review
@@ -144,4 +145,6 @@ where reviewno=5;
     
 SELECT * FROM review;
     
+ 
+     
  

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 public interface ReviewDAOInter {
     /**
      * 등록
@@ -25,4 +26,19 @@ public interface ReviewDAOInter {
      */
     public ReviewVO read(int reviewno);
     
+    /**
+     * 수정
+     * @param reviewVO
+     * @return 처리된 레코드 갯수
+     */
+    public int update(ReviewVO reviewVO);
+    
+    /**
+     * 삭제
+     * @param reviewno
+     * @return 삭제된 레코드 갯수
+     */
+    public int delete(int reviewno);
+    
+    public List<ReviewVO> list_storeno(int storeno);
 }

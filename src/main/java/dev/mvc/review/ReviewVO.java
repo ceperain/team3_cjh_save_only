@@ -50,6 +50,7 @@ public class ReviewVO {
 
 
     public int getReviewno() {
+        //System.out.println("->reviewno:"+reviewno);
         return reviewno;
     }
 
@@ -158,6 +159,7 @@ public class ReviewVO {
 
 
     public MultipartFile getFile1MF() {
+        System.out.println("File1MF :  "+file1MF);
         return file1MF;
     }
 

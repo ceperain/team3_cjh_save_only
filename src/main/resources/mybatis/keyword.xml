@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.keyword.KeywordDAOInter">
+
+
+<insert id="create" parameterType="int">
+insert into keyword(keywordno, reviewno, keylistno)
+values(keyword_seq.nextval, review_seq.currval, #{keylistno})
+ </insert> 
+ 
+ <insert id="create2" parameterType="dev.mvc.keyword.KeywordVO">
+insert into keyword(keywordno, reviewno, keylistno)
+values(keyword_seq.nextval, #{reviewno}, #{keylistno})
+ </insert> 
+ 
+<!-- 조회, id: read, 입력: keywordno, 리턴: keywordVO -->
+  <select id="read" resultType="dev.mvc.keyword.KeywordVO" parameterType="dev.mvc.keyword.KeywordVO">
+    SELECT  keywordno, reviewno, keylistno
+    FROM keyword
+    WHERE reviewno=#{reviewno}
+  </select>
+  
+ <!-- 수정-->
+<!-- <update id="update" parameterType="int">
+  UPDATE keyword
+  SET keylistno=#{keylistno}
+  WHERE keywordno = #{keywordno} and reviewno = #{reviewno}
+</update>  -->
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="int">
+    DELETE FROM keyword
+    WHERE reviewno=#{reviewno}
+  </delete>
+  
+
+
+
+</mapper>
