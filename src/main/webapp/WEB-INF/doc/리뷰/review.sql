@@ -114,7 +114,10 @@ CREATE SEQUENCE review_seq
 
 --리뷰 등록
 insert into review(reviewno, usersno,storeno, score, contents,rdate)
-values(review_seq.nextval, 1, 1, 5, '잘 먹고 갑니다', sysdate);
+values(review_seq.nextval, 1, 2, 3, '잘 먹고 갑니다3', sysdate);
+
+insert into review(reviewno, usersno,storeno, score, contents,rdate)
+values(review_seq.nextval, 1, 2, 4, '잘 먹고 갑니다3', sysdate);
 
 --수정
 update review
@@ -132,4 +135,13 @@ where reviewno=5;
    SELECT  reviewno, contents, file1, file1saved, thumb, score, rdate
     FROM review
     WHERE reviewno=3;
+    
+    
+    
+    
+    
+    
+    
+SELECT * FROM review;
+    
  

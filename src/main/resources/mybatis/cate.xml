@@ -52,4 +52,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM store s, cate c, catejoin j
     WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
 </mapper>

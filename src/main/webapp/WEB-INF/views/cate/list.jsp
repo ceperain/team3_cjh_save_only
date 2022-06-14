@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,61 +33,28 @@
 <style type="text/css">
 *{font-family: "NanumGothic", "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";}
 
-
-.container {
-  position: relative;
-  width: 50%;
-  float: left; 
-  width: 30%; 
-  padding:10px;
-}
-
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #04AA6D;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
-}
 </style>
 
 <script type="text/javascript">
 
 $(function() {  
-   idx = 5;         
-    $(".table-striped tr:gt(4)").css("display", "none");              
-    $("#btn_add").click(function(){
+   idx = 5;
+    $(".table-striped tr:gt(4)").css("display", "none");
+    if(idx>=$(".table-striped tr").length) {
+        $('.button1').css("display", "none");
+    }
+    $(".button1").click(function(){
          idx+=5;
-         $(".table-striped tr:lt("+idx+")").css("display", "");
-        });                       
+         $(".table-striped tr:lt("+idx+")").css("display", "");        
+        if(idx>=$(".table-striped tr").length) {
+            $('.button1').css("display", "none");
+        }
+        });
  });
+
+
+
+
 </script>
 </head>
 <body>
@@ -158,9 +123,9 @@ $(function() {  
 </c:forEach>
  
   
-  <DIV class='btna'>
+  <DIV class='button1'>
     <DIV id='reply_list_btn' style='width: 90%; '>
-     <button id='btn_add' class='btn' style='color: white;' >더보기</button>     
+     <button id='btn_add' class='btn' >더보기</button>     
     </DIV>
   </DIV>
 

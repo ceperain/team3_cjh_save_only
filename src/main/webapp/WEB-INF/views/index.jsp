@@ -35,52 +35,6 @@ a {
     color: white;
 }
 
-.container {
-  position: relative;
-  width: 50%;
-  float: left; 
-  width: 30%; 
-  padding:10px;
-}
-
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #ff80bf;
-  font-size: 20px;
-  padding: 16px 32px;
-}
-
-.text:hover{
- color: black;
- font-size: 20px;
-}
 </style>
 
 

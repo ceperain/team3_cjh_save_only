@@ -5,7 +5,7 @@
   
   <%-- 화면 하단 메뉴 --%>
   <DIV class='copyright'>
-    3조 팀플레이 여기엔 추후에 있어보이게 뭐라도 넣고싶네  ** index 내용 다 채우면 br 삭제하기
+    <a href="http://localhost:9091/notice/list.do">공지사항</a>
   </DIV>
   
 </DIV> <%-- container_main 종료 --%>

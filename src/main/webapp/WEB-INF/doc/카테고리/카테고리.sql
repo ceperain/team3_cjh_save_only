@@ -32,7 +32,7 @@ CREATE SEQUENCE admin_seq
     
 --관리자 추가
 insert into admin(adminno, name, id, pwd)
-values(admin_seq.nextval, 'test_admin' ,'t_adm_01', 'adpwd001');
+values(admin_seq.nextval, 'aa' ,'admin1', '1234');
 
 
 
