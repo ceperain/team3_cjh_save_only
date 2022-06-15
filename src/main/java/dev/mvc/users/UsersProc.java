@@ -47,11 +47,19 @@ public class UsersProc implements UsersProcInter {
         int cnt = this.UsersDAO.delete(usersno);
         return cnt;
     }
+    
+    @Override
+    public int checkEmail(String email) {
+        int cnt = this.UsersDAO.checkEmail(email);
+        return cnt;
+    }
 
     @Override
     public int login(Map<String, Object> map) {
         int cnt = this.UsersDAO.login(map);
         return cnt;
     }
+
+
 
 }

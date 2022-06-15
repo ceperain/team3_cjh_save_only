@@ -47,6 +47,14 @@ public interface UsersProcInter {
     public int delete(int usersno);
 
     /**
+     * 이메일 중복확인
+     * 
+     * @param email
+     * @return
+     */
+    public int checkEmail(String email);
+
+    /**
      * 
      * @param map
      * @return

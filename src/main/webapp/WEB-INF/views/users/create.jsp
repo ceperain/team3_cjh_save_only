@@ -12,7 +12,8 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/users/create.css" rel="stylesheet">
 
- <script type="text/javascript" src="/js/signup.js" defer></script>
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/signup.js" defer></script>
 
 </head>
 <body>
@@ -35,6 +36,7 @@
                 <div class="form-floating mb-4">
                   <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Your Email"/>
                   <label for="floatingInput">메일주소</label>
+                  <button type="button" id="btn_checkEmail" class="btn btn-outline-info">중복확인</button>
                 </div>
 
                 <div class="form-floating mb-4">

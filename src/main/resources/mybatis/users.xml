@@ -40,6 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where usersno=#{usersno}
   </delete>
   
+  <select id="checkEmail" resultType="int" parameterType="String">
+    select count(usersno) as cnt
+    from users
+    where email=#{email}
+  </select>
+  
   <select id="login" resultType="int" parameterType="Map">
     SELECT COUNT(usersno) as cnt
     FROM users

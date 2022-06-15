@@ -18,7 +18,7 @@ public interface UsersDAOInter {
      * @return
      */
     public UsersVO read(int usersno);
-    
+
     /**
      * 
      * @param email
@@ -46,7 +46,15 @@ public interface UsersDAOInter {
      * @return
      */
     public int delete(int usersno);
-    
+
+    /**
+     * 이메일 중복확인
+     * 
+     * @param email
+     * @return
+     */
+    public int checkEmail(String email);
+
     /**
      * 
      * @param map
