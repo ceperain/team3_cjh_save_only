@@ -12,7 +12,7 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/users/create.css" rel="stylesheet">
 
- <script type="text/javascript" src="/js/signup.js" defer></script>
+ <script type="text/javascript" src="/js/login.js" defer></script>
 
 </head>
 <body>
@@ -26,7 +26,8 @@
           <div class="card" style="border-radius: 5%;">
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">로그인</h2>
-              <form id="frm_signup" name="frm_signup" action="/users/create.do" method="post">
+              <form id="frm_login" name="frm_login" action="/login.do" method="post">
+                <input type="hidden" name="return_url" value="${return_url }">
                 <div class="form-floating mb-4">
                   <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="email"/>
                   <label for="floatingInput">email</label>

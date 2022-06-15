@@ -15,6 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where usersno=#{usersno}
   </select>
   
+  <select id="readByEmail"  resultType="dev.mvc.users.UsersVO" parameterType="String">
+    select usersno, name, email, pwd, sex, bdate, phone, rdate
+    from users
+    where email=#{email}
+  </select>
+  
   <select id="list" resultType="dev.mvc.users.UsersVO">
     select usersno, name, email, pwd, sex, bdate, phone, rdate
     from users
@@ -33,4 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     delete from users
     where usersno=#{usersno}
   </delete>
+  
+  <select id="login" resultType="int" parameterType="Map">
+    SELECT COUNT(usersno) as cnt
+    FROM users
+    WHERE email=#{email} AND pwd=#{pwd}
+  </select>
 </mapper>

@@ -1,13 +1,14 @@
 package dev.mvc.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("dev.mvc.users.UsersProc")
-public class UsersProc implements UsersProcInter{
-    
+public class UsersProc implements UsersProcInter {
+
     @Autowired
     private UsersDAOInter UsersDAO;
 
@@ -22,7 +23,13 @@ public class UsersProc implements UsersProcInter{
         UsersVO usersVO = this.UsersDAO.read(usersno);
         return usersVO;
     }
-    
+
+    @Override
+    public UsersVO readByEmail(String email) {
+        UsersVO usersVO = this.UsersDAO.readByEmail(email);
+        return usersVO;
+    }
+
     @Override
     public List<UsersVO> list() {
         List<UsersVO> list = this.UsersDAO.list();
@@ -41,6 +48,10 @@ public class UsersProc implements UsersProcInter{
         return cnt;
     }
 
-
+    @Override
+    public int login(Map<String, Object> map) {
+        int cnt = this.UsersDAO.login(map);
+        return cnt;
+    }
 
 }
