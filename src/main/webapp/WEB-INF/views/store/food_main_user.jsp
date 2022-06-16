@@ -26,8 +26,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/store.css" rel="Stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script>
 <script type="text/javascript">
 $(function() {  
+	if(${user_c}>=1){
+		$('#review_create').css("display", "none");
+	}
+    else{
+		$('#review_create').css("display", "");
+	}
 
     idx = 2;         
     $(".table tr:gt(2)").css("display", "none");      
@@ -59,7 +66,7 @@ $(function() {  
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
     <section style="width: 80%; margin:auto; overflow: auto;" >
-    <div class="fotorama" style="position:sticky; top:30px; margin-left:28%;">
+    <div class="fotorama" style="position:relative; left:30%">
        <c:forEach var="reviewVO" items="${r_list }">
         <c:set var="file1saved" value="${reviewVO.file1saved }" />
          <c:set var="thumb" value="${reviewVO.thumb }" />
@@ -76,6 +83,7 @@ $(function() {  
     </div>
     <br>
     <div style="width: 100%; float:left; "><h2>${name}</h2>
+    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
     </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
@@ -86,17 +94,19 @@ $(function() {  
              <c:set var="day" value="${workVO.day }" />
              <c:set var="starttime" value="${workVO.starttime }" />
              <c:set var="endtime" value="${workVO.endtime }" />
-                    <th>${day }</th><th>${starttime } ~ ${endtime }</th></tr>
+                    <th>${day }</th><th>${starttime } ~ ${endtime }</th>
              </c:forEach>
+             </tr>
              <tr><th rowspan="${menu_count }">메뉴</th>
              <c:forEach var="menuVO" items="${m_list}">
                 <c:set var="name" value="${menuVO.name }" />
                 <c:set var="price" value="${menuVO.price }" />
-                <th>${name }</th><th>${price } 원</th></tr>
+                <th>${name }</th><th>${price } 원</th>
              </c:forEach>
+             </tr>
             </table>
        </div>
-        <div id="map" style="width:300px;height:500px;"></div>
+        <div id="map" style="width:30%;height:500px;"></div>
 <div class="container">
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
@@ -117,6 +127,7 @@ $(function() {  
         <c:forEach var="reviewVO" items="${r_list }">
             <c:set var="reviewno" value="${reviewVO.reviewno }" />
             <c:set var="contents" value="${reviewVO.contents }" />
+            <c:set var="r_usersno" value="${reviewVO.usersno }" />
             <c:set var="file1" value="${reviewVO.file1 }" />
             <c:set var="thumb" value="${reviewVO.thumb }" />
             <c:set var="score" value="${reviewVO.score}"/>         
@@ -134,8 +145,14 @@ $(function() {  
                          <c:otherwise>
                             <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
                         </c:otherwise>
-                 </c:choose>                 
-             </td> 
+                 </c:choose>  
+
+                  <c:if test="${usersno eq r_usersno}">
+                      <A href="../review/delete.do?reviewno=${reviewno }" title="삭제" style="float:right;"><i class="fa-solid fa-eraser"></i></A>
+                      <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>                
+                  </c:if>
+            
+                </td> 
              </tr>
           </c:forEach>     
      </tbody>
@@ -157,21 +174,19 @@ $(function() {  
 
 </section>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc&libraries=services"></script>
+
 <script>
  var mapContainer = $('#map')[0];// 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng( ${lat},${lng}), 
+        center: new kakao.maps.LatLng(${lat}, ${lng}), 
         level: 3 // 지도의 확대 레벨
     };
-    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
- var markerPosition  = new kakao.maps.LatLng(${lat},${lng});  
+ var markerPosition  = new kakao.maps.LatLng(${lat}, ${lng});  
 
 var marker = new kakao.maps.Marker({
  position: markerPosition
 });
-map.relayout(); 
 marker.setMap(map); 
  
 </script>
