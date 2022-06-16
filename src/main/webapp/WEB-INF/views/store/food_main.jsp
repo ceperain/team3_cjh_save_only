@@ -26,7 +26,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/store.css" rel="Stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script>
 <script type="text/javascript">
 $(function() {  
 
@@ -97,7 +96,7 @@ $(function() {  
              </c:forEach>
             </table>
        </div>
-        <div id="map" style="width:30%;height:500px;"></div>
+        <div id="map" style="width:300px;height:500px;"></div>
 <div class="container">
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
@@ -158,19 +157,21 @@ $(function() {  
 
 </section>
 
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc&libraries=services"></script>
 <script>
  var mapContainer = $('#map')[0];// 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(${lat}, ${lng}), 
+        center: new kakao.maps.LatLng( ${lat},${lng}), 
         level: 3 // 지도의 확대 레벨
     };
+    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
- var markerPosition  = new kakao.maps.LatLng(${lat}, ${lng});  
+ var markerPosition  = new kakao.maps.LatLng(${lat},${lng});  
 
 var marker = new kakao.maps.Marker({
  position: markerPosition
 });
+map.relayout(); 
 marker.setMap(map); 
  
 </script>

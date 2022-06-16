@@ -2,6 +2,10 @@ package dev.mvc.store;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,43 +54,34 @@ public class StoreCont {
         // System.out.println("-> StoreCont created.");
     }
 
-    @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
-    public ModelAndView store(int storeno) {
-        ModelAndView mav = new ModelAndView();
-        StoreVO storeVO = this.storeProc.read(storeno);
-        mav.addObject("storeVO", storeVO);
-        List<MenuVO> m_list = this.menuProc.list_storeno(storeno);
-        mav.addObject("m_list", m_list);
-        List<WorkVO> w_list = this.workProc.list_storeno(storeno);
-        mav.addObject("w_list", w_list);
-        int work_count = this.workProc.count_by_storeno(storeno);
-        mav.addObject("work_count", work_count);
-        int menu_count = this.menuProc.count_by_storeno(storeno);
-        mav.addObject("menu_count", menu_count);
-        List<ReviewVO> list = this.reviewProc.list_storeno(storeno);
-        mav.addObject("r_list", list);
-        List<String> cate_s = this.cateProc.read_s(storeno);
-        mav.addObject("cate_s", cate_s);
-        
-        int count_1 = this.keywordProc.count_1(storeno);
-        int count_2 = this.keywordProc.count_2(storeno);
-        int count_3 = this.keywordProc.count_3(storeno);
-        int count_4 = this.keywordProc.count_4(storeno);
-        int count_5 = this.keywordProc.count_5(storeno);
-        int count_6 = this.keywordProc.count_6(storeno);
-        mav.addObject("count_1", count_1);
-        mav.addObject("count_2", count_2);
-        mav.addObject("count_3", count_3);
-        mav.addObject("count_4", count_4);
-        mav.addObject("count_5", count_5);
-        mav.addObject("count_6", count_6);
-        
-       mav.setViewName("/store/food_main");
-        return mav; // forward
-    }
-    
+    /*
+     * @RequestMapping(value = "/store/store.do", method = RequestMethod.GET) public
+     * ModelAndView store(int storeno) { ModelAndView mav = new ModelAndView();
+     * StoreVO storeVO = this.storeProc.read(storeno); mav.addObject("storeVO",
+     * storeVO); List<MenuVO> m_list = this.menuProc.list_storeno(storeno);
+     * mav.addObject("m_list", m_list); List<WorkVO> w_list =
+     * this.workProc.list_storeno(storeno); mav.addObject("w_list", w_list); int
+     * work_count = this.workProc.count_by_storeno(storeno);
+     * mav.addObject("work_count", work_count); int menu_count =
+     * this.menuProc.count_by_storeno(storeno); mav.addObject("menu_count",
+     * menu_count); List<ReviewVO> list = this.reviewProc.list_storeno(storeno);
+     * mav.addObject("r_list", list); List<String> cate_s =
+     * this.cateProc.read_s(storeno); mav.addObject("cate_s", cate_s);
+     * 
+     * int count_1 = this.keywordProc.count_1(storeno); int count_2 =
+     * this.keywordProc.count_2(storeno); int count_3 =
+     * this.keywordProc.count_3(storeno); int count_4 =
+     * this.keywordProc.count_4(storeno); int count_5 =
+     * this.keywordProc.count_5(storeno); int count_6 =
+     * this.keywordProc.count_6(storeno); mav.addObject("count_1", count_1);
+     * mav.addObject("count_2", count_2); mav.addObject("count_3", count_3);
+     * mav.addObject("count_4", count_4); mav.addObject("count_5", count_5);
+     * mav.addObject("count_6", count_6);
+     * 
+     * mav.setViewName("/store/food_main"); return mav; // forward }
+     */
     @RequestMapping(value = "/store/store_user.do", method = RequestMethod.GET)
-    public ModelAndView store2(int storeno,int usersno) {
+    public ModelAndView store2(HttpServletRequest request , int storeno) throws Exception{
         ModelAndView mav = new ModelAndView();
         StoreVO storeVO = this.storeProc.read(storeno);
         mav.addObject("storeVO", storeVO);
@@ -102,6 +97,8 @@ public class StoreCont {
         mav.addObject("r_list", list);
         List<String> cate_s = this.cateProc.read_s(storeno);
         mav.addObject("cate_s", cate_s);
+        HttpSession session = request.getSession();
+        int usersno = (int)session.getAttribute("usersno");
         int user_c = this.reviewProc.read_user(usersno);
         mav.addObject("user_c", user_c);
         mav.addObject("usersno", usersno);
