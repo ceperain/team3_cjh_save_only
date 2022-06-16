@@ -39,6 +39,12 @@ values(notice_seq.nextval, 1 , '세 번째 공지사항' ,'세 번째 공지사�
 insert into notice(noticeno, adminno, title, contents, rdate)
 values(notice_seq.nextval, 1 , '네 번째 공지사항' ,'네 번째 공지사항 테스트 jh', sysdate);
 
+insert into notice(noticeno, adminno, title, contents, rdate)
+values(notice_seq.nextval, 1 , '6 번째 공지사항' ,'6 번째 공지사항 테스트 jh', sysdate);
+
+INSERT INTO  notice(noticeno, adminno, title, contents, rdate)
+VALUES (notice_seq.nextval, 1, '다섯번째 공지사항' , '다섯번재 공지사항 테스트 jh' , sysdate);
+
 select noticeno, title, contents, rdate
 from notice
 order by noticeno desc;
@@ -82,7 +88,7 @@ update notice
 set
     title='수정된 공지사항',
     contents='수정된 내용'
-where noticeno=1;
+where noticeno=4;
 --삭제
 delete from notice
 where noticeno=3;

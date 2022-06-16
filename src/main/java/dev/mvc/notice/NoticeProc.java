@@ -22,6 +22,18 @@ public class NoticeProc implements NoticeProcInter{
     }
 
     @Override
+    public List<NoticeVO> list() {
+        List<NoticeVO> list = this.noticeDAO.list();
+        return list;
+    }
+
+    @Override
+    public NoticeVO read(int noticeno) {
+        NoticeVO read = this.noticeDAO.read(noticeno);
+        return read;
+    }
+
+    @Override
     public int update(NoticeVO noticeVO) {
         int cnt = this.noticeDAO.update(noticeVO);
         return cnt;
@@ -33,11 +45,7 @@ public class NoticeProc implements NoticeProcInter{
         return cnt;
     }
 
-    @Override
-    public List<NoticeVO> list() {
-        List<NoticeVO> list = this.noticeDAO.list();
-        return list;
-    }
+
     
 
 }

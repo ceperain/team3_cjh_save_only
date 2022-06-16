@@ -13,6 +13,7 @@
 
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/ptu.css" rel="stylesheet">
+<link href="/css/notice.css" rel="stylesheet">
 
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -33,9 +34,8 @@
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
 
-
-
-<DIV class='title_line' style='padding-top: 100px'>카테고리 그룹 > 전체 카테고리</DIV>
+<DIV class="gradient-custom-3">
+<DIV class='title_line' style='padding-top: 100px;'><a href="./list.do">공지사항</a></DIV>
 
 <DIV class='content_body'>
   <TABLE class='table table-striped'>
@@ -43,7 +43,6 @@
       <col style='width: 10%;'/>
       <col style='width: 50%;'/>
       <col style='width: 20%;'/>    
-      <col style='width: 20%;'/>
     </colgroup>
    
     <thead>  
@@ -51,7 +50,6 @@
       <TH class="th_bs">번호</TH>
       <TH class="th_bs">제목</TH>
       <TH class="th_bs">등록일</TH>
-      <TH class="th_bs">기타</TH>
     </TR>
     </thead>
     
@@ -60,21 +58,23 @@
       <c:set var="noticeno" value="${noticeVO.noticeno }" />
       <c:set var="title" value="${noticeVO.title }" />
       <c:set var="rdate" value="${noticeVO.rdate.substring(0, 10) }" />
-      <c:set var="contents" value="${noticeVO.contents }" />
       
       <TR>
         <TD class="td_bs">${noticeno }</TD>
-        <TD class="td_bs">${title }</TD>
+        <TD class="td_bs"><a href="./read.do?noticeno=${noticeno}">${title }</a></TD>
         <TD class="td_bs">${rdate }</TD>
-        <TD class="td_bs">
-          <A href="./read_update.do?cateno=${cateno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
-          <A href="./read_delete.do?cateno=${cateno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
-        </TD>   
+ 
       </TR>   
     </c:forEach> 
     </tbody>
+    
+
    
   </TABLE>
+   <button type="button" onclick="location.href='./create.do?'" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">
+    글작성
+   </button>
+</DIV>
 </DIV>
 
 </body>

@@ -108,7 +108,7 @@ $(function() {  
           
           
            <td style='text-align: left;'>
-                <a href=' http://localhost:9091/store/store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
+                <a href='./store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
                     <div style='color:gray;'>
                        ${address}
                     </div>
