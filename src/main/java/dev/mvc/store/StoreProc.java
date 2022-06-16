@@ -11,7 +11,7 @@ public class StoreProc implements StoreProcInter{
     @Autowired
     private StoreDAOInter storeDAO;
     public StoreProc() {
-        System.out.println("-> StoreProc created");
+     //   System.out.println("-> StoreProc created");
     }
     
     @Override

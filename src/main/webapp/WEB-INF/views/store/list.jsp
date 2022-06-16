@@ -9,20 +9,13 @@
                                  maximum-scale=5.0, width=device-width" /> 
 <title>http://localhost:9091/list.do</title>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
+<link href="/css/store.css" rel="Stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
-<style>
-.msg_warning{
-color: red;
-font-weight: bold;
-text-shadow: 30%;
-size: 50px;
-}
-</style>
+
 <script type="text/javascript">
   $(function(){
 	  $('#btn_create_cancel').on('click', cancel);    
@@ -32,6 +25,7 @@ size: 50px;
   });
   function read_update(storeno){
 	  $('#panel_create').css('display', 'none');
+	  $('#panel_delete').css("display","none"); 
 	  $('#panel_update').css('display', ''); 
 
 	  let params = "";	 
@@ -48,7 +42,7 @@ size: 50px;
           success: function(rdata) { 
             let storeno = rdata.storeno;
             let name = rdata.name;
-            let adress = rdata.adress;
+            let address = rdata.address;
             let lat = rdata.lat;
             let lng = rdata.lng;
             let visible = rdata.visible;
@@ -56,7 +50,7 @@ size: 50px;
             let frm_update = $('#frm_update'); 
             $('#storeno', frm_update).val(storeno); 
             $('#name', frm_update).val(name);
-            $('#adress', frm_update).val(adress);
+            $('#address', frm_update).val(address);
             $('#lat', frm_update).val(lat);
             $('#lng', frm_update).val(lng);
             $('#visible', frm_update).val(visible);       
@@ -93,29 +87,32 @@ size: 50px;
           success: function(rdata) { 
         	  let storeno = rdata.storeno;
               let name = rdata.name;
-              let adress = rdata.adress;
+              let address = rdata.address;
               let lat = rdata.lat;
               let lng = rdata.lng;
               let visible = rdata.visible;
+              let menu_c = rdata.menu_c;
+              let work_c = rdata.work_c;
               
             let frm_delete = $('#frm_delete');
             $('#storeno', frm_delete).val(storeno); 
             $('#d_name').html(name);  
-            $('#d_adress').html(adress);
+            $('#d_address').html(address);
             $('#d_lat').html(lat);
             $('#d_lng').html(lng);
             $('#d_visible').html(visible);
-            
+
+            if (menu_c > 0 || work_c > 0) { 
+                $('#msg_warning2').show();
+            } else {
+                $('#msg_warning2').hide();
+            }
           },
           error: function(request, status, error) { // callback 함수
             console.log(error);
           }
         }
       );  //  $.ajax END
-
-      $('#span_animation_delete').css('text-align', 'center');
-      $('#span_animation_delete').html("<img src='/categrp/images/ani03.gif' style='width: 3%;'>");
-      $('#span_animation_delete').show(); // 숨겨진 태그의 출력
     }
   </script>
   </head>
@@ -139,7 +136,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" name="adress" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681">
+            <input type="text" class="form-control" name="address" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681">
         </div>
      </div>
     <div class="form-group row">
@@ -157,8 +154,8 @@ size: 50px;
             </select>
         </div>
        <div class="col-sm-3">
-           <button type="submit" id='submit' class="btn btn-primary">등록</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" id='btn_create_cancel' class="btn btn-primary">취소</button>
+           <button type="submit" id='submit' class="button">등록</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" id='btn_create_cancel' class="button">취소</button>
         </div>
       </div>          
     </FORM>
@@ -179,7 +176,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" name="adress" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681" id="adress">
+            <input type="text" class="form-control" name="address" placeholder="예) 판교역로 235, 분당 주공, 삼평동 681" id="address">
         </div>
     </div>
     <div class="form-group row">
@@ -199,8 +196,8 @@ size: 50px;
         </select>
       </div>
        <div class="col-sm-3">
-        <button type="submit" id='submit' class="btn btn-primary">수정</button>&nbsp;&nbsp;&nbsp;
-        <button type="button" id='btn_update_cancel' class="btn btn-primary">취소</button>
+        <button type="submit" id='submit' class="button">수정</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_update_cancel' class="button">취소</button>
        </div>          
       </div>
     </FORM>
@@ -221,7 +218,7 @@ size: 50px;
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-2 col-form-label">업체주소</label>
         <div class="col-sm-8">
-            <span id="d_adress"></span>
+            <span id="d_address"></span>
         </div>
     </div>
     <div class="form-group row">
@@ -234,14 +231,18 @@ size: 50px;
    </div>    
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">영업여부</label>
-    <div class="col-sm-3">
-        <span id ="d_visible"> </span>
-     </div>
-       <div class="col-sm-3">
-        <button type="submit" id='submit' class="btn btn-primary">삭제</button>&nbsp;&nbsp;&nbsp;
-        <button type="button" id='btn_delete_cancel' class="btn btn-primary">취소</button>
-       </div>          
+        <div class="col-sm-3">
+            <span id ="d_visible"> </span>
+         </div>
       </div>
+       <div id='msg_warning2' 
+             style='color: #FF0000; font-weight: bold; display: none; margin: 10px auto;'>
+        『관련 메뉴와 운영시간 테이블도 같이 삭제 처리 됩니다.』
+      </div>
+       <div class="col-sm-3">
+        <button type="submit" id='submit' class="button">삭제</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" id='btn_delete_cancel' class="button">취소</button>
+       </div>          
 </FORM>
 </DIV>  
   
@@ -270,23 +271,23 @@ size: 50px;
     <c:forEach var="storeVO" items="${list}">
     <c:set var="storeno" value="${storeVO.storeno }" />
       <c:set var="name" value="${storeVO.name }" />
-      <c:set var="adress" value="${storeVO.adress }" />
+      <c:set var="address" value="${storeVO.address }" />
       <c:set var="lat" value="${storeVO.lat }" />
       <c:set var="lng" value="${storeVO.lng }" />
       <c:set var="visible"  value="${storeVO.visible }" />
       <TR>
         <TD class="td_bs"><a href="../menu/list_storeno.do?storeno=${storeno }">${name }</a></TD>
-        <TD class="td_bs">${adress }</TD>
+        <TD class="td_bs">${address }</TD>
         <TD class="td_bs">${lat }</TD>
         <TD class="td_bs">${lng }</TD>
-        <TD class="td_bs"><c:choose>
+        <TD class="td_bs"><a href="../worktime/list_storeno.do?storeno=${storeno }"><c:choose>
             <c:when test="${visible == 1}"> 
               영업중
             </c:when>
             <c:otherwise>
             폐업
             </c:otherwise>
-          </c:choose></TD>    
+          </c:choose></a></TD>    
       <TD class="td_bs">
        <A href="" title="등록"><i class="fa-solid fa-pen-to-square"></i></A>
       <A href="javascript: read_update(${storeno})" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>
