@@ -133,13 +133,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       type="hidden"
                       name="usersno"
                       id="usersno"
-                      value="1"
-                    />
-                    <input
-                      type="hidden"
-                      name="storeno"
-                      id="storeno"
-                      value="1"
+                      value="${usersno }"
                     />
 
                     <!-- 별점 -->

@@ -60,4 +60,5 @@ public interface UsersProcInter {
      * @return
      */
     public int login(Map<String, Object> map);
+    public List<UsersVO> read_name(int storeno);
 }
