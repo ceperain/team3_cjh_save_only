@@ -143,5 +143,22 @@ public class UsersCont {
         return mav;
 
     }
+    
+    /**
+     * 로그아웃 처리
+     * 
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        session.invalidate();
+
+
+        mav.setViewName("redirect:/index.do");
+
+        return mav;
+    }
 
 }
