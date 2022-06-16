@@ -1,5 +1,6 @@
 package dev.mvc.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ReviewProcInter {
@@ -38,7 +39,7 @@ public interface ReviewProcInter {
     public int delete(int reviewno);
 
     public List<ReviewVO> list_storeno(int storeno);
-    public int read_user(int usersno);
+    public int read_user(HashMap<String, Integer> hashmap);
     
 
     

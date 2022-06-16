@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -77,9 +78,12 @@ public class ReviewCont {
      */
     @SuppressWarnings("unused")
     @RequestMapping(value = "/review/create.do", method = RequestMethod.POST)
-    public ModelAndView create(ReviewVO reviewVO, @RequestParam(value="keylistno", required = false) List<Integer> keylistno ) {
+    public ModelAndView create(HttpServletRequest request, ReviewVO reviewVO, @RequestParam(value="keylistno", required = false) List<Integer> keylistno ) {
         System.out.println("->ReviewCreate생성");
         ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        int usersno = (int)session.getAttribute("usersno");
+        mav.addObject("usersno", usersno);     
 
         // ------------------------------------------------------------------------------
         // 파일 전송 코드 시작

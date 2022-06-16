@@ -5,8 +5,13 @@
     text-align: center;
     display: block;
 }
+.container{
+	border-radius: 8px;
+	height: 100%;
+}
 .keyworddivstyle{
-    background-color: #ff33ff;
+	clear:both;
+    background-color: #FF1493;
     color:white;
     float:left;
     border:none;

@@ -60,6 +60,12 @@ public class UsersProc implements UsersProcInter {
         return cnt;
     }
 
+    @Override
+    public List<UsersVO> read_name(int storeno) {
+        List<UsersVO> name = this.UsersDAO.read_name(storeno);
+        return name;
+    }
+
 
 
 }

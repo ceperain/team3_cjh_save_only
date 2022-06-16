@@ -51,4 +51,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM users
     WHERE email=#{email} AND pwd=#{pwd}
   </select>
+  
+  <select id="read_name" resultType="dev.mvc.users.UsersVO" parameterType="int">
+  select u.name
+    from users u, review r,store s
+    where u.usersno = r.usersno 
+    and s.storeno = r.storeno
+    and s.storeno =#{storeno}
+  </select>
+  
+  
 </mapper>
