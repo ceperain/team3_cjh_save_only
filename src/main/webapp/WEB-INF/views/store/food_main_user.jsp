@@ -36,7 +36,7 @@ $(function() {  
 		$('#review_create').css("display", "");
 	}
 
-    idx = 3;         
+    idx = 4;         
     $(".table tr:gt(3)").css("display", "none");      
     if(idx>$(".table tr").length) {
         $('.button1').css("display", "none");
@@ -48,10 +48,8 @@ $(function() {  
          if(idx>=$(".table tr").length) {
             $('.button1').css("display", "none");
         }
-        });      
-
-
-              
+        }); 
+        
  });
 
 </script>
@@ -65,7 +63,7 @@ $(function() {  
  <c:set var="lat" value="${storeVO.lat }" />
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
-    <section style="width: 80%; margin:auto; overflow: auto;" >
+    <section style="width: 80%; margin:auto; overflow: hidden;" >
     <div class="fotorama" style="position:relative; left:30%">
        <c:forEach var="reviewVO" items="${r_list }">
         <c:set var="file1saved" value="${reviewVO.file1saved }" />
@@ -106,7 +104,7 @@ $(function() {  
              </tr>
             </table>
        </div>
-        <div id="map" style="width:30%;height:500px;"></div> 
+        <div id="map" style="width:30%; height:500px; z-index: 5"></div> 
  <hr>
  
 <DIV class='menu_line'>  
