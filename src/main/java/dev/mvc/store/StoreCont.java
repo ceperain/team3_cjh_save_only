@@ -83,28 +83,29 @@ public class StoreCont {
         HttpSession session = request.getSession();
         HashMap<String, Integer> hmap = new HashMap<String, Integer>();
         List<Users_ReviewVO> users_reveiwVO= new ArrayList<Users_ReviewVO>();
-        
+        int usersno=0;
         if (session.getAttribute("usersno") != null) {
-            int usersno = (int)session.getAttribute("usersno");
-            hmap.put("storeno", storeno);
-            hmap.put("usersno", usersno);
-            int user_c = this.reviewProc.read_user(hmap);
-            List<UsersVO> list_user = this.usersProc.read_name(storeno);
-            for(int i=0; i<list.size(); i++) {
-                Users_ReviewVO user = new Users_ReviewVO();
-                user.addReviewVO(list.get(i));               
-                user.setName(list_user.get(i).getName());    
-                users_reveiwVO.add(user);
-            }                    
-            mav.addObject("user_c", user_c);
-            mav.addObject("usersno", usersno);
-           mav.addObject("users_reveiwVO", users_reveiwVO);
+            usersno = (int)session.getAttribute("usersno");
             mav.setViewName("/store/food_main_user");
             
         } 
-        else {
+        else {           
             mav.setViewName("/store/food_main");
         }
+        
+        hmap.put("storeno", storeno);
+        hmap.put("usersno", usersno);
+        int user_c = this.reviewProc.read_user(hmap);
+        List<UsersVO> list_user = this.usersProc.read_name(storeno);
+        for(int i=0; i<list.size(); i++) {
+            Users_ReviewVO user = new Users_ReviewVO();
+            user.addReviewVO(list.get(i));               
+            user.setName(list_user.get(i).getName());    
+            users_reveiwVO.add(user);
+        }                    
+        mav.addObject("user_c", user_c);
+        mav.addObject("usersno", usersno);
+       mav.addObject("users_reveiwVO", users_reveiwVO);
         
         int count_1 = this.keywordProc.count_1(storeno);
         int count_2 = this.keywordProc.count_2(storeno);
