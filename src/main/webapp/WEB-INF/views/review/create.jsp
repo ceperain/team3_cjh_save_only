@@ -71,8 +71,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
                         <form name="frm" method="post" action="./create.do" enctype="multipart/form-data">
                             <input type="hidden" name="storeno" value="${storeno }">
-                            <input type="hidden" name="usersno" id="usersno" value="1"/>
-                            <input type="hidden" name="storeno" id="storeno" value="1"/>
+                            <input type="hidden" name="usersno" id="usersno" value="${usersno }"/>
                     <!-- 별점 -->
                     <label class="control-label col-md-3"></label>
                         <label class="rating-label" style="float: right;">
