@@ -48,9 +48,13 @@ $(function() {  
          if(idx>=$(".table tr").length) {
             $('.button1').css("display", "none");
         }
-        });      
-
-
+        }); 
+        
+    $(".row").css("display", "none");
+    $("#keywordbutton").click(function(){
+    	$(".row").css("display", "");
+    	$("#keywordbutton").css("display", "none");
+    });
               
  });
 
@@ -106,7 +110,7 @@ $(function() {  
              </tr>
             </table>
        </div>
-        <div id="map" style="width:30%;height:500px;"></div> 
+        <div id="map" style="width:30%;height:100%;z-index: 5"></div> 
  <hr>
  
 <DIV class='menu_line'>  
@@ -152,7 +156,7 @@ $(function() {  
      </tbody>
     </table>
    </div>
-    <div class="container">
+    <div class="container"><span id="keywordbutton">키워드 보기</span>
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
     <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>

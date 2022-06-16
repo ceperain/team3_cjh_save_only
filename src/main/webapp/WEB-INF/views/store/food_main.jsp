@@ -43,7 +43,16 @@ $(function() {  
         }
         });      
 
-
+        $(".row").css("display", "none");
+        $("#keywordbutton").click(function(){
+            $(".row").css("display", "");
+            $("#keywordbutton").css("display", "none");
+        });
+        $(".row").click(function(){
+            $("#keywordbutton").css("display", "");
+            $(".row").css("display", "none");
+        });
+                  
               
  });
 
@@ -59,7 +68,8 @@ $(function() {  
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
     <section style="width: 80%; margin:auto; overflow: auto;" >
-    <div class="fotorama" style="position:relative; left:30%">
+
+    <div class="fotorama" style="position:relative; left:30%; z-index: 2">
        <c:forEach var="reviewVO" items="${r_list }">
         <c:set var="file1saved" value="${reviewVO.file1saved }" />
          <c:set var="thumb" value="${reviewVO.thumb }" />
@@ -96,7 +106,7 @@ $(function() {  
              </c:forEach>
             </table>
        </div>
-        <div id="map" style="width:300px;height:500px;"></div>
+        <div id="map" style="width:300px;height:500px; z-index: 5"></div>
  
  <hr>
  
@@ -135,12 +145,12 @@ $(function() {  
      </tbody>
     </table>
    </div>
-    <div class="container">
+  
+</DIV>  <div class="container"><span id="keywordbutton">키워드 보기</span>
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
     <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
     </div>   
-</DIV>
 <div style="width: 100%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
    <ul  class="button1">
         <li>리뷰 더보기</li>
