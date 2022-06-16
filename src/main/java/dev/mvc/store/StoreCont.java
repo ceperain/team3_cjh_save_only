@@ -80,7 +80,7 @@ public class StoreCont {
      * 
      * mav.setViewName("/store/food_main"); return mav; // forward }
      */
-    @RequestMapping(value = "/store/store_user.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
     public ModelAndView store2(HttpServletRequest request , int storeno) throws Exception{
         ModelAndView mav = new ModelAndView();
         StoreVO storeVO = this.storeProc.read(storeno);
@@ -98,10 +98,17 @@ public class StoreCont {
         List<String> cate_s = this.cateProc.read_s(storeno);
         mav.addObject("cate_s", cate_s);
         HttpSession session = request.getSession();
-        int usersno = (int)session.getAttribute("usersno");
-        int user_c = this.reviewProc.read_user(usersno);
-        mav.addObject("user_c", user_c);
-        mav.addObject("usersno", usersno);
+        if (session.getAttribute("usersno") != null) {
+            int usersno = (int)session.getAttribute("usersno");
+            int user_c = this.reviewProc.read_user(usersno);
+            mav.addObject("user_c", user_c);
+            mav.addObject("usersno", usersno);
+            mav.setViewName("/store/food_main_user");
+            
+        } 
+        else {
+            mav.setViewName("/store/food_main");
+        }
         
         int count_1 = this.keywordProc.count_1(storeno);
         int count_2 = this.keywordProc.count_2(storeno);
@@ -116,7 +123,7 @@ public class StoreCont {
         mav.addObject("count_5", count_5);
         mav.addObject("count_6", count_6);
         
-       mav.setViewName("/store/food_main_user");
+//       mav.setViewName("/store/food_main_user");
         return mav; // forward
     }
 

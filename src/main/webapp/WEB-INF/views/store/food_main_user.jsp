@@ -31,9 +31,10 @@
 $(function() {  
 	if(${user_c}>=1){
 		$('#review_create').css("display", "none");
-		}else{
-			$('#review_create').css("display", "");
-			}
+	}
+    else{
+		$('#review_create').css("display", "");
+	}
 
     idx = 2;         
     $(".table tr:gt(2)").css("display", "none");      
@@ -93,14 +94,16 @@ $(function() {  
              <c:set var="day" value="${workVO.day }" />
              <c:set var="starttime" value="${workVO.starttime }" />
              <c:set var="endtime" value="${workVO.endtime }" />
-                    <th>${day }</th><th>${starttime } ~ ${endtime }</th></tr>
+                    <th>${day }</th><th>${starttime } ~ ${endtime }</th>
              </c:forEach>
+             </tr>
              <tr><th rowspan="${menu_count }">메뉴</th>
              <c:forEach var="menuVO" items="${m_list}">
                 <c:set var="name" value="${menuVO.name }" />
                 <c:set var="price" value="${menuVO.price }" />
-                <th>${name }</th><th>${price } 원</th></tr>
+                <th>${name }</th><th>${price } 원</th>
              </c:forEach>
+             </tr>
             </table>
        </div>
         <div id="map" style="width:30%;height:500px;"></div>
@@ -144,10 +147,10 @@ $(function() {  
                         </c:otherwise>
                  </c:choose>  
 
-                  <c:if test="${param.usersno eq r_usersno}">
-                      <A href="../review/delete.do?reviewno=${reviewno}" title="삭제" style="float:right;"><i class="fa-solid fa-eraser"></i></A>
-                        <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>                
-                      </c:if>
+                  <c:if test="${usersno eq r_usersno}">
+                      <A href="../review/delete.do?reviewno=${reviewno }" title="삭제" style="float:right;"><i class="fa-solid fa-eraser"></i></A>
+                      <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>                
+                  </c:if>
             
                 </td> 
              </tr>
