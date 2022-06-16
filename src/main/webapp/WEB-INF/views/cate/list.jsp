@@ -76,10 +76,7 @@ $(function() {  
 <DIV class='content_body'>
   <DIV class='menu_line'></DIV>
 
-<c:forEach var="cateVO" items="${list}">
-      <c:set var="name" value="${cateVO.s_name }"   />
-      <c:set var="address" value="${cateVO.s_address }"   />    
-      <c:set var="storeno" value="${cateVO.s_storeno }"   />
+
       
 <table class="table  table-striped" style='width: 100%;'>
     <colgroup>
@@ -90,7 +87,10 @@ $(function() {  
     
     <%-- table 내용 --%>
     <tbody>
-    
+    <c:forEach var="cateVO" items="${list}">
+      <c:set var="name" value="${cateVO.s_name }"   />
+      <c:set var="address" value="${cateVO.s_address }"   />    
+      <c:set var="storeno" value="${cateVO.s_storeno }"   />
     
     
         <tr>
@@ -117,10 +117,10 @@ $(function() {  
                     DDDDDDDDDDDDDDDDDDDD
                     </div>
            </td>
-        </tr>
+        </tr></c:forEach>
         </tbody>
 </table>
-</c:forEach>
+
  
   
   <DIV class='button1'>

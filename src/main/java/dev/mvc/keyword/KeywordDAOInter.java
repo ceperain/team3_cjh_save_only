@@ -28,6 +28,8 @@ public interface KeywordDAOInter {
      */
     public  List<KeywordVO> read(int reviewno);
     
+
+    
     /**
      * 수정
      * @param keyowrdno
@@ -41,4 +43,11 @@ public interface KeywordDAOInter {
      * @return 삭제된 레코드 갯수
      */
     public int delete(int reviewno);
+    
+    public  int  count_1(int storeno);
+    public  int  count_2(int storeno);
+    public  int  count_3(int storeno);
+    public  int  count_4(int storeno);
+    public  int  count_5(int storeno);
+    public  int  count_6(int storeno);
 }

@@ -42,6 +42,12 @@ public class CateProc implements CateProcInter {
         List<CateVO> list = this.cateDAO.list(cateno); 
         return list; 
     }
+
+    @Override
+    public List<String> read_s(int storeno) {
+       List<String> list = this.cateDAO.read_s(storeno);
+        return list;
+    }
      
 
 }

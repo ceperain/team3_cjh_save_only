@@ -53,6 +53,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
   
+  <select id="read_s" resultType="String" >
+    select name
+    from cate
+    where cateno in(
+        select cateno
+        from catejoin
+        where storeno = '3')
+</select>
  
  
  

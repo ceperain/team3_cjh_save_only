@@ -19,6 +19,8 @@ import dev.mvc.keylist.KeylistProcInter;
 import dev.mvc.keylist.KeylistVO;
 import dev.mvc.keyword.KeywordProcInter;
 import dev.mvc.keyword.KeywordVO;
+import dev.mvc.store.StoreProcInter;
+import dev.mvc.store.StoreVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -37,6 +39,10 @@ public class ReviewCont {
     @Autowired
     @Qualifier("dev.mvc.keylist.KeylistProc")
     private KeylistProcInter keylistProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.store.StoreProc") 
+    private StoreProcInter storeProc;
 
     
     public ReviewCont() {
@@ -50,9 +56,13 @@ public class ReviewCont {
      * @return
      */
     @RequestMapping(value = "/review/create.do", method = RequestMethod.GET)
-    public ModelAndView create() {
+    public ModelAndView create(int storeno) {
         ModelAndView mav = new ModelAndView();
 
+       StoreVO storeVO=this.storeProc.read(storeno);
+        
+        mav.addObject("storeVO", storeVO);
+        
         mav.setViewName("/review/create"); // /webapp/WEB-INF/views/review/create.jsp
         // String content = "장소:\n인원:\n준비물:\n비용:\n기타:\n";
         // mav.addObject("content", content);
@@ -149,8 +159,8 @@ public class ReviewCont {
         
         
         
-
-        mav.setViewName("redirect:/review/list.do");
+        mav.addObject("storeno", reviewVO.getStoreno());
+        mav.setViewName("redirect:/store/store.do");
 
         return mav; // forward
     }
@@ -341,10 +351,11 @@ public class ReviewCont {
         cnt = this.reviewProc.update(reviewVO);
         // System.out.println("-> cnt: " + cnt);
 
-        mav.addObject("reviewno", reviewVO.getReviewno());
-        mav.setViewName("redirect:/review/list.do"); // request -> param으로 접근 전환
+        //mav.addObject("reviewno", reviewVO.getReviewno());
+        mav.addObject("storeno", reviewVO.getStoreno());
+        mav.setViewName("redirect:/store/store.do"); // request -> param으로 접근 전환
 
-        mav.addObject("reviewno", reviewVO_old.getReviewno());
+        //mav.addObject("reviewno", reviewVO_old.getReviewno());
         // System.out.println("-> reviewno: " + reviewVO_old.getReviewno());
 
         
@@ -380,7 +391,6 @@ public class ReviewCont {
     public ModelAndView delete(HttpServletRequest request, ReviewVO reviewVO) {
         ModelAndView mav = new ModelAndView();
         int reviewno = reviewVO.getReviewno();
-
         int cnt = 0;
         // -------------------------------------------------------------------
         // 파일 삭제 코드 시작
@@ -404,7 +414,9 @@ public class ReviewCont {
         // -------------------------------------------------------------------
         
         cnt = this.keywordProc.delete(reviewno);
+        System.out.println(cnt);
         cnt = this.reviewProc.delete(reviewno); // DBMS 삭제
+        System.out.println(cnt);
 
         // -------------------------------------------------------------------------------------
         // System.out.println("-> reviewno: " + vo.getReviewno());
@@ -416,14 +428,17 @@ public class ReviewCont {
         // 페이지수를 4 -> 3으로 감소 시켜야함.
         // -------------------------------------------------------------------------------------
 
-        mav.setViewName("redirect:/review/list.do");
-        mav.addObject("code", "delete_success");
+        mav.setViewName("redirect:/store/store.do");
+        //mav.addObject("code", "delete_success");
         //mav.addObject("url", "/review/msg"); // msg.jsp, redirect parameter 적용
-        mav.addObject("reviewno", reviewVO.getReviewno());
+        //mav.addObject("reviewno", reviewVO.getReviewno());
+        mav.addObject("storeno", reviewVO.getStoreno());
         // System.out.println("-> reviewno: " + reviewVO.getReviewno());
 
         return mav; // forward
     }
+
+
 
 
 }

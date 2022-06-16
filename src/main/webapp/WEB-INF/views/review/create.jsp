@@ -107,6 +107,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <body>
     <jsp:include page="../menu/top.jsp" flush="false" />
     <!-- <section class="vh-100"> -->
+    <c:set var="storeno" value="${storeVO.storeno }" />
+     <c:set var="storename" value="${storeVO.name }" />
     <section class="vh-100">
       <div class="mask d-flex align-items-center min-vh-100 gradient-custom-3">
         <div class="container h-100">
@@ -119,17 +121,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <!-- <div class="card-body p-5"> -->
                 <div class="card-body p-5">
                   <DIV class="title_line">
-                    <label class="control-label"></label>
+                    <label class="control-label"><h1>${storename }</h1></label>
                     <!-- 매장 명칭 -->
-                    <strong class="form-horizontal">(매장명칭)</strong>
+                    <strong class="form-horizontal"></strong>
                   </DIV>
 
-                  <form
-                    name="frm"
-                    method="post"
-                    action="./create.do"
-                    enctype="multipart/form-data"
-                  >
+                  <form name="frm" method="post" action="./create.do" enctype="multipart/form-data">
+                  <input type="hidden" name="storeno" value="${storeno }">
+                  
                     <input
                       type="hidden"
                       name="usersno"
@@ -274,7 +273,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <div class="d-flex justify-content-center">
                       <button
                         type="button"
-                        onclick="location.href='../store/list.do'"
+                        onclick="location.href='../store/store.do?storeno=${param.storeno}'"
                         class="btn btn-light btn-block btn-lg gradient-custom-4 text-body"
                       >
                         취소

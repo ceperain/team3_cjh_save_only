@@ -39,7 +39,7 @@ public interface CateProcInter {
      */
     public List<CateVO> list(int cateno);
     
-
+    public List<String> read_s(int storeno);
 
 }
 

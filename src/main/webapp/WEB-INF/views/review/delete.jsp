@@ -70,7 +70,8 @@
         <DIV style='text-align: center; width: 100%; float: left;'>
           <br>
           <FORM name='frm' method='POST' action='./delete.do'>
-              <input type='hidden' name='reviewno' value='${param.reviewno}'>
+              <input type='hidden' name='reviewno' value='${reviewVO.reviewno}'>
+              <input type="hidden" name="storeno" value="${reviewVO.storeno }">
               
               <DIV id='panel1' style="width: 100%; text-align: center; margin: 10px auto;"></DIV>
                     

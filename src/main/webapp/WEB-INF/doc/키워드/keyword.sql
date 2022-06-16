@@ -40,3 +40,16 @@ values(keyword_seq.nextval, 6, '1');
   WHERE keywordno = '3' and reviewno = '6';
 
 commit;
+
+
+select reviewno
+from review
+where storeno = '3'
+
+select count(*)
+from keyword
+where reviewno = '94' and keylistno='1'
+
+select count(*)
+from keyword
+where reviewno = '95' and keylistno='1'

@@ -40,7 +40,39 @@ public class KeywordProc implements KeywordProcInter{
         int cnt=this.keywordDAO.create2(keywordVO);
         return cnt;
     }
+
+    @Override
+    public int count_1(int storeno) {
+        int cnt = this.keywordDAO.count_1(storeno);
+        return cnt;
+    }
     
+    @Override
+    public int count_2(int storeno) {
+        int cnt = this.keywordDAO.count_2(storeno);
+        return cnt;
+    }
+    @Override
+    public int count_3(int storeno) {
+        int cnt = this.keywordDAO.count_3(storeno);
+        return cnt;
+    }
     
+    @Override
+    public int count_4(int storeno) {
+        int cnt = this.keywordDAO.count_4(storeno);
+        return cnt;
+    }
+    @Override
+    public int count_5(int storeno) {
+        int cnt = this.keywordDAO.count_5(storeno);
+        return cnt;
+    }
+    
+    @Override
+    public int count_6(int storeno) {
+        int cnt = this.keywordDAO.count_6(storeno);
+        return cnt;
+    }
     
 }

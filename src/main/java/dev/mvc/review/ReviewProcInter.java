@@ -38,5 +38,8 @@ public interface ReviewProcInter {
     public int delete(int reviewno);
 
     public List<ReviewVO> list_storeno(int storeno);
+    public int read_user(int usersno);
+    
+
     
 }
