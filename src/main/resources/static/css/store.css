@@ -10,9 +10,10 @@
     color : #F9F9F9;
     font-size: 15px;
     padding: 30px 50px ;
-    margin: 100px 50px;
+    margin: 150px 50px;
     text-align: center;
     float:left;
+    
 }
 #keywordbutton:hover {
     background-color: #F9F9F9;
@@ -21,14 +22,18 @@
     font-size: 18px;
 }
 .container{
-	background-color: #F9F9F9;
+/*
+	 position:sticky;            top:0px;
 	border-radius: 8px;
-	height: 300px;
+	
+     clear:both;
+	background-color: #F9F9F9;
+	 	height: 300px;
 	width: 300px;
 	z-index: 1;
-	position: fixed;
+ position: fixed;
 	top: 250px;
-	right: 150px;
+	right: 150px; */
 	padding :5px;
 }
 .keyworddivstyle{
@@ -40,13 +45,18 @@
     height: 70px;
     text-align: center;
     width: 125px;
-    margin: 5px auto;
     vertical-align: middle;
-/*     position: relative;
- margin: 30px auto;
-    left: 10px; */
+     margin: 30px auto;
+    vertical-align: middle;
+    position: relative;
+    left: 10px;
     border-radius: 30px;
     display: table-cell;
+/*     position: relative;
+ margin: 30px auto;
+    left: 10px; 
+    border-radius: 30px;
+    display: table-cell;*/
 }
 .keywordstyle{
     border-radius:18%;

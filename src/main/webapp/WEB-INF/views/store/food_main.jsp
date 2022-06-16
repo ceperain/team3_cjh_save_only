@@ -42,16 +42,6 @@ $(function() {  
             $('.button1').css("display", "none");
         }
         });      
-
-        $(".row").css("display", "none");
-        $("#keywordbutton").click(function(){
-            $(".row").css("display", "");
-            $("#keywordbutton").css("display", "none");
-        });
-        $(".row").click(function(){
-            $("#keywordbutton").css("display", "");
-            $(".row").css("display", "none");
-        });
                   
               
  });
@@ -67,7 +57,7 @@ $(function() {  
  <c:set var="lat" value="${storeVO.lat }" />
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
-    <section style="width: 80%; margin:auto; overflow: auto;" >
+    <section style="width: 80%; margin:auto; overflow: hidden;" >
 
     <div class="fotorama" style="position:relative; left:30%; z-index: 2">
        <c:forEach var="reviewVO" items="${r_list }">
@@ -119,15 +109,17 @@ $(function() {  
             <col style="width: 90%;"></col>
         </colgroup>
         <tbody>
-        <c:forEach var="reviewVO" items="${r_list }">
-            <c:set var="reviewno" value="${reviewVO.reviewno }" />
-            <c:set var="contents" value="${reviewVO.contents }" />
-            <c:set var="file1" value="${reviewVO.file1 }" />
-            <c:set var="thumb" value="${reviewVO.thumb }" />
-            <c:set var="score" value="${reviewVO.score}"/>         
+       <c:forEach var="users" items="${users_reveiwVO }">
+            <c:set var="reviewno" value="${users.reviewno }" />
+            <c:set var="contents" value="${users.contents }" />
+            <c:set var="r_usersno" value="${users.usersno }" />
+            <c:set var="file1" value="${users.file1 }" />
+            <c:set var="thumb" value="${users.thumb }" />
+            <c:set var="score" value="${users.score}"/>         
+            <c:set var="name" value="${users.name}"/> 
             <tr> 
                  <td style='vertical-align: middle; text-align: center; '>
-                     사용자
+                       ${name}
                 </td>
                  <td style="word-break:break-all">
                   <c:choose>
@@ -145,8 +137,7 @@ $(function() {  
      </tbody>
     </table>
    </div>
-  
-</DIV>  <div class="container"><span id="keywordbutton">키워드 보기</span>
+    <div class="container">
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
     <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
