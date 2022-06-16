@@ -46,7 +46,7 @@
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">
-                    <a href="#!" class="fw-bold text-body"><u>회원 가입</u></a></p>
+                    <a href="/users/create.do" class="fw-bold text-body"><u>회원 가입</u></a></p>
               </form>
             </div>
           </div>
