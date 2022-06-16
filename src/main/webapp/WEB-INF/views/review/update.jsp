@@ -236,11 +236,8 @@ $(function () {
                     </div>
        
             <div class="form-outline mb-4" style="float: right;">
-            <button type="button"
-                onclick = "history.back()" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">취소</button>
-            <button type="submit"
-                id="submit"
-                class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">수정 완료</button>
+            <button type="button" onclick = "history.back()" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">취소</button>
+            <button type="submit" id="submit" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">수정 완료</button>
                
             </div>
             </div>
