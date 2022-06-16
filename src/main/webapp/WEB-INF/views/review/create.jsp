@@ -68,6 +68,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                                 <!-- 매장 명칭 -->
                             </DIV>
 
+
                         <form name="frm" method="post" action="./create.do" enctype="multipart/form-data">
                             <input type="hidden" name="storeno" value="${storeno }">
                             <input type="hidden" name="usersno" id="usersno" value="1"/>

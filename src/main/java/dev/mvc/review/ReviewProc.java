@@ -1,5 +1,6 @@
 package dev.mvc.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,8 @@ public class ReviewProc implements ReviewProcInter{
     }
 
     @Override
-    public int read_user(int usersno) {
-        int cnt = this.reviewDAO.read_user(usersno);
+    public int read_user(HashMap<String, Integer> hashmap){
+        int cnt = this.reviewDAO.read_user(hashmap);
         return cnt;
     }
 

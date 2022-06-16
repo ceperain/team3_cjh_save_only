@@ -29,8 +29,8 @@
 <script type="text/javascript">
 $(function() {  
 
-    idx = 2;         
-    $(".table tr:gt(2)").css("display", "none");      
+    idx = 3;         
+    $(".table tr:gt(3)").css("display", "none");      
     if(idx>$(".table tr").length) {
         $('.button1').css("display", "none");
     }                
@@ -97,11 +97,6 @@ $(function() {  
             </table>
        </div>
         <div id="map" style="width:300px;height:500px;"></div>
-<div class="container">
-    <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
-    <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
-    <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
-</div>    
  
  <hr>
  
@@ -125,30 +120,28 @@ $(function() {  
                      사용자
                 </td>
                  <td style="word-break:break-all">
-                  ${contents }
-                    <br>
-                   <c:choose>
+                  <c:choose>
                         <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-                        <a href="../review/read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;"></a> 
+                        <a href="../review/read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px;float:left"></a> 
                         </c:when>
                          <c:otherwise>
-                            <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
+                            <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;float:left">
                         </c:otherwise>
-                 </c:choose>                 
+                 </c:choose>              
+                  ${contents }                  
              </td> 
              </tr>
           </c:forEach>     
      </tbody>
     </table>
    </div>
-    <div style="width: 30%;  vertical-align: middle;
-    position: relative;background-color: pink; height: 100%; display: table-cell;">
-     <c:forEach var="m" items="${m}">
-             <label  class="keywordstyle">#${m.value}</label>  <br>
-    </c:forEach>    
-    </div>
+    <div class="container">
+    <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
+    <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
+    <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
+    </div>   
 </DIV>
-<div style="width: 70%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
+<div style="width: 100%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
    <ul  class="button1">
         <li>리뷰 더보기</li>
     </ul>
