@@ -59,21 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where cateno in(
         select cateno
         from catejoin
-        where storeno = '3')
+        where storeno =#{storeno})
 </select>
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-  
   
   
 </mapper>
