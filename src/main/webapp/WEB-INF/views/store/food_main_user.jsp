@@ -29,6 +29,11 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script>
 <script type="text/javascript">
 $(function() {  
+	if(${user_c}>=1){
+		$('#review_create').css("display", "none");
+		}else{
+			$('#review_create').css("display", "");
+			}
 
     idx = 2;         
     $(".table tr:gt(2)").css("display", "none");      
@@ -77,6 +82,7 @@ $(function() {  
     </div>
     <br>
     <div style="width: 100%; float:left; "><h2>${name}</h2>
+    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
     </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
@@ -118,6 +124,7 @@ $(function() {  
         <c:forEach var="reviewVO" items="${r_list }">
             <c:set var="reviewno" value="${reviewVO.reviewno }" />
             <c:set var="contents" value="${reviewVO.contents }" />
+            <c:set var="r_usersno" value="${reviewVO.usersno }" />
             <c:set var="file1" value="${reviewVO.file1 }" />
             <c:set var="thumb" value="${reviewVO.thumb }" />
             <c:set var="score" value="${reviewVO.score}"/>         
@@ -135,8 +142,14 @@ $(function() {  
                          <c:otherwise>
                             <IMG src="/review/images/none1.png" style="width: 120px; height: 80px;">
                         </c:otherwise>
-                 </c:choose>                 
-             </td> 
+                 </c:choose>  
+
+                  <c:if test="${param.usersno eq r_usersno}">
+                      <A href="../review/delete.do?reviewno=${reviewno}" title="삭제" style="float:right;"><i class="fa-solid fa-eraser"></i></A>
+                        <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>                
+                      </c:if>
+            
+                </td> 
              </tr>
           </c:forEach>     
      </tbody>

@@ -49,6 +49,12 @@ public class ReviewProc implements ReviewProcInter{
         return list;
     }
 
+    @Override
+    public int read_user(int usersno) {
+        int cnt = this.reviewDAO.read_user(usersno);
+        return cnt;
+    }
+
   
     
 }
