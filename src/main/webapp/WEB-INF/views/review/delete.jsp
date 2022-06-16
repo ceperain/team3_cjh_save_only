@@ -78,8 +78,10 @@
                 <div class="col-md-12">
                   <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                   <br><br>
-                  <button type = "button" onclick = "history.back()" class="btn btn-primary">취소</button>
-                  <button type = "submit" class="btn btn-primary">삭제 진행</button>
+                  <div class="form-outline mb-4" style="float: right;">
+                  <button type="button" onclick = "history.back()" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">취소</button>
+                  <button type="submit" id="submit" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">삭제 완료</button>
+                </div>
                 </div>
           </FORM>
         </DIV>

@@ -37,3 +37,8 @@ values(keylist_seq.nextval, '청결해요~!');
 
 insert into keylist(keylistno, keytext)
 values(keylist_seq.nextval, '주차하기 좋아요~!');
+
+select * from keylist;
+
+select keywordno from keyword where reviewno='87'
+select * from ke

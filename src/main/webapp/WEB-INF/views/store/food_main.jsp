@@ -60,7 +60,7 @@ $(function() {  
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
     <section style="width: 80%; margin:auto; overflow: auto;" >
-    <div class="fotorama" style="position:relative; left:30%">
+    <div class="fotorama" style="position:sticky; top:30px; margin-left:28%;">
        <c:forEach var="reviewVO" items="${r_list }">
         <c:set var="file1saved" value="${reviewVO.file1saved }" />
          <c:set var="thumb" value="${reviewVO.thumb }" />
