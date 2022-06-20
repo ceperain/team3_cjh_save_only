@@ -20,9 +20,11 @@
         <ul class="navbar-nav ms-auto">
             <li>
                 <form class="d-flex">
+                  <a class="nav-link active" aria-current="page" href="http://localhost:9091/notice/list_search_paging.do">공지사항</a>
                   <a class="nav-link active" aria-current="page" href="/recom.do">맛집&nbsp;추천</a>
                   <a class="nav-link active" aria-current="page" href="/chatbot.do">챗봇</a>
                   <a href="/mypage.do"><img class="profile" src="/images/user_logo.png"></a>
+                  
                 </form>
             </li>
       </ul>

@@ -34,28 +34,25 @@
 <body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
 
-
 <DIV>
 <DIV class='title_line notice' style='padding-top: 100px;'><a href="./list_search_paging.do">공지사항</a>
 
-<%-- *********************************** 검색 시작 *********************************** --%>
+   <%-- *********************************** 검색 시작 *********************************** --%>
   <DIV style="text-align: right;">
-    <form name='frm' id='frm' method='get' action='./list_search.do'>
-      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>
-      <input type='text' name='title' id='title' value='${param.title }' style='width: 20%;'>
+    <form name='frm' id='frm' method='get' action='./list_search_paging.do'>
+      <input type='hidden' name='noticeno' value='${noticeVO.noticeno}'>
+      <input type='text' name='word' id='word' value='' style='width: 20%;'>
       <button type='submit'>검색</button>
       <c:if test="${param.title.length() > 0 }">
         <button type='button'
-                     onclick="location.href='./list_search.do?noticeno=${noticeVO.noticeno}&word=${title}'">검색 취소</button>  
+                     onclick="location.href='./list_search.do?noticeno=${noticeVO.noticeno}&word=${word}'">검색 취소</button>  
       </c:if>
       &nbsp;
     </form>
   </DIV>
-<%-- *********************************** 검색 종료 *********************************** --%>
-
+  <%-- *********************************** 검색 종료 *********************************** --%>
 
 </DIV>
-
 <DIV class='content_body'>
   <TABLE class='table table-striped'>
     <colgroup>

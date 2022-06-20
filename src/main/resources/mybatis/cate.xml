@@ -53,6 +53,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
   
+    <!-- 검색 목록-->
+  <select id="list_search" resultType="dev.mvc.cate.CateVO" parameterType="String">
+    SELECT c.cateno, s.name, s.address, s.storeno
+    FROM cate c, store s, catejoin j
+   <choose>
+   <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+
+   </when>
+   <otherwise> <!-- 검색하는 경우 -->
+    WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and
+                ( c.cateno=#{c.cateno} AND 
+                ( c.cateno=#{c.cateno} 
+                AND(UPPER(s.name) LIKE UPPER('%' || #{word} || '%')  
+                OR UPPER(s.address) LIKE UPPER('%' || #{word} || '%' ))
+      </otherwise>
+    </choose>
+    ORDER BY c.cateno DESC
+  </select>
+  
+  
+  <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM cate c, store s, catejoin j
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE cateno=#{cateno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and
+                   ( c.cateno=#{c.cateno} 
+                                AND(UPPER(s.name) LIKE UPPER('%' || #{word} || '%')  
+                                OR UPPER(s.address) LIKE UPPER('%' || #{word} || '%' ))
+        </otherwise>
+    </choose>
+  </select>    
+ 
+  
+  
+  
+  <!-- 
+  
   <select id="read_s" resultType="String" >
     select name
     from cate
@@ -62,8 +104,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where storeno = '3')
 </select>
  
- 
- 
+   카테고리별 검색 목록 + 페이징 + 메인 이미지   
+  <select id="list_by_cateno_search_paging" 
+             resultType="dev.mvc.cate.CateVO" parameterType="HashMap">
+   SELECT select storeno, name, address
+   FROM (
+              SELECT select storeno, name, address, rownum as r
+              FROM (
+                        SELECT select s.storeno, s.name, s.address 
+                        FROM cate
+                        <choose>
+                          <when test="word == null or word == ''"> 검색하지 않는 경우
+                             WHERE cateno=#{cateno}
+                          </when>
+                          <otherwise>
+                            WHERE s.storeno = #{j.storeno} AND (UPPER(title) LIKE '%' || #{word} || '%' 
+                                                                        OR UPPER(contents) LIKE '%' || #{word} || '%' 
+                                                                        OR UPPER(word) LIKE '%' || #{word} || '%')
+                          </otherwise>
+                        </choose>
+                        ORDER BY cateno DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+     1 page: WHERE r >= 1 AND r <= 10; 
+            2 page: WHERE r >= 11 AND r <= 20;
+            3 page: WHERE r >= 21 AND r <= 30;
+     
+  </select>   
+ --> 
  
  
  

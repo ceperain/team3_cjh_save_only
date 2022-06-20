@@ -57,19 +57,24 @@ $(function() {  
 
 </script>
 </head>
-<body>
+<body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
-
-    <DIV class="gradient-custom-3">
-    <form action="/search/result" method="GET" class="search">
-    <br><br><br><br>
-        <input type="text" id="searchWord" name="searchWord"
-            placeholder="지역, 점포명을 입력 해 주세요" maxlength="50" size="60">
-        <!-- <input id="searchButton" type="image" src="" style="width:25px; height:25px;" alt="Submit Form"/> -->
-        <button class="searchButton">검색</button>
+<%-- *********************************** 검색 시작 *********************************** --%>
+  <DIV style="text-align: center; padding:10%">
+    <form name='frm' id='frm' method='get' action='./list_search.do'>
+      <input type='hidden' name='cateno' value='${cateVO.cateno }'>
+      <input type='text' name='name' id='name' value='${param.name }' style='width: 25%;'
+                  placeholder="지역, 점포명을 입력 해 주세요">
+      <button type='submit'>검색</button>
+      <c:if test="${param.name.length() > 0 }">
+        <button type='button'
+                     onclick="location.href='./list_search.do?cateno=${cateVO.cateno}&word=${name}'">검색 취소</button>  
+      </c:if>
+      &nbsp;
     </form>
+  </DIV>
+<%-- *********************************** 검색 종료 *********************************** --%>
 
-<br><br><br>
 
 <!-- Carousel wrapper -->
 
@@ -77,7 +82,6 @@ $(function() {  
   <DIV class='menu_line'></DIV>
 
 
-      
 <table class="table  table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 1%;"></col>
@@ -108,13 +112,12 @@ $(function() {  
           
           
            <td style='text-align: left;'>
-                <a href='./store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
+                <a href='../store/store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
                     <div style='color:gray;'>
                        ${address}
                     </div>
                     <div class="si">
-                    오늘의 리이이이뷰 꺄륵깨륵 깔랑룽DDDDDDDDDDDDDDDD<BR>
-                    DDDDDDDDDDDDDDDDDDDD
+
                     </div>
            </td>
         </tr></c:forEach>

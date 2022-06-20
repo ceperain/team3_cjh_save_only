@@ -37,21 +37,39 @@
 <title>http://localhost:9091/</title>
 </head> 
  
-<body>
+<body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
  
- <DIV class="gradient-custom-3">
-<DIV class='title_line' style='padding-top: 100px;'>
-  <A href="../notice/list.do" class='title_link'>공지사항</A>
+ <DIV >
+<DIV class='title_line notice' style='padding-top: 110px;'>
+  <A href="../notice/list_search_paging.do">공지사항</A>
+  
+  
+<%-- *********************************** 검색 시작 *********************************** --%>
+  <DIV style="text-align: right;">
+    <form name='frm' id='frm' method='get' action='./list_search.do'>
+      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>
+      <input type='text' name='title' id='title' value='${param.title }' style='width: 20%;'>
+      <button type='submit'>검색</button>
+      <c:if test="${param.title.length() > 0 }">
+        <button type='button'
+                     onclick="location.href='./list_search.do?noticeno=${noticeVO.noticeno}&word=${title}'">검색 취소</button>  
+      </c:if>
+      &nbsp;
+    </form>
+  </DIV>
+<%-- *********************************** 검색 종료 *********************************** --%>
+  
+  
 </DIV>
 
-<DIV class='content_body'>
+<DIV class='content_body rtitle'>
   <ASIDE class="aside_right">
     <A href="./create.do?">등록</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./update.do?noticeno=${noticeno}">수정</A>
+    <A href="./read_update.do?noticeno=${noticeno}">수정</A>
     <span class='menu_divide' >│</span>
     <A href="./delete.do?noticeno=${noticeno}">삭제</A>  
   </ASIDE> 

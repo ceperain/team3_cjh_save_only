@@ -44,16 +44,19 @@
                   <DIV class="title_line">
                     <label class="control-label"></label>
 
- <FORM name='frm' method='POST' action='./create.do' class="form-horizontal"
-             enctype="multipart/form-data">
+ <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
     <div class="form-group">
+
+      <c:set var="noticeno" value="${noticeVO.noticeno }" />
+      <c:set var="title" value="${noticeVO.title }" />
+      <c:set var="contents" value="${noticeVO.contents }" />
     
-    
+    <input type="hidden" name="noticeno" value="${noticeno}"/>    
     <input type="hidden" name="adminno" value="1"/>
     
        <label class="control-label col-md-4">제목</label>
        <div class="col-md-8">
-         <input type='text' name='title' value='' required="required" placeholder="이름"
+         <input type='text' name='title' value='${title }' required="required" placeholder="이름"
                     autofocus="autofocus" class="form-control" style='width: 50%;'>
        </div>
     </div>
@@ -61,7 +64,7 @@
       <div class="form-group">
        <label class="control-label col-md-2">내용</label>
        <div class="col-md-10">
-         <textarea name='contents' required="required" class="form-control" rows="12" style='width: 100%;'>공지내용</textarea>
+         <textarea name='contents' required="required" class="form-control" rows="12" style='width: 100%;'>${contents}</textarea>
        </div>
     </div>
 

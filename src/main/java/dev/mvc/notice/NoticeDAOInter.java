@@ -1,5 +1,6 @@
 package dev.mvc.notice;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -38,5 +39,37 @@ public interface NoticeDAOInter {
      * @return
      */
     public int delete(int noticeno);
+    
+    /**
+     * 카테고리별 검색 목록
+     * @param word
+     * @return
+     */
+    public List<NoticeVO> list_search(String word);
+
+    /**
+     * 카테고리별 검색 레코드 갯수
+     * @param hashMap
+     * @return
+     */
+    public int search_count(HashMap<String, Object> hashMap);
+    
+    /**
+     * 검색 + 페이징 목록
+     * @param map
+     * @return
+     */
+    public List<NoticeVO> list_search_paging(HashMap<String, Object> map);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

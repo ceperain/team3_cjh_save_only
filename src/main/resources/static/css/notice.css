@@ -9,6 +9,17 @@ a {
     
 }
 
+.title a{
+    text-decoration: none;
+    color: black;
+}
+
+.rtitle a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;    
+}
+
 .notice a{
     text-decoration: none;
     color: black;
@@ -27,4 +38,10 @@ a {
     .li_none {
     list-style: none;
     margin: 15px 10px;
+  }
+  
+    .bottom_menu {
+    text-align: center; 
+    margin: 20px auto;
+    clear: both;  /* 앞쪽 태그의 float 효과를 제거함. */
   }

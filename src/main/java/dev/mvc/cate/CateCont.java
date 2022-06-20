@@ -49,5 +49,38 @@ public class CateCont {
         return mav;
     }
 
+    /**
+     * 목록 + 검색 지원
+     * http://localhost:9090/cate/list_search.do?cateno=1&word=강원도집
+     * @param cateno
+     * @param word
+     * @return
+     */
+      @RequestMapping(value = "/cate/list_search.do", method = RequestMethod.GET)
+      public ModelAndView list_by_cateno_search(
+                          @RequestParam(value = "word", defaultValue = "") String word) {
+          
+      ModelAndView mav = new ModelAndView(); 
+           
+      /*
+       * // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용 HashMap<String, Object> map = new
+       * HashMap<String, Object>(); map.put("cateno", cateno); // #{cateno}
+       * map.put("name", name.toUpperCase()); // #{name}
+       */      
+      
+      // 검색 목록 
+      List<StoreVO> list = this.cateProc.list_search(word);
+
+      mav.addObject("list", list);
+      
+      // 검색된 레코드 갯수 
+      int search_count = 0;
+      mav.addObject("search_count", search_count);
+      
+      mav.setViewName("/cate/list_search");   // /cate/list_search.jsp
+      
+      return mav; 
+    }
+     
 
 }
