@@ -36,6 +36,16 @@ public class HomeCont {
         return mav;
     }
     
+    
+    @RequestMapping(value = "/chatbot.do", method = RequestMethod.GET)
+    public ModelAndView create() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/chatbot/chatbot"); 
+
+        return mav; 
+    }
+
+    
 //    @RequestMapping(value = {"/", "/index.do"}, method = RequestMethod.GET)
 //    public String home(Locale locale, Model model) {
 //
