@@ -16,7 +16,7 @@ public interface CateProcInter {
 
     /**
      * 조회, 수정
-     * @param cateno 카테고리 번호, PK
+     * @param sssss 카테고리 번호, PK
      * @return 
      */
     public List<CateVO> read();
@@ -44,30 +44,13 @@ public interface CateProcInter {
     
     public List<String> read_s(int storeno);
 
-    
-    /**
-     * 검색 + 페이징 목록
-     * @param map
-     * @return
-     */
-    public List<CateVO> list_by_cateno_search_paging(HashMap<String, Object> map);
-    
-    /**
-     * 페이지 목록 문자열 생성, Box 형태
-     * @param cateno 카테고리번호
-     * @param search_count 검색 갯수
-     * @param now_page 현재 페이지, now_page는 1부터 시작
-     * @param word 검색어
-     * @return
-     */
-    public String pagingBox(int cateno, int search_count, int now_page, String word);
-    
+        
     /**
      * 카테고리별 검색 목록
      * @param word
      * @return
      */
-    public List<StoreVO> list_search(String word);
+    public List<Cate_StoreVO> list_search(String name);
 
     /**
      * 카테고리별 검색 레코드 갯수
@@ -75,6 +58,23 @@ public interface CateProcInter {
      * @return
      */
     public int search_count(HashMap<String, Object> hashMap);
+    
+    /**
+     * 검색 + 페이징 목록
+     * @param map
+     * @return
+     */
+    public List<CateVO> list_search_paging(HashMap<String, Object> map);
+   
+    /**
+     * 페이지 목록 문자열 생성, Box 형태
+     * @param cateno 카테고리번호
+     * @param search_count 검색 갯수
+     * @param now_page 현재 페이지, now_page는 1부터 시작
+     * @param name 검색어
+     * @return
+     */
+    public String pagingBox(int cateno, int search_count, int now_page, String name);
     
 }
 

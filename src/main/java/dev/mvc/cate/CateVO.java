@@ -27,7 +27,6 @@ public class CateVO {
     
     /* 기본생성자 */
     public CateVO() {
-
     }
 
     public String getContents() {

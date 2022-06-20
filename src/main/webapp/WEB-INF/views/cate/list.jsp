@@ -68,7 +68,7 @@ $(function() {  
       <button type='submit'>검색</button>
       <c:if test="${param.name.length() > 0 }">
         <button type='button'
-                     onclick="location.href='./list_search.do?cateno=${cateVO.cateno}&word=${name}'">검색 취소</button>  
+                     onclick="location.href='./list_search_paging.do?cateno=${cateVO.cateno}&word=${name}'">검색 취소</button>  
       </c:if>
       &nbsp;
     </form>
@@ -91,10 +91,10 @@ $(function() {  
     
     <%-- table 내용 --%>
     <tbody>
-    <c:forEach var="cateVO" items="${list}">
-      <c:set var="name" value="${cateVO.s_name }"   />
-      <c:set var="address" value="${cateVO.s_address }"   />    
-      <c:set var="storeno" value="${cateVO.s_storeno }"   />
+    <c:forEach var="cate_storeVO" items="${list}">
+      <c:set var="name" value="${cate_storeVO.s_name }"   />
+      <c:set var="address" value="${cate_storeVO.s_address }"   />    
+      <c:set var="storeno" value="${cate_storeVO.s_storeno }"   />
     
     
         <tr>
@@ -125,12 +125,15 @@ $(function() {  
 </table>
 
  
-  
-  <DIV class='button1'>
+<!-- 페이지 목록 출력 부분 시작 -->
+  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+<!-- 페이지 목록 출력 부분 종료 -->
+    
+<!--   <DIV class='button1'>
     <DIV id='reply_list_btn' style='width: 90%; '>
      <button id='btn_add' class='btn' >더보기</button>     
     </DIV>
-  </DIV>
+  </DIV> -->
 
 
 

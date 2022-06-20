@@ -251,7 +251,16 @@ from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=2;
 
 ----------------------------------------------------------------------
+ SELECT c.cateno, s.name, s.address, s.storeno
+    FROM cate c, store s, catejoin j
+   
+   
+    WHERE (c.cateno = j.cateno and j.storeno = s.storeno) 
+                AND(UPPER(s.name) LIKE UPPER('%' || '강원' || '%')  
+                OR UPPER(s.address) LIKE UPPER('%' || '강원' || '%' ))
 
+
+    ORDER BY c.cateno DESC
 
 
 
@@ -313,48 +322,6 @@ select s.name as 매장명, s.address as 매장주소
 from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 1;
 
-
-
-------------------페이징은  나중에 생각
---카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
-        from store s, cate c, catejoin j
-        where s.storeno = j.storeno
-            and j.cateno = c.cateno
-            and c.cateno = 1
-        )
-    )
-where r >=1 and r <=5;
-
---카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
-        from store s, cate c, catejoin j
-        where s.storeno = j.storeno 
-            and j.cateno = c.cateno
-            and c.cateno = 1
-        )
-    )
-where r >=6 and r <=10;
-
---검색시 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
-        from store s, cate c, catejoin j
-        where s.storeno = j.storeno
-            and j.cateno = c.cateno
-            and (s.name like '%종로%'
-                or s.address like '%종로%')
-        )
-    )
-where r >=1 and r <=5;
-      
-
-
 -- 카테고리 검색 시작
 -- 1) 검색
 -- ① cateno별 검색 목록
@@ -378,7 +345,7 @@ where r >=1 and r <=5;
 -- join n개 이상 sql작성
 SELECT c.cateno, s.name, s.address, s.storeno
 FROM cate c, store s, catejoin j
-WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and ( c.cateno=7 AND (s.name LIKE '%강원도%' OR s.address LIKE '%종로%') )
+WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and ( c.cateno=7 AND (s.name LIKE '%강원도%' OR s.address LIKE '%d%') )
 ORDER BY c.cateno DESC;
 
 
@@ -421,6 +388,54 @@ WHERE (j.storeno = s.storeno) AND (cateno=7 AND (UPPER(s.name) LIKE '%ABC%')); -
 
                                    
 
+
+SELECT c.cateno, s.name, s.address, s.storeno
+FROM cate c, store s, catejoin j
+WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and ( c.cateno=7 AND (s.name LIKE '%강원도%' OR s.address LIKE '%d%') )
+ORDER BY c.cateno DESC;
+
+
+
+
+------------------페이징 시작
+--카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
+        from store s, cate c, catejoin j
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and c.cateno = 7
+        )
+        ORDER BY cateno DESC
+    )
+where r >=1 and r <=5;
+
+--카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
+        from store s, cate c, catejoin j
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and c.cateno = 7
+        )
+    )
+where r >=6 and r <=10;
+
+--검색시 매장 - 페이징 (5개)
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
+        from store s, cate c, catejoin j
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and (s.name like '%강원도%'
+                or s.address like '%강원도%')
+        )
+    )
+where r >=1 and r <=5;
+      
   
 /**********************************/
 /*  리뷰                            */

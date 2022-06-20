@@ -20,6 +20,7 @@
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet">
+
 <!-- <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css"> -->
 
 
@@ -44,8 +45,8 @@ a {
     <DIV>
 <%-- *********************************** 검색 시작 *********************************** --%>
   <DIV style="text-align: center; padding:10%">
-    <form name='frm' id='frm' method='get' action='./list_search.do'>
-      <input type='hidden' name='cateno' value='${cateVO.cateno }'>
+    <form name='frm' id='frm' method='get' action='/cate/list_search.do'>
+ <%--      <input type='hidden' name='cateno' value='${cateVO.cateno }'> --%>
       <input type='text' name='name' id='name' value='${param.name }' style='width: 25%;'
                   placeholder="지역, 점포명을 입력 해 주세요">
       <button type='submit'>검색</button>
@@ -74,7 +75,7 @@ a {
 
 
 <div class="container">
-<a href="/cate/list.do?cateno=${cateno }">
+<a href="/cate/list_search_paging.do?cateno=${cateno }">
   <img src="${image }" alt="Avatar" class="imageh">
   <div class="middle">
     <div class="text">${name }
@@ -82,6 +83,7 @@ a {
     </a>
   </div>
 </div>
+
 
 </c:forEach>
 

@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
     <!-- 검색 목록-->
-  <select id="list_search" resultType="dev.mvc.cate.CateVO" parameterType="String">
+  <select id="list_search" resultType="dev.mvc.cate.Cate_StoreVO" parameterType="String">
     SELECT c.cateno, s.name, s.address, s.storeno
     FROM cate c, store s, catejoin j
    <choose>
@@ -62,11 +62,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    </when>
    <otherwise> <!-- 검색하는 경우 -->
-    WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and
-                ( c.cateno=#{c.cateno} AND 
-                ( c.cateno=#{c.cateno} 
-                AND(UPPER(s.name) LIKE UPPER('%' || #{word} || '%')  
-                OR UPPER(s.address) LIKE UPPER('%' || #{word} || '%' ))
+    WHERE (c.cateno = j.cateno and j.storeno = s.storeno)
+                AND(UPPER(s.name) LIKE UPPER('%' || #{name} || '%')  
+                OR UPPER(s.address) LIKE UPPER('%' || #{name} || '%' ))
       </otherwise>
     </choose>
     ORDER BY c.cateno DESC
@@ -79,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM cate c, store s, catejoin j
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
-        WHERE cateno=#{cateno}
+        WHERE c.cateno=#{cateno}
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
         WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and
@@ -91,59 +89,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>    
  
   
-  
-  
-  <!-- 
-  
   <select id="read_s" resultType="String" >
     select name
     from cate
     where cateno in(
         select cateno
         from catejoin
-        where storeno = '3')
+        where storeno =#{storeno})
 </select>
  
-   카테고리별 검색 목록 + 페이징 + 메인 이미지   
-  <select id="list_by_cateno_search_paging" 
-             resultType="dev.mvc.cate.CateVO" parameterType="HashMap">
-   SELECT select storeno, name, address
-   FROM (
-              SELECT select storeno, name, address, rownum as r
+ 
+   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
+  <select id="list_search_paging" 
+             resultType="dev.mvc.cate.Cate_StoreVO" parameterType="HashMap">
+   SELECT storeno, name, address, cateno
+   FROM (SELECT storeno, name, address, cateno, rownum as r
               FROM (
-                        SELECT select s.storeno, s.name, s.address 
-                        FROM cate
+                        SELECT s.storeno, s.name, s.address, c.cateno
+                        FROM store s, cate c, catejoin j
                         <choose>
-                          <when test="word == null or word == ''"> 검색하지 않는 경우
-                             WHERE cateno=#{cateno}
+                          <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+                             WHERE c.cateno=#{cateno}
                           </when>
                           <otherwise>
-                            WHERE s.storeno = #{j.storeno} AND (UPPER(title) LIKE '%' || #{word} || '%' 
-                                                                        OR UPPER(contents) LIKE '%' || #{word} || '%' 
-                                                                        OR UPPER(word) LIKE '%' || #{word} || '%')
+                            WHERE s.storeno = j.storeno and j.cateno = c.cateno)
+                                       and c.cateno = 7 
                           </otherwise>
                         </choose>
-                        ORDER BY cateno DESC
+                        ORDER BY c.cateno DESC
                )
     )
     WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
      
-     1 page: WHERE r >= 1 AND r <= 10; 
+    <!--  1 page: WHERE r >= 1 AND r <= 10; 
             2 page: WHERE r >= 11 AND r <= 20;
-            3 page: WHERE r >= 21 AND r <= 30;
+            3 page: WHERE r >= 21 AND r <= 30; -->
      
   </select>   
- --> 
  
  
  
- 
- 
- 
- 
- 
- 
-  
   
   
 </mapper>

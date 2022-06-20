@@ -42,10 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM review
     WHERE reviewno=#{reviewno}
   </delete>
- <select id="read_user" resultType="int" parameterType="int">
+ <select id="read_user" resultType="int" parameterType="hashmap">
     SELECT  count(*)
     FROM review
-    WHERE usersno=#{usersno}
+    WHERE usersno=#{usersno} and storeno = #{storeno}
   </select>
 
 </mapper>

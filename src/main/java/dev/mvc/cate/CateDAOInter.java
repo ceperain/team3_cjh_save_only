@@ -56,7 +56,7 @@ public interface CateDAOInter {
      * @param word
      * @return
      */
-    public List<StoreVO> list_search(String word);
+    public List<Cate_StoreVO> list_search(String name);
 
     /**
      * 카테고리별 검색 레코드 갯수
@@ -65,4 +65,11 @@ public interface CateDAOInter {
      */
     public int search_count(HashMap<String, Object> hashMap);
     
+    
+    /**
+     * 검색 + 페이징 목록
+     * @param map
+     * @return
+     */
+    public List<CateVO> list_search_paging(HashMap<String, Object> map);
 }
