@@ -85,6 +85,7 @@ $(function(){
              $("#chatbot").html(total);
              sendMessage(message);
              updateScroll();
+             $("#message").val('');
 
                }
      })
