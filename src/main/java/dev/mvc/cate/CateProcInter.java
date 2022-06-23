@@ -64,7 +64,7 @@ public interface CateProcInter {
      * @param map
      * @return
      */
-    public List<CateVO> list_search_paging(HashMap<String, Object> map);
+    public List<Cate_StoreVO> list_search_paging(HashMap<String, Object> map);
    
     /**
      * 페이지 목록 문자열 생성, Box 형태

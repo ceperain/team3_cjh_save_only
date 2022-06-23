@@ -32,7 +32,7 @@ CREATE SEQUENCE admin_seq
     
 --관리자 추가
 insert into admin(adminno, name, id, pwd)
-values(admin_seq.nextval, 'aa' ,'admin1', '1234');
+values(admin_seq.nextval, 'aa' ,'admin1@naver.com', '1234');
 
 
 
@@ -557,7 +557,44 @@ select s.name as 매장명, s.address as 매장주소, s.storeno as 가게번호
 from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 8;    
     
+/**********************************/
+/*  유저                            */
+/**********************************/  
 
+drop table users;
+CREATE TABLE users(
+    usersno number(10) NOT NULL PRIMARY KEY,
+    name varchar2(30) NOT NULL,
+    email VARCHAR2(100) NOT NULL,
+    pwd VARCHAR2(60) NOT NULL,
+    sex VARCHAR2(10) NOT NULL,
+    bdate date NOT NULL,
+    phone varchar2(20) NOT NULL,
+    rdate date NOT NULL
+);
+
+COMMENT ON TABLE users is '회원';
+COMMENT ON COLUMN users.usersno is '회원번호';
+COMMENT ON COLUMN users.name is '이름';
+COMMENT ON COLUMN users.email is '이메일';
+COMMENT ON COLUMN users.pwd is '비밀번호';
+COMMENT ON COLUMN users.sex is '성별';
+COMMENT ON COLUMN users.bdate is '생년월일';
+COMMENT ON COLUMN users.phone is '전화번호';
+COMMENT ON COLUMN users.rdate is '가입일';
+
+
+DROP SEQUENCE users_seq;
+CREATE SEQUENCE users_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 9999999999
+    CACHE 2 
+    NOCYCLE;
+
+--회원
+insert into users(usersno, name, email, pwd, sex, bdate, phone, rdate)
+values(users_seq.nextval,'개 발자','test@gmail.com', 'testpwd' , '남' , '1999-01-01' ,'010-0000-0000', sysdate);
 
 
 

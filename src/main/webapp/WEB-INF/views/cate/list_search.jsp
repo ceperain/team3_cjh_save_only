@@ -68,7 +68,7 @@ $(function() {  
       <button type='submit'>검색</button>
       <c:if test="${param.name.length() > 0 }">
         <button type='button'
-                     onclick="location.href='./list_search_paging.do?cateno=${cateVO.cateno}&word=${name}'">검색 취소</button>  
+                     onclick="location.href='./list_search_paging.do?cateno=${cateVO.cateno}'">검색 취소</button>  
       </c:if>
       &nbsp;
     </form>

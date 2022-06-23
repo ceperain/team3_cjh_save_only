@@ -77,13 +77,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM cate c, store s, catejoin j
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
-        WHERE c.cateno=#{cateno}
+        WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and c.cateno=#{cateno}
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
         WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and
                    ( c.cateno=#{c.cateno} 
-                                AND(UPPER(s.name) LIKE UPPER('%' || #{word} || '%')  
-                                OR UPPER(s.address) LIKE UPPER('%' || #{word} || '%' ))
+                                AND(UPPER(s.name) LIKE UPPER('%' || #{name} || '%')  
+                                OR UPPER(s.address) LIKE UPPER('%' || #{name} || '%' ))
         </otherwise>
     </choose>
   </select>    
@@ -109,11 +109,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         FROM store s, cate c, catejoin j
                         <choose>
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
-                             WHERE c.cateno=#{cateno}
+                            WHERE s.storeno = j.storeno and j.cateno = c.cateno
+                                       and c.cateno = #{cateno}
                           </when>
                           <otherwise>
-                            WHERE s.storeno = j.storeno and j.cateno = c.cateno)
-                                       and c.cateno = 7 
+                              WHERE s.storeno = j.storeno and j.cateno = c.cateno
+                                       and c.cateno = #{cateno} and s.name like '%' || #{name} || '%'
                           </otherwise>
                         </choose>
                         ORDER BY c.cateno DESC

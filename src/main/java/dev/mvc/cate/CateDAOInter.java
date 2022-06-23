@@ -71,5 +71,5 @@ public interface CateDAOInter {
      * @param map
      * @return
      */
-    public List<CateVO> list_search_paging(HashMap<String, Object> map);
+    public List<Cate_StoreVO> list_search_paging(HashMap<String, Object> map);
 }

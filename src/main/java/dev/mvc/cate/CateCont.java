@@ -108,7 +108,8 @@ public class CateCont {
         map.put("now_page", now_page); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
 
         // 검색 목록
-        List<CateVO> list = this.cateProc.list_search_paging(map);
+        List<Cate_StoreVO> list = this.cateProc.list_search_paging(map);
+
         mav.addObject("list", list);
 
         // 검색된 레코드 갯수

@@ -16,6 +16,7 @@ public class Cate_StoreVO {
     }
 
     public int getCateno() {
+        System.out.println("cateno" + cateno);
         return cateno;
     }
 
@@ -24,6 +25,7 @@ public class Cate_StoreVO {
     }
 
     public String getName() {
+        System.out.println("name" + name);
         return name;
     }
 
@@ -32,6 +34,7 @@ public class Cate_StoreVO {
     }
 
     public String getAddress() {
+        System.out.println("address" + address);
         return address;
     }
 
@@ -40,6 +43,7 @@ public class Cate_StoreVO {
     }
 
     public int getStoreno() {
+        System.out.println("storeno" + storeno);
         return storeno;
     }
 

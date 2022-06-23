@@ -68,7 +68,7 @@ public class CateProc implements CateProcInter {
     }
 
     @Override
-    public List<CateVO> list_search_paging(HashMap<String, Object> map) {
+    public List<Cate_StoreVO> list_search_paging(HashMap<String, Object> map) {
         /*
         페이지당 10개의 레코드 출력
         1 page: WHERE r >= 1 AND r <= 10
@@ -101,7 +101,7 @@ public class CateProc implements CateProcInter {
         map.put("start_num", start_num);
         map.put("end_num", end_num);
         
-        List<CateVO> list = this.cateDAO.list_search_paging(map);
+        List<Cate_StoreVO> list = this.cateDAO.list_search_paging(map);
         
 
         
