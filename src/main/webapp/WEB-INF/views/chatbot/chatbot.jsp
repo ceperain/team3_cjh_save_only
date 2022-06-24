@@ -83,7 +83,8 @@ $(function(){
             var total = $("#chatbot").html();
             total += '<li><div class="messagediv">'+msg+'</div><li>';
              $("#chatbot").html(total);
-             sendMessage(message);
+             sendMessage(msg);
+             
              updateScroll();
              $("#message").val('');
 

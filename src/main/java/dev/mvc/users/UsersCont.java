@@ -130,6 +130,7 @@ public class UsersCont {
 
             if (return_url.length() > 0) {
                 mav.setViewName("redirect:" + return_url);
+               
             }
             else {
                 mav.setViewName("redirect:/index.do");
@@ -139,7 +140,6 @@ public class UsersCont {
             mav.addObject("url", "login_fail_msg");
             mav.setViewName("redirect:/users/msg.do");
         }
-
         return mav;
 
     }

@@ -63,6 +63,7 @@ public class StoreCont {
         // System.out.println("-> StoreCont created.");
     }
 
+    
     @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
     public ModelAndView store2(HttpServletRequest request , int storeno) throws Exception{
         ModelAndView mav = new ModelAndView();
