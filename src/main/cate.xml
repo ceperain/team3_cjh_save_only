@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.cate.CateDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.cate.CateDAOInter">
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체의 타입
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{name}: VO class의 public String getName() 자동 호출
+  #{categrpno}: VO class의 public int getCategrpno() 자동 호출
+   --> 
+   
+   <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.cate.CateVO">
+  <selectKey keyProperty="cateno" resultType="int" order="BEFORE">
+      SELECT cate_seq.nextval FROM dual
+    </selectKey>
+    INSERT INTO cate(cateno, name, rdate)
+    VALUES(#{cateno}, #{name}, sysdate)
+  </insert> 
+
+
+  <!-- 조회, id: read, 입력: cateno, 리턴: CateVO -->
+  <select id="read" resultType="dev.mvc.cate.CateVO">
+    SELECT cateno, name, rdate, image
+    FROM cate
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.cate.CateVO">
+    UPDATE cate
+    SET name=#{name}
+    WHERE cateno = #{cateno}
+  </update>
+
+  <!-- 삭제, return: int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM cate
+    WHERE cateno = #{cateno}
+  </delete>       
+  
+  <select id="list" resultType="dev.mvc.cate.CateVO" >
+    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno
+    FROM store s, cate c, catejoin j
+    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
+  </select>
+  
+  <select id="read_s" resultType="String" >
+    select name
+    from cate
+    where cateno in(
+        select cateno
+        from catejoin
+        where storeno =#{storeno})
+</select>
+ 
+  
+  
+</mapper>

@@ -40,18 +40,25 @@ a {
 
 
 </head>
-<body>
+<body class="gradient-custom-3">
 <jsp:include page="./menu/top.jsp" flush='false' />
-    <DIV class="gradient-custom-3">
-    <form action="/search/result" method="GET" class="search">
-    <br><br><br><br>
-        <input type="text" id="searchWord" name="searchWord"
-            placeholder="지역, 점포명을 입력 해 주세요" maxlength="50" size="60">
-        <!-- <input id="searchButton" type="image" src="" style="width:25px; height:25px;" alt="Submit Form"/> -->
-        <button class="searchButton">검색</button>
+    <DIV>
+<%-- *********************************** 검색 시작 *********************************** --%>
+  <DIV style="text-align: center; padding:10%">
+    <form name='frm' id='frm' method='get' action='/cate/list_search.do'>
+ <%--      <input type='hidden' name='cateno' value='${cateVO.cateno }'> --%>
+      <input type='text' name='name' id='name' value='${param.name }' style='width: 25%;'
+                  placeholder="지역, 점포명을 입력 해 주세요">
+      <button type='submit'>검색</button>
+      <c:if test="${param.name.length() > 0 }">
+        <button type='button'
+                     onclick="location.href='./list_search.do?cateno=${cateVO.cateno}&word=${name}'">검색 취소</button>  
+      </c:if>
+      &nbsp;
     </form>
-<br>
-<br><br>
+  </DIV>
+<%-- *********************************** 검색 종료 *********************************** --%>
+
 <!-- Carousel wrapper -->
 <div
   id="carouselMultiItemExample"
@@ -68,7 +75,7 @@ a {
 
 
 <div class="container">
-<a href="/cate/list.do?cateno=${cateno }">
+<a href="/cate/list_search_paging.do?cateno=${cateno }">
   <img src="${image }" alt="Avatar" class="imageh">
   <div class="middle">
     <div class="text">${name }
@@ -77,48 +84,11 @@ a {
   </div>
 </div>
 
+
 </c:forEach>
 
-<!-- 
-<div class="container">
-<a href="#">
-  <img src="https://cdn.vox-cdn.com/uploads/chorus_image/image/66683596/Atlas_Kitchen_30.0.jpg" alt="Avatar" class="imageh">
-  <div class="middle">
-    <div class="text">중식</div>
-    </a>
-  </div>
-</div>
-
-<div class="container">
-<a href="#">
-  <img src="https://feelfukuoka.com/wp/wp-content/uploads/2020/07/746869_m-768x510.jpg" alt="Avatar" class="imageh">
-  <div class="middle">
-    <div class="text">일식</div>
-    </a>
-  </div>
-</div>
-
-<div class="container">
-<a href="#">
-  <img src="https://ldb-phinf.pstatic.net/20200529_288/1590729021609YuodC_JPEG/wG8x9yxYvJcqemQKTcpAi005.jpg?type=f804_408_60_sharpen" alt="Avatar" class="imageh">
-  <div class="middle">
-    <div class="text">양식</div>
-    </a>
   </div>
   </div>
-
-<div class="container">
-<a href="#">
-  <img src="http://www.fsnews.co.kr/news/photo/201902/32707_27510_4314.jpg" alt="Avatar" class="imageh">
-  <div class="middle">
-    <div class="text">그 외</div>
-    </a>
- -->
-  </div>
-  </div>
- 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<jsp:include page="./cate/bottom.jsp" flush='false' />
 
 
 

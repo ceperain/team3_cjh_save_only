@@ -1,6 +1,9 @@
 package dev.mvc.cate;
 
+import java.util.HashMap;
 import java.util.List;
+
+import dev.mvc.store.StoreVO;
 
 public interface CateDAOInter {
     /**
@@ -40,6 +43,34 @@ public interface CateDAOInter {
     public List<CateVO> list(int cateno);
     
     public List<String> read_s(int storeno);
+    public List<String> read_r(int storeno);
 
+    /**
+     * 검색 + 페이징 목록
+     * @param map
+     * @return
+     */
+    public List<CateVO> list_by_cateno_search_paging(HashMap<String, Object> map);
 
+    /**
+     * 카테고리별 검색 목록
+     * @param word
+     * @return
+     */
+    public List<Cate_StoreVO> list_search(String name);
+
+    /**
+     * 카테고리별 검색 레코드 갯수
+     * @param hashMap
+     * @return
+     */
+    public int search_count(HashMap<String, Object> hashMap);
+    
+    
+    /**
+     * 검색 + 페이징 목록
+     * @param map
+     * @return
+     */
+    public List<Cate_StoreVO> list_search_paging(HashMap<String, Object> map);
 }

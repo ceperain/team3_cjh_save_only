@@ -21,6 +21,7 @@ public class NoticeVO {
     /** 공지사항 등록일 */
     private String rdate;
     
+    /** 기본 생성자*/
     public NoticeVO() {
         
     }

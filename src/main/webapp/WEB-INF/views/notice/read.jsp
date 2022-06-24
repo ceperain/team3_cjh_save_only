@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 
+<c:set var="noticeno" value="${noticeVO.noticeno }" />
+<c:set var="adminno" value="${noticeVO.adminno }" />
+<c:set var="title" value="${noticeVO.title }" />
+<c:set var="rdate" value="${noticeVO.rdate }" />
+<c:set var="contents" value="${noticeVO.contents }" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,16 +33,18 @@
 <script type="text/javascript">
 
 </script>
-    
+     
 <title>http://localhost:9091/</title>
-</head>
+</head> 
+ 
 <body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
-
-
-<DIV>
-<DIV class='title_line notice' style='padding-top: 100px;'><a href="./list_search_paging.do">공지사항</a>
-
+ 
+ <DIV >
+<DIV class='title_line notice' style='padding-top: 110px;'>
+  <A href="../notice/list_search_paging.do">공지사항</A>
+  
+  
 <%-- *********************************** 검색 시작 *********************************** --%>
   <DIV style="text-align: right;">
     <form name='frm' id='frm' method='get' action='./list_search.do'>
@@ -52,49 +59,46 @@
     </form>
   </DIV>
 <%-- *********************************** 검색 종료 *********************************** --%>
-
-
+  
+  
 </DIV>
 
-<DIV class='content_body'>
-  <TABLE class='table table-striped'>
-    <colgroup>
-      <col style='width: 10%;'/>
-      <col style='width: 50%;'/>
-      <col style='width: 20%;'/>    
-    </colgroup>
-   
-    <thead>  
-    <TR>
-      <TH class="th_bs">번호</TH>
-      <TH class="th_bs">제목</TH>
-      <TH class="th_bs">등록일</TH>
-    </TR>
-    </thead>
-    
-    <tbody>
-    <c:forEach var="noticeVO" items="${list}">
-      <c:set var="noticeno" value="${noticeVO.noticeno }" />
-      <c:set var="title" value="${noticeVO.title }" />
-      <c:set var="rdate" value="${noticeVO.rdate.substring(0, 10) }" />
-      
-      <TR class="title">
-        <TD>${noticeno }</TD>
-        <TD><a href="./read.do?noticeno=${noticeno}">${title }</a></TD>
-        <TD>${rdate }</TD>
- 
-      </TR>   
-    </c:forEach> 
-    </tbody>
-    
+<DIV class='content_body rtitle'>
+  <ASIDE class="aside_right">
+    <A href="./create.do?">등록</A>
+    <span class='menu_divide' >│</span>
+    <A href="javascript:location.reload();">새로고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./read_update.do?noticeno=${noticeno}">수정</A>
+    <span class='menu_divide' >│</span>
+    <A href="./delete.do?noticeno=${noticeno}">삭제</A>  
+  </ASIDE> 
+  
+  <DIV style="text-align: right; clear: both;">  
+    <form name='frm' id='frm' method='get' action='./list.do'>
+      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>
+    </form>
+  </DIV>
+  
+  <DIV class='menu_line'></DIV>
 
-   
-  </TABLE>
-   <button type="button" onclick="location.href='./create.do?'" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">
-    글작성
-   </button>
-</DIV>
-</DIV>
+  <fieldset class="fieldset_basic">
+    <ul>
+      <li class="li_none">
+        <DIV style="width: 100%; float: left; margin-right: 10px;">  <!--   이미지 출력 조절부분-->
+            
+        </DIV>
+        <div><strong>제목 </strong>${title }</div>
+        <br>
+        <DIV><strong>내용 </strong><br>${contents }</DIV>
+      </li>
+            
+     
+    </ul>
+  </fieldset>
 
+</DIV>
+ </DIV>
 </body>
+ 
 </html>
