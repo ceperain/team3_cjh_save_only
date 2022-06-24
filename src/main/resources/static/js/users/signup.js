@@ -10,9 +10,8 @@ let input_phone = document.querySelector("#phone");
 btn_signup.addEventListener("click", send);
 //폰번호 입력 자동 하이픈
 input_phone.addEventListener("keyup", function() {
-	this.value = this.value.match(/\d*/g).join('')
-		.match(/(\d{0,3})(\d{0,4})(\d{0,4})/).slice(1).join('-')
-		.replace(/-*$/g, '');
+	this.value = this.value.replace(/[^\d]/g,'')
+		.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/,'$1-$2-$3');
 });
 //중복확인 버튼과 버튼 이벤트 리스너
 let btn_checkEmail = document.querySelector("#btn_checkEmail");
@@ -133,7 +132,7 @@ function checkPhone(phone) {
 		alert("전화번호를 입력해 주세요");
 		return false;
 	}
-	const phoneRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
+	const phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	if (!phoneRegExp.test(phone)) {
 		alert("전화번호 형식이 올바르지 않습니다\n010-0000-0000 형식으로 입력해 주세요");
 		frm.phone.focus();

@@ -61,5 +61,10 @@ public interface UsersDAOInter {
      * @return
      */
     public int login(Map<String, Object> map);
+    /**
+     * 
+     * @param storeno
+     * @return
+     */
     public List<UsersVO> read_name(int storeno);
 }

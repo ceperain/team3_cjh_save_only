@@ -29,9 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <update id="update" parameterType="dev.mvc.users.UsersVO">
     update users
-      set pwd=#{pwd},
-      phone=#{phone},
-      name=#{name}
+      set phone=#{phone},
+          name=#{name}
+    where usersno=#{usersno}
+  </update>
+  
+  <update id="update_passwd" parameterType="dev.mvc.users.UsersVO">
+    update users
+      set pwd=#{pwd}
     where usersno=#{usersno}
   </update>
   

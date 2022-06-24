@@ -1,12 +1,16 @@
 /**
- * create.jsp 에 사용할 자바스크립트
+ * login.jsp 에 사용할 자바스크립트
  * 
  */
 
 frm = document.querySelector("#frm_login");
 btn_login = document.querySelector("#login");
 btn_login.addEventListener("click", send);
-
+frm.addEventListener("keypress", function(e){
+	if(e.keyCode == 13){
+		send();
+	}
+})
 
 
 function checkAll() {
