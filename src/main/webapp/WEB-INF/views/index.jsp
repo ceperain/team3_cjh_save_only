@@ -68,7 +68,7 @@ a {
 
 
 <div class="container">
-<a href="http://localhost:9091/cate/list.do?cateno=${cateno }">
+<a href="/cate/list.do?cateno=${cateno }">
   <img src="${image }" alt="Avatar" class="imageh">
   <div class="middle">
     <div class="text">${name }
