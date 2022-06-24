@@ -63,6 +63,7 @@ public class StoreCont {
         // System.out.println("-> StoreCont created.");
     }
 
+    
     @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
     public ModelAndView store2(HttpServletRequest request , int storeno) throws Exception{
         ModelAndView mav = new ModelAndView();
@@ -84,12 +85,16 @@ public class StoreCont {
         HashMap<String, Integer> hmap = new HashMap<String, Integer>();
         List<Users_ReviewVO> users_reveiwVO= new ArrayList<Users_ReviewVO>();
         int usersno=0;
+        int adminno=0;
         if (session.getAttribute("usersno") != null) {
             usersno = (int)session.getAttribute("usersno");
             mav.setViewName("/store/food_main_user");
             
         } 
-        else {           
+        else if(session.getAttribute("adminno") != null){           
+            adminno = (int)session.getAttribute("adminno");
+            mav.setViewName("/store/food_main_admin");
+        }else {
             mav.setViewName("/store/food_main");
         }
         

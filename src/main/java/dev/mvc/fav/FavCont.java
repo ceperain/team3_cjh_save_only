@@ -41,6 +41,43 @@ public class FavCont {
         mav.setViewName("/fav/test");
         return mav;
     }
+    
+    /**
+     * 
+     * @param email
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/fav/visit.do", method = RequestMethod.GET)
+    public String favData(int storeno, HttpSession session) {
+        JSONObject json = new JSONObject();
+        Object tmp_usersno = session.getAttribute("usersno");// 임시
+        int usersno = -1;
+        if (tmp_usersno != null) {
+            usersno = (Integer) tmp_usersno;
+        }
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("usersno", usersno);
+        map.put("storeno", storeno);
+        FavVO favVO = this.favProc.read(map);
+
+        
+        int favcheck = 0;
+        if (favVO != null) {
+            favcheck = favVO.getFavcheck();
+            System.out.println("fav not null");
+        }
+        
+        if (this.favProc.countfav(map) == 0) {
+            this.favProc.create(map);
+        }
+
+        json.put("storeno", favVO.getStoreno());
+        json.put("favcheck", favcheck);
+
+        return json.toString();
+    }
 
     /**
      * 

@@ -28,7 +28,7 @@
 <body>
 <input id="usersno" type="hidden" value="${usersno }">
 <c:set var="usersno" value="${usersno }"/>
-<button id="btn_fav" class="btn btn-warning">test</button>
+<button id="btn_fav" class="btn">test</button>
 ${usersno }
 </body>
 </html>

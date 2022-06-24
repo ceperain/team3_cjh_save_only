@@ -2,8 +2,34 @@
  * 즐겨찾기 ajax
  */
 $(function(){
+	visit_page();
 	$("#btn_fav").on("click", fav_ajax_func);
 })
+function visit_page(){
+	const urlParam = new URL(location.href).searchParams;
+	let usersno = $("#usersno").val();
+	let storeno = urlParam.get("storeno");
+
+	$.ajax({
+		url: "/fav/visit.do",
+		type: "GET",
+		cache: false,
+		async: true,
+		dataType: "json",
+		data: 'storeno=' + storeno + '&usersno=' + usersno,
+		success: function(data){
+			if(data.favcheck == 0){
+				$("#btn_fav").addClass("btn-outline-warning");
+			} else{
+				$("#btn_fav").addClass("btn-warning");
+			}
+		},
+		error: function(request, status, error){
+			alert("code:" + request.status + "\n error:" + error );
+			
+		}
+	})
+}
 
 function fav_ajax_func() {
 	const urlParam = new URL(location.href).searchParams;

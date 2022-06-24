@@ -22,10 +22,19 @@ public class CateVO {
     private String s_address;
     /** 가게번호 */
     private int s_storeno;
+    /** 리뷰내용 */
+    private String contents;
     
     /* 기본생성자 */
     public CateVO() {
+    }
 
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     public int getCateno() {
