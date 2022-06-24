@@ -141,7 +141,6 @@ public class UsersCont {
             mav.setViewName("redirect:/users/msg.do");
         }
         return mav;
-
     }
     
     /**

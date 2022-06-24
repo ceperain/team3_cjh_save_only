@@ -20,7 +20,7 @@
         <ul class="navbar-nav ms-auto">
             <li>
                 <form class="d-flex">
-                  <a class="nav-link active" aria-current="page" href="/recom.do">맛집&nbsp;추천</a>
+                  <a class="nav-link active" aria-current="page" href="/recom/recom.do">맛집&nbsp;추천</a>
                   <a class="nav-link active" aria-current="page" href="/chatbot.do">챗봇</a>
                   <c:choose>
                     <c:when test="${sessionScope.email == null}">
