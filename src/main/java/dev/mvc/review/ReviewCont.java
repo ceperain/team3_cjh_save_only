@@ -22,6 +22,7 @@ import dev.mvc.keyword.KeywordProcInter;
 import dev.mvc.keyword.KeywordVO;
 import dev.mvc.store.StoreProcInter;
 import dev.mvc.store.StoreVO;
+import dev.mvc.store.Users_ReviewVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -57,7 +58,7 @@ public class ReviewCont {
      * @return
      */
     @RequestMapping(value = "/review/create.do", method = RequestMethod.GET)
-    public ModelAndView create(int storeno) {
+    public ModelAndView create(HttpServletRequest request, int storeno) {
         ModelAndView mav = new ModelAndView();
 
        StoreVO storeVO=this.storeProc.read(storeno);
@@ -67,7 +68,17 @@ public class ReviewCont {
         mav.setViewName("/review/create"); // /webapp/WEB-INF/views/review/create.jsp
         // String content = "장소:\n인원:\n준비물:\n비용:\n기타:\n";
         // mav.addObject("content", content);
-
+        HttpSession session = request.getSession();
+        int usersno=0;
+        if (session.getAttribute("usersno") != null) {
+            usersno = (int)session.getAttribute("usersno");
+            mav.setViewName("/review/create");
+            
+        } 
+        else {           
+            mav.setViewName("/users/login");
+        }
+        
         return mav; // forward
     }
 
