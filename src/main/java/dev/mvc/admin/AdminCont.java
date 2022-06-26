@@ -21,6 +21,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.login.LoginType;
+import dev.mvc.users.UsersVO;
 
 @Controller
 public class AdminCont {
@@ -31,6 +32,51 @@ public class AdminCont {
 
     public AdminCont() {
 
+    }
+    /**
+     * 관리자 로그인 페이지로 이동
+     * @return
+     */
+    @RequestMapping(value="/ad/login.do", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView();
+        
+        mav.setViewName("/admin/ad_login");
+        return mav;
+    }
+    
+    /**
+     * 로그인 처리
+     * @param id
+     * @param pwd
+     * @return
+     */
+    @RequestMapping(value="/ad/login.do", method = RequestMethod.POST)
+    public ModelAndView login(HttpSession session ,String id, String pwd) {
+        ModelAndView mav = new ModelAndView();
+        
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("id", id);
+        map.put("pwd", pwd);
+
+        int cnt = this.adminProc.login(map);
+        if (cnt == 1) {
+            AdminVO adminVO = this.adminProc.readById(id);
+            session.setAttribute("adminno", adminVO.getAdminno());
+            session.setAttribute("id", id);
+            session.setAttribute("name", adminVO.getName());
+            session.setAttribute("type", LoginType.Admin);
+
+            
+        }
+        else {
+            //로그인 실패
+        }
+        mav.setViewName("redirect:/index.do");
+        
+        return mav;
+        
     }
 
 
