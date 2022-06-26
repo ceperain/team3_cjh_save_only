@@ -109,13 +109,19 @@ public class UsersCont {
      * @return
      */
     @RequestMapping(value = "/users/list.do", method = RequestMethod.GET)
-    public ModelAndView list() {
+    public ModelAndView list(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        List<UsersVO> list = this.usersProc.list();
+        if(session.getAttribute("type") == LoginType.ADMIN) {
+            List<UsersVO> list = this.usersProc.list();
 
-        mav.addObject("list", list);
+            mav.addObject("list", list);
 
-        mav.setViewName("/users/list");
+            mav.setViewName("/users/list");
+        } else {
+            //접근 불가
+            mav.setViewName("redirect:/index.do");
+        }
+        
         return mav;
     }
 
@@ -165,7 +171,7 @@ public class UsersCont {
             session.setAttribute("usersno", usersVO.getUsersno());
             session.setAttribute("email", email);
             session.setAttribute("name", usersVO.getName());
-            session.setAttribute("type", LoginType.Normal);
+            session.setAttribute("type", LoginType.NORMAL);
 
             if (return_url.length() > 0) {
                 mav.setViewName("redirect:" + return_url);

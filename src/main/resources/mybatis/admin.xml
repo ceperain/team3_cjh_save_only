@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
 
   <select id="login" resultType="int" parameterType="Map">
-    SELECT COUNT(usersno) as cnt
+    SELECT COUNT(adminno) as cnt
     FROM admin
     WHERE id=#{id} AND pwd=#{pwd}
   </select>

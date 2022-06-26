@@ -55,7 +55,6 @@ public class AdminCont {
     public ModelAndView login(HttpSession session ,String id, String pwd) {
         ModelAndView mav = new ModelAndView();
         
-
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("id", id);
         map.put("pwd", pwd);
@@ -66,14 +65,18 @@ public class AdminCont {
             session.setAttribute("adminno", adminVO.getAdminno());
             session.setAttribute("id", id);
             session.setAttribute("name", adminVO.getName());
-            session.setAttribute("type", LoginType.Admin);
-
+            session.setAttribute("type", LoginType.ADMIN);
+            mav.setViewName("redirect:/index.do");
             
         }
         else {
-            //로그인 실패
+            System.out.println(map);
+            System.out.println(id);
+            System.out.println(pwd);
+            System.out.println(cnt);
+            mav.setViewName("fail");
         }
-        mav.setViewName("redirect:/index.do");
+        
         
         return mav;
         

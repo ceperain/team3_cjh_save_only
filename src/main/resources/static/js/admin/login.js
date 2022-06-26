@@ -1,5 +1,5 @@
 /**
- * login.jsp 에 사용할 자바스크립트
+ * ad_login.jsp 에 사용할 자바스크립트
  * 
  */
 
@@ -14,7 +14,7 @@ frm.addEventListener("keypress", function(e){
 
 
 function checkAll() {
-	if (!checkEmail(frm.email.value)) {
+	if (!checkId(frm.id.value)) {
 		return false;
 	} else if (!checkPwd(frm.pwd.value)) {
 		return false;

@@ -15,11 +15,11 @@
  <script type="text/javascript" src="/js/users/login.js" defer></script>
 
 </head>
-<body>
+<body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
   <section class="vh-100">
   
-  <div class="mask d-flex align-items-center min-vh-100 gradient-custom-3">
+  <div class="mask d-flex align-items-center min-vh-100">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-6">
