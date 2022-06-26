@@ -44,6 +44,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where storeno=#{storeno}
   </delete>
 
+  <select id="favorite_list" resultType="dev.mvc.fav.FavDataVO"  parameterType="int">
+    select s.storeno, c.cateno, s.name as s_name, s.address as address, c.name as c_name
+    from store s, cate c, catejoin j
+    where (s.storeno = j.storeno and j.cateno = c.cateno) and 
+          (s.storeno in (select storeno
+                         from favorite
+                         where favcheck=1 and usersno=#{usersno}
+                        )
+          )
+  </select>
   
  
   

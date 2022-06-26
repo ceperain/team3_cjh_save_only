@@ -1,5 +1,6 @@
 package dev.mvc.fav;
 
+import java.util.List;
 import java.util.Map;
 
 public interface FavDAOInter {
@@ -52,4 +53,11 @@ public interface FavDAOInter {
      * @return
      */
     public int deleteByStoreno(int storeno);
+    
+    /**
+     * 
+     * @param usersno
+     * @return
+     */
+    public List<FavDataVO> favorite_list(int usersno);
 }

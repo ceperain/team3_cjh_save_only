@@ -67,13 +67,14 @@ public class FavCont {
         if (favVO != null) {
             favcheck = favVO.getFavcheck();
             System.out.println("fav not null");
+            json.put("storeno", favVO.getStoreno());
         }
         
         if (this.favProc.countfav(map) == 0) {
             this.favProc.create(map);
         }
 
-        json.put("storeno", favVO.getStoreno());
+        
         json.put("favcheck", favcheck);
 
         return json.toString();
@@ -123,6 +124,26 @@ public class FavCont {
         json.put("favcheck", favcheck);
 
         return json.toString();
+    }
+    
+    @RequestMapping(value="/favorite.do" ,method = RequestMethod.GET)
+    public ModelAndView favlist(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        Object tmp_usersno = session.getAttribute("usersno");// 임시
+        int usersno = 0;
+        if (tmp_usersno != null) {
+            usersno = (Integer) tmp_usersno;
+            List<FavDataVO> list = this.favProc.favorite_list(usersno);
+            
+            mav.addObject("list", list);
+            mav.addObject("usersno", usersno);
+            mav.setViewName("/fav/fav_list");
+            
+        } else {
+            mav.setViewName("redirect:/");
+        }
+        
+        return mav;
     }
 
 }

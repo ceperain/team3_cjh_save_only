@@ -1,5 +1,6 @@
 package dev.mvc.fav;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class FavProc implements FavProcInter {
     public int deleteByStoreno(int storeno) {
         int cnt = this.favDAO.deleteByStoreno(storeno);
         return cnt;
+    }
+    @Override
+    public List<FavDataVO> favorite_list(int usersno) {
+        List<FavDataVO> list = this.favDAO.favorite_list(usersno);
+        return list;
     }
 
 }
