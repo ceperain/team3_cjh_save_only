@@ -35,14 +35,14 @@ $(function() {  
     if(idx>$(".table tr").length) {
         $('.button1').css("display", "none");
     }                
-            
+          
     $(".button1 li").click(function(){
-         idx+=3;
-         $(".table tr:lt("+idx+")").css("display", "");   
-         if(idx>=$(".table tr").length) {
-            $('.button1').css("display", "none");
-        }
-        }); 
+        idx+=3;
+        $(".table tr:lt("+idx+")").css("display", "");   
+        if(idx>=$(".table tr").length) {
+           $('.button1').css("display", "none");
+       }
+       }); 
         
  });
 
@@ -75,7 +75,7 @@ $(function() {  
     </div>
     <br>
     <div style="width: 100%; float:left; "><h2>${name}</h2>
-    <A href="../reviewcreate.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
+    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right;  padding:5px 5px"><i class="fa-solid fa-pen-to-square"></i></A>
     </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">

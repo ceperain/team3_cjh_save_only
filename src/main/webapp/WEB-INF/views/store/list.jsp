@@ -116,11 +116,10 @@
     }
   </script>
   </head>
-<body>
+<body  class="gradient-custom-3" style = "width: 100%">
 <jsp:include page="../menu/top.jsp" flush='false' />
 
-<div class="gradient-custom-3">
-<section style="width: 80%; margin:auto;">
+<section style="width: 80%; margin:0px auto;">
 
 <br><br><br>
   <%-- 신규 등록 --%>
@@ -296,8 +295,9 @@
     </c:forEach>
     </tbody>
     </TABLE>
+     <DIV class='bottom_menu'>${paging }</DIV>
     
-    </section></div>
+    </section>
 </body>
 </html>
 

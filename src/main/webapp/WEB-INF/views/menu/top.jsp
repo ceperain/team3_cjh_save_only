@@ -48,6 +48,7 @@
                             <div class="dropdown_content">
                                 <span>${sessionScope.name }</span>
                                 <a href="/users/list.do">유저 목록</a>
+                                <a href="/store/list.do">매장 목록</a>
                                 <a href="/logout.do">로그아웃</a>
                             </div>
                         </div>

@@ -15,10 +15,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.cate.CateProcInter;
+import dev.mvc.cate.Cate_StoreVO;
 import dev.mvc.keyword.KeywordProcInter;
 import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
@@ -148,14 +150,46 @@ public class StoreCont {
         return mav; // forward
     }
 
+    /*
+     * @RequestMapping(value = "/store/list.do", method = RequestMethod.GET) public
+     * ModelAndView list() { ModelAndView mav = new ModelAndView(); List<StoreVO>
+     * list = this.storeProc.list_all(); mav.addObject("list", list);
+     * mav.setViewName("/store/list"); // webapp/WEB-INF/views/store/list_all.jsp
+     * return mav; // forward }
+     */
+    
     @RequestMapping(value = "/store/list.do", method = RequestMethod.GET)
-    public ModelAndView list() {
-        ModelAndView mav = new ModelAndView();
-        List<StoreVO> list = this.storeProc.list_all();
-        mav.addObject("list", list);
-        mav.setViewName("/store/list"); // webapp/WEB-INF/views/store/list_all.jsp
-        return mav; // forward
-    }
+    public ModelAndView list_search_paging(@RequestParam(value = "storeno", defaultValue = "1") int storeno,
+                                                            @RequestParam(value = "now_page", defaultValue = "1") int now_page) {
+      System.out.println("--> now_page: " + now_page);
+
+      ModelAndView mav = new ModelAndView();
+
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      map.put("storeno", storeno); // #{cateno}
+      map.put("now_page", now_page); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
+      
+      List<StoreVO> list = this.storeProc.list_search_paging(map);
+    
+      mav.addObject("list", list);
+      /*
+       * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
+       * 18 19 20 [다음]
+       * @param cateno 카테고리번호
+       * @param search_count 검색(전체) 레코드수
+       * @param now_page 현재 페이지
+       * @param word 검색어
+       * @return 페이징용으로 생성된 HTML/CSS tag 문자열
+       */
+      int cnt = this.storeProc.count();
+      String paging = this.storeProc.pagingBox(storeno,cnt, now_page);
+      mav.addObject("paging", paging);
+
+      mav.setViewName("/store/list");
+
+      return mav;
+    }      
+    
 
     @RequestMapping(value = "/store/read_ajax.do", method = RequestMethod.GET)
     @ResponseBody
