@@ -22,7 +22,6 @@
     font-size: 18px;
 }
 .container{
-		
 	clear: both;
 	position:sticky;
 	top:100px;
@@ -98,8 +97,8 @@ text-shadow: 30%;
 size: 50px;
 }
 body{
-				width: 80%;
-				margin:0 auto;
+            width: 80%;
+            margin:0 auto;
 }
 ::-webkit-scrollbar {
 display: none;

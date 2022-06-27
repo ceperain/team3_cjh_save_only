@@ -114,10 +114,9 @@ $(function() {  
            <td style='text-align: left;'>
                 <a href='../store/store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
                     <div style='color:gray;'>
-                       ${address}   /review/storage/${file1saved }
+                       ${address}  
                     </div>
                     <div class="si">
-
                     </div>
            </td>
         </tr></c:forEach>

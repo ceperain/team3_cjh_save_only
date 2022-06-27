@@ -32,7 +32,7 @@ CREATE SEQUENCE admin_seq
     
 --관리자 추가
 insert into admin(adminno, name, id, pwd)
-values(admin_seq.nextval, 'aa' ,'admin1', '1234');
+values(admin_seq.nextval, 'aa' ,'admin1@naver.com', '1234');
 
 
 
@@ -148,7 +148,7 @@ INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
 values(STORE_SEQ.nextval, '복덕방', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
 
 INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
-values(STORE_SEQ.nextval, '산울림 1992', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+values(STORE_SEQ.nextval, 'ABC 1992', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
 
 INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
 values(STORE_SEQ.nextval, '아버지 손두부', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
@@ -167,6 +167,12 @@ values(STORE_SEQ.nextval, '산울림5 1992', '서울특별시 종로구 낙원�
 
 INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
 values(STORE_SEQ.nextval, '아버지 손두부6', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, 'abc', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
+
+INSERT INTO store(storeno, name, address, visible, lat, lng, rdate)
+values(STORE_SEQ.nextval, 'ABC', '서울특별시 종로구 낙원동 289-2', 1, 37.572216462641, 126.98797517551, sysdate);
 
 select * from store;
 
@@ -245,7 +251,16 @@ from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno=2;
 
 ----------------------------------------------------------------------
+ SELECT c.cateno, s.name, s.address, s.storeno
+    FROM cate c, store s, catejoin j
+   
+   
+    WHERE (c.cateno = j.cateno and j.storeno = s.storeno) 
+                AND(UPPER(s.name) LIKE UPPER('%' || '강원' || '%')  
+                OR UPPER(s.address) LIKE UPPER('%' || '강원' || '%' ))
 
+
+    ORDER BY c.cateno DESC
 
 
 
@@ -307,51 +322,120 @@ select s.name as 매장명, s.address as 매장주소
 from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 1;
 
+-- 카테고리 검색 시작
+-- 1) 검색
+-- ① cateno별 검색 목록
+-- word 컬럼의 존재 이유: 검색 정확도를 높이기 위하여 중요 단어를 명시
+-- 글에 'swiss'라는 단어만 등장하면 한글로 '스위스'는 검색 안됨.
+-- 이런 문제를 방지하기위해 'swiss,스위스,스의스,수의스,유럽' 검색어가 들어간 word 컬럼을 추가함.
+
+-- 원본
+--SELECT name, address, storeno
+--FROM store
+--WHERE UPPER(name) (title LIKE '%강원도%' OR address LIKE '%종로%')
+--ORDER BY cateno DESC;
+
+-- ANSI join
+--SELECT c.cateno, s.name, s.address, s.storeno
+--FROM cate c
+--JOIN store s USING (storeno)
+--WHERE cateno=7 AND (name LIKE '%강원도%' OR address LIKE '%종로%')
+--ORDER BY c.cateno DESC;
+
+-- join n개 이상 sql작성
+SELECT c.cateno, s.name, s.address, s.storeno
+FROM cate c, store s, catejoin j
+WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and ( c.cateno=7 AND (s.name LIKE '%강원도%' OR s.address LIKE '%d%') )
+ORDER BY c.cateno DESC;
 
 
-------------------페이징은  나중에 생각
+-- ② 검색 레코드 갯수
+-- 전체 레코드 갯수
+SELECT COUNT(*)
+FROM catejoin j
+WHERE j.cateno=7;
+
+SELECT COUNT(*) as cnt -- 함수 사용시는 컬럼 별명을 선언하는 것을 권장
+FROM catejoin j
+WHERE j.cateno=7;
+
+-- cateno 별 검색된 레코드 갯수
+SELECT COUNT(*) as cnt
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (j.cateno=7 AND s.name LIKE '%아버지 손두부%');
+
+SELECT COUNT(*) as cnt
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (j.cateno=7 AND (s.name LIKE '%강원도집%' OR s.address LIKE '%종로%'));
+
+-- SUBSTR(컬럼명, 시작 index(1부터 시작), 길이)
+SELECT j.cateno, SUBSTR(s.name, 1, 20)
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (j.cateno=7 AND (s.name LIKE '%아버지%'));
+
+-- 대소문자를 구분하여 검색
+SELECT j.cateno, s.name, s.address
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (cateno=7 AND (s.name LIKE '%abc%'));
+
+SELECT  j.cateno, s.name, s.address
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (cateno=7 AND (s.name LIKE '%ABC%')); -- 대소문자 구분으로 검색 안됨.
+
+SELECT j.cateno, s.name, s.address
+FROM catejoin j, store s
+WHERE (j.storeno = s.storeno) AND (cateno=7 AND (UPPER(s.name) LIKE '%ABC%')); -- 대소문자를 일치 시켜서 검색
+
+                                   
+
+
+SELECT c.cateno, s.name, s.address, s.storeno
+FROM cate c, store s, catejoin j
+WHERE (c.cateno = j.cateno and j.storeno = s.storeno) and ( c.cateno=7 AND (s.name LIKE '%강원도%' OR s.address LIKE '%d%') )
+ORDER BY c.cateno DESC;
+
+
+
+
+------------------페이징 시작
 --카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
         from store s, cate c, catejoin j
-        where s.storeno = j.storeno
-            and j.cateno = c.cateno
-            and c.cateno = 1
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and c.cateno = 7
         )
+        ORDER BY cateno DESC
     )
 where r >=1 and r <=5;
 
 --카테고리 클릭시 카테고리별 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
         from store s, cate c, catejoin j
-        where s.storeno = j.storeno 
-            and j.cateno = c.cateno
-            and c.cateno = 1
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and c.cateno = 7
         )
     )
 where r >=6 and r <=10;
 
 --검색시 매장 - 페이징 (5개)
-select storeno, name, address
-from (select storeno, name, address, rownum as r
-    from (select s.storeno, s.name, s.address 
+select storeno, name, address, cateno
+from (select storeno, name, address, cateno, rownum as r
+    from (select s.storeno, s.name, s.address, c.cateno
         from store s, cate c, catejoin j
-        where s.storeno = j.storeno
-            and j.cateno = c.cateno
-            and (s.name like '%종로%'
-                or s.address like '%종로%')
+        where (s.storeno = j.storeno
+            and j.cateno = c.cateno)
+            and (s.name like '%강원도%'
+                or s.address like '%강원도%')
         )
     )
 where r >=1 and r <=5;
       
-
-
-
-
-
   
 /**********************************/
 /*  리뷰                            */
@@ -473,8 +557,51 @@ select s.name as 매장명, s.address as 매장주소, s.storeno as 가게번호
 from store s, cate c, catejoin j
 where s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = 8;    
     
+/**********************************/
+/*  유저                            */
+/**********************************/  
+
+drop table users;
+CREATE TABLE users(
+    usersno number(10) NOT NULL PRIMARY KEY,
+    name varchar2(30) NOT NULL,
+    email VARCHAR2(100) NOT NULL,
+    pwd VARCHAR2(60) NOT NULL,
+    sex VARCHAR2(10) NOT NULL,
+    bdate date NOT NULL,
+    phone varchar2(20) NOT NULL,
+    rdate date NOT NULL
+);
+
+COMMENT ON TABLE users is '회원';
+COMMENT ON COLUMN users.usersno is '회원번호';
+COMMENT ON COLUMN users.name is '이름';
+COMMENT ON COLUMN users.email is '이메일';
+COMMENT ON COLUMN users.pwd is '비밀번호';
+COMMENT ON COLUMN users.sex is '성별';
+COMMENT ON COLUMN users.bdate is '생년월일';
+COMMENT ON COLUMN users.phone is '전화번호';
+COMMENT ON COLUMN users.rdate is '가입일';
 
 
+DROP SEQUENCE users_seq;
+CREATE SEQUENCE users_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 9999999999
+    CACHE 2 
+    NOCYCLE;
+
+--회원
+insert into users(usersno, name, email, pwd, sex, bdate, phone, rdate)
+values(users_seq.nextval,'개 발자','test@gmail.com', 'testpwd' , '남' , '1999-01-01' ,'010-0000-0000', sysdate);
+
+
+
+
+    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno, r.file1saved as r_file1saved
+    FROM store s, cate c, catejoin j, review r
+    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno} and r.storeno = s.storeno
 
 
   
