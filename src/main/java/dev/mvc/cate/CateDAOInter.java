@@ -43,6 +43,7 @@ public interface CateDAOInter {
     public List<CateVO> list(int cateno);
     
     public List<String> read_s(int storeno);
+    public List<String> read_r(int storeno);
 
     /**
      * 검색 + 페이징 목록

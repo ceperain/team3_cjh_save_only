@@ -53,6 +53,12 @@ public class CateProc implements CateProcInter {
        List<String> list = this.cateDAO.read_s(storeno);
         return list;
     }
+    
+    @Override
+    public List<String> read_r(int storeno){
+        List<String> list = this.cateDAO.read_r(storeno);
+    return list;
+}
 
     @Override
     public List<Cate_StoreVO> list_search(String name) {

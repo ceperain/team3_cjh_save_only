@@ -9,10 +9,22 @@ public class Cate_StoreVO {
     private String address;
     /** 번호 */
     private int storeno;
+    /** file1saved*/
+    private String file1saved = "";
+    
     
     /** 기본 생성자 */
     public Cate_StoreVO() {
 
+    }
+
+    public String getFile1saved() {
+        System.out.println("file1saved" + file1saved);
+        return file1saved;
+    }
+
+    public void setFile1saved(String file1saved) {
+        this.file1saved = file1saved;
     }
 
     public int getCateno() {
@@ -25,7 +37,7 @@ public class Cate_StoreVO {
     }
 
     public String getName() {
-        System.out.println("name" + name);
+       // System.out.println("name" + name);
         return name;
     }
 
@@ -34,7 +46,7 @@ public class Cate_StoreVO {
     }
 
     public String getAddress() {
-        System.out.println("address" + address);
+
         return address;
     }
 
@@ -43,7 +55,7 @@ public class Cate_StoreVO {
     }
 
     public int getStoreno() {
-        System.out.println("storeno" + storeno);
+     //   System.out.println("storeno" + storeno);
         return storeno;
     }
 

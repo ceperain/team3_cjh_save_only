@@ -95,15 +95,15 @@ $(function() {  
       <c:set var="name" value="${cate_storeVO.name }"   />
       <c:set var="address" value="${cate_storeVO.address }"   />    
       <c:set var="storeno" value="${cate_storeVO.storeno }"   />
-    
+      <c:set var="file1saved" value="${cate_storeVO.file1saved }" />      
+      <c:set var="file1saved" value="${file1saved.toLowerCase() }" />
     
         <tr>
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
-               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                /static/contents/storage/
-                <a href="./read.do?cateno=${cateno}&now_page=${param.now_page }"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
-              </c:when> 
+               <c:when test="${file1saved.endsWith('jpg') || file1saved.endsWith('png') || file1saved.endsWith('gif')}">
+                <IMG src="/review/storage/${file1saved }" style="width: 300px; height: 200px;">
+                           </c:when> 
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/cate/images/none01.jpg" style="width: 300px; height: 200px;">
               </c:otherwise>
@@ -114,7 +114,7 @@ $(function() {  
            <td style='text-align: left;'>
                 <a href='../store/store.do?storeno=${storeno} ' style='text-decoration:none; color:black;'><h4>${name }</h4></a> 
                     <div style='color:gray;'>
-                       ${address}
+                       ${address}  
                     </div>
                     <div class="si">
 

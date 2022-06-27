@@ -48,9 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </delete>       
   
   <select id="list" resultType="dev.mvc.cate.CateVO" >
-    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno
-    FROM store s, cate c, catejoin j
-    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
+    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno ,r.file1saved as r_file1saved
+    FROM store s, cate c, catejoin j, review r
+    WHERE r.storeno = s.storeno and s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno}
   </select>
   
     <!-- 검색 목록-->
@@ -97,6 +97,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from catejoin
         where storeno =#{storeno})
 </select>
+
+ <select id="read_r" resultType="String" >
+   select  distinct file1saved
+    from store s,review r
+    where  r.storeno = s.storeno and s.storeno= #{storeno}
+</select>
  
  
    <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
@@ -105,11 +111,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    SELECT storeno, name, address, cateno
    FROM (SELECT storeno, name, address, cateno, rownum as r
               FROM (
-                        SELECT s.storeno, s.name, s.address, c.cateno
+                        SELECT s.storeno, s.name, s.address, c.cateno 
                         FROM store s, cate c, catejoin j
                         <choose>
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
-                            WHERE s.storeno = j.storeno and j.cateno = c.cateno
+                            WHERE   s.storeno = j.storeno and j.cateno = c.cateno
                                        and c.cateno = #{cateno}
                           </when>
                           <otherwise>

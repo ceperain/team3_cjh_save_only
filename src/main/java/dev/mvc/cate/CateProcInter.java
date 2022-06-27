@@ -43,7 +43,7 @@ public interface CateProcInter {
     public List<CateVO> list(int cateno);
     
     public List<String> read_s(int storeno);
-
+    public List<String> read_r(int storeno);
         
     /**
      * 카테고리별 검색 목록

@@ -1,5 +1,7 @@
 package dev.mvc.cate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -106,11 +108,31 @@ public class CateCont {
         map.put("cateno", cateno); // #{cateno}
         map.put("word", word); // #{word}
         map.put("now_page", now_page); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
-
+        
         // 검색 목록
         List<Cate_StoreVO> list = this.cateProc.list_search_paging(map);
-
-        mav.addObject("list", list);
+        List<Cate_StoreVO> list_r = new ArrayList<Cate_StoreVO>();
+        List<String> s = null;
+        
+        for(Cate_StoreVO c : list) { 
+            s = this.cateProc.read_r(c.getStoreno());       
+            /*
+             * if((s.size() != 0 )&&(s.get(0)==null) ) { System.out.println("ddd"+s.get(0));
+             * c.setFile1saved(s.get(0)); }else if((s.size() != 0 )&&(s.get(1)==null)) {
+             * System.out.println("ddd"+s.get(1)); c.setFile1saved(s.get(1)); }
+             */
+            if(s.size() >= 1) {
+            int i = s.size()-1;
+            String arrayToString = String.join(" ", s.get(i));
+            c.setFile1saved(arrayToString);
+           System.out.println("dd : "+arrayToString);
+            }
+            
+            list_r.add(c);
+            
+        }
+        mav.addObject("list", list_r);
+    //    mav.addObject("list", list);
 
         // 검색된 레코드 갯수
         int search_count = this.cateProc.search_count(map);
@@ -141,5 +163,7 @@ public class CateCont {
         return mav;
       }      
      
+      
+      
 
 }

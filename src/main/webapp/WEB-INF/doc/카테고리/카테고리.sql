@@ -598,4 +598,10 @@ values(users_seq.nextval,'개 발자','test@gmail.com', 'testpwd' , '남' , '199
 
 
 
+
+    SELECT s.name as s_name, s.address as s_address, s.storeno as s_storeno, r.file1saved as r_file1saved
+    FROM store s, cate c, catejoin j, review r
+    WHERE s.storeno = j.storeno and j.cateno = c.cateno and c.cateno = #{cateno} and r.storeno = s.storeno
+
+
   
