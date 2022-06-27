@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                   (s.storeno in (select storeno
                                   from favorite
                                   where favcheck=1 and usersno=#{usersno}
-                                  )
+                                  ) and usersno=5
                   )
             order by favno asc
         )
