@@ -178,10 +178,22 @@ public class FavCont {
         return mav;
     }
     
-//    @RequestMapping(value="/fav/delete.do", method = RequestMethod.GET)
-//    public ModelAndView delete(HttpSession session) {
-//        ModelAndView
-//        
-//    }
+    @RequestMapping(value="/fav/delete.do", method = RequestMethod.GET)
+    public ModelAndView favdelete(HttpSession session, int storeno) {
+        ModelAndView mav = new ModelAndView();
+        HashMap<String,Object> map = new HashMap<String,Object>();
+        Object tmp_usersno = session.getAttribute("usersno");// 임시
+        int usersno = -1;
+        if (tmp_usersno != null) {
+            usersno = (Integer) tmp_usersno;
+        }
+        map.put("usersno", usersno);
+        map.put("storeno", storeno);
+        int cnt = this.favProc.favcheck_cancel(map);
+        
+        mav.setViewName("redirect:/favorite.do");
+        return mav;
+        
+    }
 
 }

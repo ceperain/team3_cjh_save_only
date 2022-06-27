@@ -51,7 +51,7 @@
       <td class='td_left'><a href="/cate/list_search_paging.do?cateno=${cateno}">${c_name}</a></td>
       <td class='td_basic'>${address}</td> 
       <td class='td_basic'>
-        <a href="#"><i class="fa-solid fa-square-xmark" title="즐겨찾기 삭제"></i></a>
+        <a href="/fav/delete.do?storeno=${storeno }"><i class="fa-solid fa-square-xmark" title="즐겨찾기 삭제"></i></a>
       </td>
       
     </tr>
