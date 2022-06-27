@@ -39,9 +39,9 @@ $(function() {  
 
     idx = 4;         
     $(".table tr:gt(3)").css("display", "none");      
-    if(idx>$(".table tr").length) {
+    if(idx>=$(".table tr").length) {
         $('.button1').css("display", "none");
-    }                
+    }                    
             
     $(".button1 li").click(function(){
          idx+=3;
