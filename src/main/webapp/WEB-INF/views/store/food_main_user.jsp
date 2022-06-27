@@ -135,13 +135,13 @@ $(function() {  
                <td style="word-break:break-all">
                  <c:choose>
                         <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-                        <a href="../review/read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px; float:left"></a> 
+                       <IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px; float:left">
                         </c:when>
                          <c:otherwise>
                             <IMG src="/review/images/none1.png" style="width: 120px; height: 80px; float:left">
                         </c:otherwise>
                   </c:choose>     
-                  ${contents }
+                   <a href="../review/read.do?reviewno=${reviewno}" style="text-decoration: none; color:black; font-weight: lighter;">  ${contents } </a>             
                     <br>
 
                   <c:if test="${usersno eq r_usersno}">
