@@ -98,7 +98,7 @@ function sendMessage(message){
 
       $.ajax(
         {
-          url: 'http://sempi.iptime.org:38000/chatbot_intent/chatting_intent_query',
+          url: 'http://13.124.253.27:8000/chatbot_intent/chatting_intent_query',
           type: 'get',  // get, post
           cache: false, // 응답 결과 임시 저장 취소
           async: true,  // true: 비동기 통신

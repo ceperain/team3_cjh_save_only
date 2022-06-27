@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     from favorite
     where usersno = #{usersno} and storeno = #{storeno}
   </select>
+  
+  <select id="countByUsers" resultType="int" parameterType="int">
+    select count(favno) as cnt
+    from favorite
+    where usersno = #{usersno}
+  </select>
 
   <insert id="create" parameterType="Map">
     insert into favorite(favno, usersno, storeno, favcheck)
@@ -53,6 +59,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                          where favcheck=1 and usersno=#{usersno}
                         )
           )
+  </select>
+  
+  <!-- 검색 없는 페이징 -->
+  <select id="favorite_list_paging" resultType="dev.mvc.fav.FavDataVO"  parameterType="Map">
+    select storeno, cateno, s_name, c_name, address, r
+    from(   select s.storeno, c.cateno, s.name as s_name, s.address as address, c.name as c_name, rownum as r
+            from store s, cate c, catejoin j, favorite f
+            where (s.storeno = j.storeno and s.storeno = f.storeno and j.cateno = c.cateno) and 
+                  (s.storeno in (select storeno
+                                  from favorite
+                                  where favcheck=1 and usersno=#{usersno}
+                                  )
+                  )
+            order by favno asc
+        )
+    where <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
   </select>
   
  

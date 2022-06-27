@@ -14,6 +14,13 @@ public interface FavDAOInter {
 
     /**
      * 
+     * @param usersno
+     * @return
+     */
+    public int countByUsers(int usersno);
+
+    /**
+     * 
      * @param map
      * @return
      */
@@ -53,11 +60,18 @@ public interface FavDAOInter {
      * @return
      */
     public int deleteByStoreno(int storeno);
-    
+
     /**
      * 
      * @param usersno
      * @return
      */
     public List<FavDataVO> favorite_list(int usersno);
+
+    /**
+     * 
+     * @param map
+     * @return
+     */
+    public List<FavDataVO> favorite_list_paging(Map<String, Object> map);
 }

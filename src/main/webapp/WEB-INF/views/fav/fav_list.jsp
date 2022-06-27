@@ -48,10 +48,10 @@
        
     <tr>
       <td class='td_left'><a href="/store/store.do?storeno=${storeno}">${s_name}</a></td>
-      <td class='td_left'><a href="/cate/list_search_paging.do?cateno=${storeno}">${c_name}</a></td>
+      <td class='td_left'><a href="/cate/list_search_paging.do?cateno=${cateno}">${c_name}</a></td>
       <td class='td_basic'>${address}</td> 
       <td class='td_basic'>
-        <a href="./delete.do?memberno=${memberno}"><i class="fa-solid fa-square-xmark" title="즐겨찾기 삭제"></i></a>
+        <a href="#"><i class="fa-solid fa-square-xmark" title="즐겨찾기 삭제"></i></a>
       </td>
       
     </tr>
@@ -59,6 +59,7 @@
     
   </table>
    </div>
+   <div class='bottom_menu'>${paging }</div>
 </div>
 </div>
 </body>

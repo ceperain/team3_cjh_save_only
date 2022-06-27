@@ -81,7 +81,7 @@ public class UsersCont {
     @RequestMapping(value = "/users/create.do", method = RequestMethod.POST)
     public ModelAndView create(UsersVO usersVO) {
         ModelAndView mav = new ModelAndView();
-
+        System.out.println(usersVO.getBdate());
         int cnt = this.usersProc.create(usersVO);
 
         if (cnt == 1) {

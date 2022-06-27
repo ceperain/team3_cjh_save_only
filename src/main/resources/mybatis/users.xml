@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <insert id="create" parameterType="dev.mvc.users.UsersVO">
     insert into users(usersno, name, email, pwd, sex, bdate, phone, rdate)
-    values(users_seq.nextval, #{name}, #{email}, #{pwd}, #{sex}, #{bdate}, #{phone}, sysdate)
+    values(users_seq.nextval, #{name}, #{email}, #{pwd}, #{sex}, TO_DATE(#{bdate}, 'YYYY-MM-DD'), #{phone}, sysdate)
   </insert>
   
   <select id="read" resultType="dev.mvc.users.UsersVO" parameterType="int">

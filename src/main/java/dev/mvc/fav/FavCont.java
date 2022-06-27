@@ -126,17 +126,49 @@ public class FavCont {
         return json.toString();
     }
     
+//    @RequestMapping(value="/favorite.do" ,method = RequestMethod.GET)
+//    public ModelAndView favlist(HttpSession session) {
+//        ModelAndView mav = new ModelAndView();
+//        Object tmp_usersno = session.getAttribute("usersno");// 임시
+//        int usersno = 0;
+//        if (tmp_usersno != null) {
+//            usersno = (Integer) tmp_usersno;
+//            
+//            
+//            List<FavDataVO> list = this.favProc.favorite_list(usersno);
+//            
+//            mav.addObject("list", list);
+//            mav.addObject("usersno", usersno);
+//            mav.setViewName("/fav/fav_list");
+//            
+//        } else {
+//            mav.setViewName("redirect:/");
+//        }
+//        
+//        return mav;
+//    }
+    
     @RequestMapping(value="/favorite.do" ,method = RequestMethod.GET)
-    public ModelAndView favlist(HttpSession session) {
+    public ModelAndView favlist_paging(HttpSession session, @RequestParam(value = "now_page", defaultValue = "1") int now_page) {
         ModelAndView mav = new ModelAndView();
+        HashMap<String, Object> map = new HashMap<String, Object>();
         Object tmp_usersno = session.getAttribute("usersno");// 임시
         int usersno = 0;
         if (tmp_usersno != null) {
             usersno = (Integer) tmp_usersno;
-            List<FavDataVO> list = this.favProc.favorite_list(usersno);
+            map.put("now_page", now_page);
+            map.put("usersno", usersno);
+            
+            
+            List<FavDataVO> list = this.favProc.favorite_list_paging(map);
+            int search_count = this.favProc.countByUsers(usersno);
+            String paging = this.favProc.pagingBox(search_count, now_page);
+            
             
             mav.addObject("list", list);
+            mav.addObject("search_count", search_count);
             mav.addObject("usersno", usersno);
+            mav.addObject("paging", paging);
             mav.setViewName("/fav/fav_list");
             
         } else {
@@ -145,5 +177,11 @@ public class FavCont {
         
         return mav;
     }
+    
+//    @RequestMapping(value="/fav/delete.do", method = RequestMethod.GET)
+//    public ModelAndView delete(HttpSession session) {
+//        ModelAndView
+//        
+//    }
 
 }
