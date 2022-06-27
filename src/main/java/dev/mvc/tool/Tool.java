@@ -366,34 +366,27 @@ public class Tool {
         return fname;
     }
 
+    
     /**
-     * Youtube 영상의 크기를 변경함.
+     * Youtube 영상의 크기를 변경
      * @param url youtube 주소
      * @param width youtube 너비
-     * @param height youtube 세로 크기
+     * @param height youtube 세로크기
      * @return 변경된 youtube 크기
      */
+    /* 유튜브 크기 조절 */
     public static String youtube(String url, int width, int height) {
         int width1 = url.indexOf("\""); // 처음부터 "위치
         int width2 = url.indexOf("\"", width1+1); // width1+1부터 "위치 찾음
         int height1 = url.indexOf("\"", width2+1); // width2+1부터 "위치 찾음
         int height2 = url.indexOf("\"", height1+1); // width1부터 "위치 찾음
 
-        url = url.substring(0, width1+1) + width + url.substring(width2, height1+1) + height + url.substring(height2);
-
-        return url;
-    }
+        
+       url = url.substring(0, width1+1) + width + url.substring(width2, height1+1) + height +url.substring(height2);
+       
+       return url;
+       }
     
-    public static String youtube(String url, String width, String height) {
-        int width1 = url.indexOf("\""); // 처음부터 "위치
-        int width2 = url.indexOf("\"", width1+1); // width1+1부터 "위치 찾음
-        int height1 = url.indexOf("\"", width2+1); // width2+1부터 "위치 찾음
-        int height2 = url.indexOf("\"", height1+1); // width1부터 "위치 찾음
-
-        url = url.substring(0, width1+1) + width + url.substring(width2, height1+1) + height + url.substring(height2);
-
-        return url;
-    }
     
     public static void main(String[] args) {
         // getFname("C:/kd/sw_images_kd1/spring/spring.jpg");
@@ -404,8 +397,8 @@ public class Tool {
         // float rate = 10.5;
         double rate2 = 10.5;
     }
-
     
+
 }
 
 
