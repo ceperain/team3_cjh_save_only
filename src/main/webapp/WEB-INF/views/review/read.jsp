@@ -107,25 +107,25 @@ $(document).ready(function(){
      <c:forEach var="m" items="${m}">
        <c:choose>
                 <c:when test="${m.key eq '1'}">
-                   <label class="btn btn-danger" >
+                   <label class="btn btn-danger" >${m.value}</label>
                 </c:when>
                 <c:when test="${m.key eq '2'}">
-                   <label class="btn btn-warning">
+                   <label class="btn btn-warning">${m.value}</label>
                 </c:when>
                 <c:when test="${m.key eq '3'}">
-                    <label class="btn btn-info">
+                    <label class="btn btn-info">${m.value}</label>
                 </c:when>
                  <c:when test="${m.key eq '4'}">
-                    <label class="btn btn-primary">
+                    <label class="btn btn-primary">${m.value}</label>
                 </c:when>
                 <c:when test="${m.key eq '5'}">
-                    <label class="btn btn-secondary">
+                    <label class="btn btn-secondary">${m.value}</label>
                 </c:when>
                 <c:when test="${m.key eq '6'}">
-                    <label class="btn btn-success">
+                    <label class="btn btn-success">${m.value}</label>
                 </c:when>
             </c:choose>
-             ${m.value}</label>  <br>
+             <br>
 </c:forEach>
    <%--  <c:forEach var="KeylistVO" items="${list_key}"> --%>
              <%-- <c:set var="keytext" value="${keylistVO.keytext }" />

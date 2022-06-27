@@ -117,7 +117,6 @@ $(function() {  
                        ${address}  
                     </div>
                     <div class="si">
-
                     </div>
            </td>
         </tr></c:forEach>

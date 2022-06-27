@@ -22,10 +22,9 @@
     font-size: 18px;
 }
 .container{
-      
-   clear: both;
-   position:sticky;
-   top:100px;
+	clear: both;
+	position:sticky;
+	top:100px;
     height: 100%;
     width: 30%;
     margin: 0px 0 0 50px auto;

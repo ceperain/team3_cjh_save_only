@@ -99,3 +99,42 @@ html {
     height: 30px;
     object-fit: cover;
 }
+
+
+/*
+이 아래쪽이 추가부분 
+*/
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
+.dropdown_btn{
+  border : none;
+  background-color: transparent;
+  cursor : pointer;
+}
+.dropdown_content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  left: -170px;
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width : 200px;
+}
+
+.dropdown_content a, .dropdown_content span{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 16px;
+  padding : 12px 20px;
+}
+
+.dropdown_content a:hover{
+  background-color : #ececec
+}
+
+.dropdown:hover .dropdown_content {
+  display: block;
+}

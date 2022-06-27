@@ -11,7 +11,6 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" /> 
 <title>http://localhost:9091/</title>
-<link href="/css/store.css" rel="Stylesheet" type="text/css"> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static/css/style.css -->
 <link href="/css/review.css" rel="Stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -57,7 +56,7 @@ $(function() {  
  <c:set var="lat" value="${storeVO.lat }" />
   <c:set var="address" value="${storeVO.address }" />
  <c:set var="lng" value="${storeVO.lng }" />
-    <section style="width: 80%; margin:auto; overflow: hidden;" >
+
 
     <div class="fotorama" style="position:relative; left:30%; z-index: 2">
        <c:forEach var="reviewVO" items="${r_list }">
@@ -101,8 +100,8 @@ $(function() {  
  <hr>
  
 
-<DIV class='menu_line'>  
-   <div style="width: 70%; float: left; padding: 5px 10px 5px 5px;">
+<DIV class='menu_line' style="display: flex;">  
+   <div style="width: 70%;padding: 5px 10px 5px 5px;">
         <table class="table">
         <colgroup>
             <col style="width: 10%;"></col>
@@ -135,13 +134,15 @@ $(function() {  
              </tr>
           </c:forEach>     
      </tbody>
-    </table>
+    </table>   
    </div>
+
     <div class="container">
     <div class="row"><div class="keyworddivstyle">가성비<span id="kspan">${count_1}</span></div><div class="keyworddivstyle">친절<span id="kspan">${count_2}</span></div>
     <div class="keyworddivstyle">분위기<span id="kspan">${count_3}</span></div><div class="keyworddivstyle">신선<span id="kspan">${count_4}</span></div>
     <div class="keyworddivstyle">청결<span id="kspan">${count_5}</span></div><div class="keyworddivstyle">주차<span id="kspan">${count_6}</span></div></div>
     </div>   
+</DIV>
 <div style="width: 100%; float: left; padding: 0px 10px 5px 5px; vertical-align: middle; text-align: center;">
    <ul  class="button1">
         <li>리뷰 더보기</li>
@@ -149,7 +150,6 @@ $(function() {  
 </div>
 
 
-</section>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc&libraries=services"></script>
 <script>

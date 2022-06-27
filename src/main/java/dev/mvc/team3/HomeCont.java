@@ -3,6 +3,9 @@ package dev.mvc.team3;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ public class HomeCont {
         System.out.println("-> HomeCont created.");
     }
 
+    
     // http://localhost:9091
     @RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)
     public ModelAndView home() {
@@ -35,6 +39,32 @@ public class HomeCont {
 
         return mav;
     }
+    
+    
+    @RequestMapping(value = "/chatbot.do", method = RequestMethod.GET)
+    public ModelAndView create() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/chatbot/chatbot"); 
+
+        return mav; 
+    }
+    
+  
+    /*
+     * @RequestMapping(value = "/recom.do", method = RequestMethod.GET) public
+     * ModelAndView recom(HttpServletRequest request) throws Exception{ ModelAndView
+     * mav = new ModelAndView(); int usersno=0; HttpSession session =
+     * request.getSession(); if (session.getAttribute("usersno") != null) { usersno
+     * = (int)session.getAttribute("usersno"); mav.addObject("usersno", usersno);
+     * mav.setViewName("/recom");
+     * 
+     * } else { mav.addObject("return_url", "/recom.do");
+     * mav.setViewName("redirect:/login.do");
+     * 
+     * } return mav; }
+     */
+    
+  
     
 //    @RequestMapping(value = {"/", "/index.do"}, method = RequestMethod.GET)
 //    public String home(Locale locale, Model model) {

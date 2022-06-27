@@ -27,6 +27,7 @@
 <link href="/css/store.css" rel="Stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c579d9f33d9ed56b400411961b5eacbc"></script>
+<script type="text/javascript" src="/js/favorite/fav.js"></script> <%-- 즐겨찾기 --%>
 <script type="text/javascript">
 $(function() {  
 	if(${user_c}>=1){
@@ -81,6 +82,10 @@ $(function() {  
     </div>
     <br>
     <div style="width: 100%; float:left; "><h2>${name}</h2>
+        <%--추가한 부분1 --%>
+        <button id="btn_fav" class="btn">즐겨찾기</button>
+        <input type="hidden" id="usersno" value="${usersno }">
+        <%--추가한 부분1 종료 --%>
     <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
     </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">

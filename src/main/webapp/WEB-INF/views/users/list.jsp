@@ -26,7 +26,7 @@
 <div class="container">
   <div class='content_body'>   
     <div class='menu_line'></div>
-    <table class="table table-light table-striped">
+    <table class="table table-light table-striped con_list">
     <colgroup>
       <col style='width: 25%;'/>
       <col style='width: 10%;'/>
