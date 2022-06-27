@@ -13,6 +13,7 @@
 
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/ptu.css" rel="stylesheet">
+<link href="/css/notice.css" rel="stylesheet">
 
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -30,12 +31,30 @@
     
 <title>http://localhost:9091/</title>
 </head>
-<body>
+<body class="gradient-custom-3">
 <jsp:include page="../menu/top.jsp" flush='false' />
 
 
+<DIV>
+<DIV class='title_line notice' style='padding-top: 100px;'><a href="./list_search_paging.do">공지사항</a>
 
-<DIV class='title_line' style='padding-top: 100px'>카테고리 그룹 > 전체 카테고리</DIV>
+<%-- *********************************** 검색 시작 *********************************** --%>
+  <DIV style="text-align: right;">
+    <form name='frm' id='frm' method='get' action='./list_search.do'>
+      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>
+      <input type='text' name='title' id='title' value='${param.title }' style='width: 20%;'>
+      <button type='submit'>검색</button>
+      <c:if test="${param.title.length() > 0 }">
+        <button type='button'
+                     onclick="location.href='./list_search.do?noticeno=${noticeVO.noticeno}&word=${title}'">검색 취소</button>  
+      </c:if>
+      &nbsp;
+    </form>
+  </DIV>
+<%-- *********************************** 검색 종료 *********************************** --%>
+
+
+</DIV>
 
 <DIV class='content_body'>
   <TABLE class='table table-striped'>
@@ -43,7 +62,6 @@
       <col style='width: 10%;'/>
       <col style='width: 50%;'/>
       <col style='width: 20%;'/>    
-      <col style='width: 20%;'/>
     </colgroup>
    
     <thead>  
@@ -51,7 +69,6 @@
       <TH class="th_bs">번호</TH>
       <TH class="th_bs">제목</TH>
       <TH class="th_bs">등록일</TH>
-      <TH class="th_bs">기타</TH>
     </TR>
     </thead>
     
@@ -60,21 +77,23 @@
       <c:set var="noticeno" value="${noticeVO.noticeno }" />
       <c:set var="title" value="${noticeVO.title }" />
       <c:set var="rdate" value="${noticeVO.rdate.substring(0, 10) }" />
-      <c:set var="contents" value="${noticeVO.contents }" />
       
-      <TR>
-        <TD class="td_bs">${noticeno }</TD>
-        <TD class="td_bs">${title }</TD>
-        <TD class="td_bs">${rdate }</TD>
-        <TD class="td_bs">
-          <A href="./read_update.do?cateno=${cateno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
-          <A href="./read_delete.do?cateno=${cateno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
-        </TD>   
+      <TR class="title">
+        <TD>${noticeno }</TD>
+        <TD><a href="./read.do?noticeno=${noticeno}">${title }</a></TD>
+        <TD>${rdate }</TD>
+ 
       </TR>   
     </c:forEach> 
     </tbody>
+    
+
    
   </TABLE>
+   <button type="button" onclick="location.href='./create.do?'" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">
+    글작성
+   </button>
+</DIV>
 </DIV>
 
 </body>

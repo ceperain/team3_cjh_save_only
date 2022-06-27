@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.mvc.fav.FavDAOInter">
+
+  <select id="countfav" resultType="int" parameterType="Map">
+    select count(favno) as cnt
+    from favorite
+    where usersno = #{usersno} and storeno = #{storeno}
+  </select>
+
+  <insert id="create" parameterType="Map">
+    insert into favorite(favno, usersno, storeno, favcheck)
+    values((select nvl(max(favno), 0) + 1 as favno from favorite),
+              #{usersno}, #{storeno}, 0)
+  </insert>
+  
+  <update id="favcheck" parameterType="Map">
+    update favorite
+    set favcheck = favcheck + 1
+    where usersno = #{usersno} and storeno = #{storeno}
+  </update>
+  
+  <update id="favcheck_cancel" parameterType="Map">
+    update favorite
+    set favcheck = 0
+    where usersno = #{usersno} and storeno = #{storeno}
+  </update>
+  
+  <select id="read" resultType="dev.mvc.fav.FavVO" parameterType="Map">
+    select favno, usersno, storeno, favcheck
+    from favorite
+    where usersno=#{usersno} and storeno=#{storeno}
+  </select>
+  
+  <delete id="deleteByUsersno" parameterType="int">
+    delete from favorite
+    where usersno=#{usersno}
+  </delete>
+  
+  <delete id="deleteByStoreno" parameterType="int">
+    delete from favorite
+    where storeno=#{storeno}
+  </delete>
+
+  <select id="favorite_list" resultType="dev.mvc.fav.FavDataVO"  parameterType="int">
+    select s.storeno, c.cateno, s.name as s_name, s.address as address, c.name as c_name
+    from store s, cate c, catejoin j
+    where (s.storeno = j.storeno and j.cateno = c.cateno) and 
+          (s.storeno in (select storeno
+                         from favorite
+                         where favcheck=1 and usersno=#{usersno}
+                        )
+          )
+  </select>
+  
+ 
+  
+</mapper>
