@@ -11,8 +11,7 @@
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <link href="/css/fav/list.css" rel="Stylesheet" type="text/css">
- 
- 
+
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
