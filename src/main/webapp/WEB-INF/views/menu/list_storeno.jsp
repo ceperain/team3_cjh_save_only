@@ -97,10 +97,9 @@
     }   
 </script>
 </head>
-<body>
+<body  class="gradient-custom-3" style = "width: 100%">
 <jsp:include page="./top.jsp" flush='false' />
 
-<div class="gradient-custom-3">
 <section style="width: 80%; margin:auto;">
 
 <br><br><br>
@@ -214,6 +213,6 @@
         </c:forEach>
     </tbody>
     </TABLE>
-</section></div>
+</section>
 </body>
 </html>

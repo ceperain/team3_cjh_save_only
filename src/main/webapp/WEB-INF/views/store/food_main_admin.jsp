@@ -32,17 +32,17 @@ $(function() {  
 
     idx = 4;         
     $(".table tr:gt(3)").css("display", "none");      
-    if(idx>$(".table tr").length) {
+    if(idx>=$(".table tr").length) {
         $('.button1').css("display", "none");
-    }                
-            
+    }       
+    
     $(".button1 li").click(function(){
-         idx+=3;
-         $(".table tr:lt("+idx+")").css("display", "");   
-         if(idx>=$(".table tr").length) {
-            $('.button1').css("display", "none");
-        }
-        }); 
+        idx+=3;
+        $(".table tr:lt("+idx+")").css("display", "");   
+        if(idx>=$(".table tr").length) {
+           $('.button1').css("display", "none");
+       }
+       }); 
         
  });
 
@@ -75,7 +75,7 @@ $(function() {  
     </div>
     <br>
     <div style="width: 100%; float:left; "><h2>${name}</h2>
-    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right"><i class="fa-solid fa-pen-to-square"></i></A>
+    <A href="../review/create.do?storeno=${storeVO.storeno }" title="등록" id="review_create"style="float:right;  padding:5px 5px"><i class="fa-solid fa-pen-to-square"></i></A>
     </div><br><hr>
     <div style="margin:0 auto;float:left;width: 70%;">
         <table style="text-align:left; height: 500px; width: 60%;margin:0 auto">
@@ -124,13 +124,13 @@ $(function() {  
                <td style="word-break:break-all">
                  <c:choose>
                         <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-                        <a href="../review/read.do?reviewno=${reviewno}"><IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px; float:left"></a> 
+                      <IMG src="/review/storage/${thumb }" style="width: 120px; height: 80px; float:left">
                         </c:when>
                          <c:otherwise>
                             <IMG src="/review/images/none1.png" style="width: 120px; height: 80px; float:left">
                         </c:otherwise>
                   </c:choose>     
-                  ${contents }
+                   <a href="../review/read.do?reviewno=${reviewno}" style="text-decoration: none; color:black; font-weight: lighter;">  ${contents } </a>             
                     <br>
                     <A href="../review/delete.do?reviewno=${reviewno }" title="삭제" style="float:right;"><i class="fa-solid fa-eraser"></i></A>
                     <A href="../review/update.do?reviewno=${reviewno }" title="수정"  style="float:right; padding-right:10px;"><i class="fa-regular fa-pen-to-square"></i></A>                        

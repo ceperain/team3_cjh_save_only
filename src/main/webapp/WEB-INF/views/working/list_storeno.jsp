@@ -101,10 +101,9 @@ function read_delete(workno) {
   }   
 </script>
 </head>
-<body>
+<body  class="gradient-custom-3" style = "width: 100%">
 <jsp:include page="../menu/top.jsp" flush='false' />
 
-<div class="gradient-custom-3">
 <section style="width: 80%; margin:auto;">
 
 <br><br><br>
@@ -230,6 +229,6 @@ function read_delete(workno) {
         </c:forEach>
     </tbody>
     </TABLE>
-</section></div>
+</section>
 </body>
 </html>
