@@ -104,12 +104,7 @@ public class StoreProc implements StoreProcInter{
         str.append("<DIV id='paging'>"); 
 //        str.append("현재 페이지: " + nowPage + " / " + totalPage + "  "); 
      
-        // 이전 10개 페이지로 이동
-        // now_grp: 1 (1 ~ 10 page)
-        // now_grp: 2 (11 ~ 20 page)
-        // now_grp: 3 (21 ~ 30 page) 
-        // 현재 2그룹일 경우: (2 - 1) * 10 = 1그룹의 마지막 페이지 10
-        // 현재 3그룹일 경우: (3 - 1) * 10 = 2그룹의 마지막 페이지 20
+    
         int _now_page = (now_grp - 1) * Store.PAGE_PER_BLOCK;  
         if (now_grp >= 2){ // 현재 그룹번호가 2이상이면 페이지수가 11페이 이상임으로 이전 그룹으로 갈수 있는 링크 생성 
           str.append("<span class='span_box_1'><A href='"+Store.LIST_FILE+"?now_page="+_now_page+"&storeno="+storeno+"'>이전</A></span>"); 
