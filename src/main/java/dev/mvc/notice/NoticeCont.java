@@ -3,6 +3,8 @@ package dev.mvc.notice;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -70,10 +72,13 @@ import org.springframework.web.servlet.ModelAndView;
          * @return
          */
         @RequestMapping(value = "/notice/create.do", method = RequestMethod.POST)
-        public ModelAndView create(NoticeVO noticeVO) {
+        public ModelAndView create(NoticeVO noticeVO, HttpSession session) {
           ModelAndView mav = new ModelAndView();
 
           // System.out.println("-> ptucgno: " + myctVO.getPtucgno());
+          int adminno = (int)session.getAttribute("adminno");
+          noticeVO.setAdminno(adminno);
+          
           
           int cnt = this.noticeProc.create(noticeVO);
           System.out.println("====>"+cnt);

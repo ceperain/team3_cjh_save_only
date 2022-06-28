@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
+<%@ page import="dev.mvc.login.LoginType" %>
 
 
 <!DOCTYPE html>
@@ -45,7 +46,7 @@
       <button type='submit'>검색</button>
       <c:if test="${param.title.length() > 0 }">
         <button type='button'
-                     onclick="location.href='./list_search.do?noticeno=${noticeVO.noticeno}&word=${word}'">검색 취소</button>  
+                     onclick="location.href='./list_search_paging.do?noticeno=${noticeVO.noticeno}&word=${word}'">검색 취소</button>  
       </c:if>
       &nbsp;
     </form>
@@ -87,10 +88,13 @@
 
    
   </TABLE>
+  <c:choose>
+  <c:when test="${sessionScope.type ==  LoginType.ADMIN}">
    <button type="button" onclick="location.href='./create.do?'" class="btn btn-light btn-block btn-lg gradient-custom-4 text-body">
     글작성
    </button>
-   
+   </c:when>
+   </c:choose>
      <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->

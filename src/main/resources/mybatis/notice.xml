@@ -84,8 +84,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
                            </when>
                           <otherwise>
-                             WHERE (UPPER(title) LIKE '%' || #{word} || '%' 
-                                                                  OR UPPER(contents) LIKE '%' || #{word} || '%' 
+                             WHERE (UPPER(title) LIKE UPPER('%' || #{word} || '%') 
+                                                                  OR UPPER(contents) LIKE UPPER('%' || #{word} || '%' ))
                           </otherwise>
                         </choose>
                         ORDER BY noticeno DESC
