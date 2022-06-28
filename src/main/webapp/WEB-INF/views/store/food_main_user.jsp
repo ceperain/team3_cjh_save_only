@@ -41,7 +41,9 @@ $(function() {  
     $(".table tr:gt(3)").css("display", "none");      
     if(idx>=$(".table tr").length) {
         $('.button1').css("display", "none");
-    }                    
+    }else{
+        $('.button1').css("display", "");
+    }                              
             
     $(".button1 li").click(function(){
          idx+=3;
@@ -97,16 +99,16 @@ $(function() {  
              <c:set var="day" value="${workVO.day }" />
              <c:set var="starttime" value="${workVO.starttime }" />
              <c:set var="endtime" value="${workVO.endtime }" />
-                    <th>${day }</th><th>${starttime } ~ ${endtime }</th>
+                    <th>${day }</th><th>${starttime } ~ ${endtime }</th>  </tr>
              </c:forEach>
-             </tr>
+           
              <tr><th rowspan="${menu_count }">메뉴</th>
              <c:forEach var="menuVO" items="${m_list}">
                 <c:set var="name" value="${menuVO.name }" />
                 <c:set var="price" value="${menuVO.price }" />
-                <th>${name }</th><th>${price } 원</th>
+                <th>${name }</th><th>${price } 원</th> </tr>
              </c:forEach>
-             </tr>
+            
             </table>
        </div>
         <div id="map" style="width:30%; height:500px; z-index: 5"></div> 
