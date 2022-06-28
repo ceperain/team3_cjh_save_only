@@ -12,7 +12,7 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/users/standard.css" rel="stylesheet">
 
- <script type="text/javascript" src="/js/users/login.js" defer></script>
+<script type="text/javascript" src="/js/users/login.js" defer></script>
 
 </head>
 <body class="gradient-custom-3">

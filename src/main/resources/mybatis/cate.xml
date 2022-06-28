@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="read_r" resultType="String" >
    select  distinct file1saved
     from store s,review r
-    where  r.storeno = s.storeno and s.storeno= #{storeno}
+    where  r.storeno = s.storeno and s.storeno= #{storeno} and r.file1saved is not null
 </select>
  
  
