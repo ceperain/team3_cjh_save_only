@@ -105,7 +105,7 @@ $(function () {
               <IMG src="/review/storage/${file1saved }" style=" width: 100%; height: 100%;"> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
-               <IMG src="/review/images/none3.png" style="width: 100%; height: 100%;"> 
+               <IMG src="/review/images/none1.png" style="width: 50%; height: 50%;"> 
             </c:otherwise>
           </c:choose>
           <br>

@@ -134,7 +134,8 @@
   
       $.ajax(
         {
-          url: 'http://13.124.253.27:8000/recommend_store/req_ajax/' + usersno,
+          url: 'http://sempi.iptime.org:38000/recommend_store/req_ajax/' + usersno,
+          // url: 'http://13.124.253.27:8000/recommend_store/req_ajax/' + usersno,
           type: 'get',  // get, post
           cache: false, // 응답 결과 임시 저장 취소
           async: false,  // true: 비동기 통신
