@@ -64,7 +64,11 @@ public class StoreCont {
     public StoreCont() {
         // System.out.println("-> StoreCont created.");
     }
-
+    /**
+     * 상품 목록 http://localhost:9091/store/store.do?storeno=1
+     * 
+     * @return
+     */
     
     @RequestMapping(value = "/store/store.do", method = RequestMethod.GET)
     public ModelAndView store2(HttpServletRequest request , int storeno) throws Exception{
@@ -129,7 +133,11 @@ public class StoreCont {
         
         return mav; // forward
     }
-
+    /**
+     * 등록폼 http://localhost:9091/store/create.do
+     * 
+     * @return
+     */
     @RequestMapping(value = "/store/create.do", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView mav = new ModelAndView();
@@ -137,6 +145,11 @@ public class StoreCont {
 
         return mav; // forward
     }
+    /**
+     * 등록 처리 http://localhost:9091/store/create.do
+     * 
+     * @return
+     */
 
     @RequestMapping(value = "/store/create.do", method = RequestMethod.POST)
     public ModelAndView create(StoreVO storeVO) {
@@ -157,6 +170,14 @@ public class StoreCont {
      * mav.setViewName("/store/list"); // webapp/WEB-INF/views/store/list_all.jsp
      * return mav; // forward }
      */
+    /**
+     * 목록  + 페이징 지원
+     * http://localhost:9090/store/list.do?storeno=1&now_page=1
+     * 
+     * @param storeno
+     * @param now_page
+     * @return
+     */
     
     @RequestMapping(value = "/store/list.do", method = RequestMethod.GET)
     public ModelAndView list_search_paging(@RequestParam(value = "storeno", defaultValue = "1") int storeno,
@@ -172,15 +193,7 @@ public class StoreCont {
       List<StoreVO> list = this.storeProc.list_search_paging(map);
     
       mav.addObject("list", list);
-      /*
-       * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
-       * 18 19 20 [다음]
-       * @param cateno 카테고리번호
-       * @param search_count 검색(전체) 레코드수
-       * @param now_page 현재 페이지
-       * @param word 검색어
-       * @return 페이징용으로 생성된 HTML/CSS tag 문자열
-       */
+     
       int cnt = this.storeProc.count();
       String paging = this.storeProc.pagingBox(storeno,cnt, now_page);
       mav.addObject("paging", paging);
@@ -189,7 +202,13 @@ public class StoreCont {
 
       return mav;
     }      
-    
+    /**
+     * 상품  수정 삭제 폼 사전 준비된 레코드: 
+     * http://localhost:9091/store/create.do?storeno=1
+     * 
+     * @param storeno     상품번호
+     * @return
+     */
 
     @RequestMapping(value = "/store/read_ajax.do", method = RequestMethod.GET)
     @ResponseBody
@@ -216,6 +235,11 @@ public class StoreCont {
         return json.toString();
     }
 
+    /**
+     * 상품 수정 처리 http://localhost:9091/store/update.do
+     * 
+     * @return
+     */
     @RequestMapping(value = "/store/update.do", method = RequestMethod.POST)
     public ModelAndView update(StoreVO storeVO) {
         ModelAndView mav = new ModelAndView();
@@ -227,7 +251,11 @@ public class StoreCont {
         }
         return mav; // forward
     }
-
+    /**
+     * 상품 삭제 처리 http://localhost:9091/store/delete.do
+     * 
+     * @return
+     */
     @RequestMapping(value = "/store/delete.do", method = RequestMethod.POST)
     public ModelAndView delete(int storeno) {
         ModelAndView mav = new ModelAndView();

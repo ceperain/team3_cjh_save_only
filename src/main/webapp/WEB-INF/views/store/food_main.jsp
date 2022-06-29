@@ -32,7 +32,9 @@ $(function() {  
     $(".table tr:gt(3)").css("display", "none");      
     if(idx>=$(".table tr").length) {
         $('.button1').css("display", "none");
-    }                
+    }else{
+    	 $('.button1').css("display", "");
+        }              
             
     $(".button1 li").click(function(){
          idx+=3;
